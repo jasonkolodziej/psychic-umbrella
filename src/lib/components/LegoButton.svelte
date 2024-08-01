@@ -4,34 +4,35 @@
 		alert('You clicked btn1.');
 	};
 	export let label: string;
-	export let color: string;
+	// export let color: string = 'default';
 </script>
 
-<Button on:click={clicked} color="none">
-	<div class="flex flex-col">
-		<div id="brick-wrapper">
-			<div class="brick" id="main">
-				<p>{label}</p>
+<div class="grid grid-cols-1">
+	<div id="brick-wrapper">
+		<div class="brick">
+			<Button id="lego" on:click={clicked} color="primary">
+				{label}
 				<div class="bits">
-					<div class="bit"></div>
-					<div class="bit"></div>
-					<div class="bit"></div>
-					<div class="bit"></div>
+					<div class="bit" />
+					<div class="bit" />
+					<div class="bit" />
+					<div class="bit" />
 				</div>
-			</div>
+			</Button>
 		</div>
-		<div id="brick-wrap-2">
-			<div class="brick-2" id="green">
-				<div class="bits-2">
-					<div class="bit-2"></div>
-					<div class="bit-2"></div>
-					<div class="bit-2"></div>
-					<div class="bit-2"></div>
-				</div>
+	</div>
+
+	<div id="brick-wrap-2">
+		<div class="brick-2">
+			<div class="bits-2">
+				<div class="bit-2" />
+				<div class="bit-2" />
+				<div class="bit-2" />
+				<div class="bit-2" />
 			</div>
 		</div>
 	</div>
-</Button>
+</div>
 
 <!-- <div id="brick-wrap"> -->
 <!-- <div class="brick-wrapper">
@@ -57,7 +58,6 @@
 </div> -->
 
 <style>
-	/* #brick-wrap { */
 	#brick-wrapper {
 		cursor: pointer !important;
 		z-index: 10;
@@ -66,43 +66,59 @@
 		transition: 0.4s ease-in-out transform;
 		position: relative;
 		display: block;
-		width: 124px;
+		/* width: 124px; */
+		width: inherit;
 		padding-bottom: 8px;
 		overflow: hidden;
 	}
 
 	#brick-wrapper:hover {
 		cursor: pointer !important;
-		transform: translate3d(0px, 5px, -150px);
+		/* transform: translate3d(0px, 5px, -150px); */
+		transform: translate3d(0px, 9px, -150px);
 	}
 
 	.brick {
 		cursor: pointer !important;
-		/* width: auto; */
-		width: 124px;
-		height: 28px;
+		width: inherit;
+		height: inherit;
+		/* width: 124px; */
+		/* height: 28px; */
 		display: block;
 		border-radius: 2px;
 		top: 8px;
 		position: relative;
-		background: #000;
+		background: inherit;
+		/* background: #000; */
 		display: flex;
 		justify-content: center;
 		padding-top: 0.25rem !important;
 		padding-bottom: 0.25rem !important;
 	}
+	p {
+		/* color: #fff; */
+		color: inherit;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: auto;
+		font-size: 16px;
+	}
 
 	.bits {
 		position: absolute;
-		top: -8px;
+		/* top: -8px; */
+		/* top: 0.005%; */
+		top: -4px;
 	}
 
 	.bit {
-		/* width: auto; */
-		width: 19px;
+		width: 13px;
 		height: 8px;
 		display: block;
-		background: #000;
+		background: #eb4f27;
+		/* background: #000; */
 		position: relative;
 		float: left;
 		margin: 0 6px;
@@ -112,42 +128,44 @@
 	#brick-wrap-2 {
 		position: relative;
 		display: block;
-		/* width: auto; */
-		width: 124px;
+		/* width: 124px; */
+		width: brick-wrapper;
 		padding-bottom: 8px;
 		overflow: hidden;
 	}
 
 	.brick-2 {
-		/* width: auto; */
-		width: 124px;
+		/* width: 124px; */
+		width: inherit;
 		height: 10px;
 		display: block;
 		border-radius: 2px;
-		margin: 0 auto;
+		/* border-radius: var(--lego); */
+		margin: 0 6px;
 		top: 5px;
 		position: relative;
-		background: #000;
+		background: #eb4f27;
+		justify-content: center;
+		/* background: #000; */
 	}
 
 	.bits-2 {
 		position: absolute;
+		/* justify-content: center; */
+		/* position: sticky; */
 		top: -4px;
 	}
 
 	.bit-2 {
-		width: 19px;
+		/* width: 19px; */
+		width: 13px;
 		height: 4px;
 		display: block;
-		background: #000; /* Changed to green for id="green" */
+		/* background: #000; Changed to green for id="green" */
+		background: #eb4f27;
 		position: relative;
 		float: left;
 		margin: 0 6px;
 		border-radius: 2px 2px 0 0;
-	}
-	p {
-		color: white;
-		font-size: 0.75rem;
-		font-weight: 700;
 	}
 </style>
