@@ -129,9 +129,10 @@
 		position: relative;
 		display: block;
 		/* width: 124px; */
-		width: brick-wrapper;
+		width: 125px;
 		padding-bottom: 8px;
 		overflow: hidden;
+		justify-content: center;
 	}
 
 	.brick-2 {
@@ -144,8 +145,8 @@
 		margin: 0 6px;
 		top: 5px;
 		position: relative;
-		background: #eb4f27;
 		justify-content: center;
+		background: #eb4f27;
 		/* background: #000; */
 	}
 
