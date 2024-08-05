@@ -32,8 +32,13 @@
 			>
 		</NavBrand>
 		<div class="flex md:order-2">
-			<LegosButton size="xs" color="yellow">hisdfsdf</LegosButton>
-			<!-- <NavHamburger /> -->
+			<LegosButton size="xs" color="yellow">Home</LegosButton>
+		</div>
+		<div class="flex md:order-2">
+			<LegosButton size="xs" color="green">About</LegosButton>
+		</div>
+		<div class="flex md:order-2">
+			<LegosButton size="xs" color="blue">Contact</LegosButton>
 		</div>
 		<div class="flex md:order-2">
 			<Button

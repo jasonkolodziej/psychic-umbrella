@@ -149,7 +149,7 @@
 	$: console.log(buttonWidth, buttonHeight, buttonColor);
 	$: bitsClass = twMerge('bits', group && 'space-x-1');
 	$: bitClass = twMerge('bit', colorClasses[color]);
-	// $: bit2Class = twMerge('bit-2', colorClasses[color]);
+	$: bit2Class = twMerge('bit-2', colorClasses[color]);
 	$: brick2Class = twMerge('brick-2', colorClasses[color]);
 	$: buttonClass = twMerge(
 		'text-center font-medium',
@@ -192,19 +192,23 @@
 	<div id="brick-wrap">
 		<div class="bits">
 			{#if numOfConnections === 4}
+				<!-- <div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
 				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
 				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
+				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" /> -->
+				<div class={bitClass} style="width:{bitWidth}px;" />
+				<div class={bitClass} style="width:{bitWidth}px;" />
+				<div class={bitClass} style="width:{bitWidth}px;" />
+				<div class={bitClass} style="width:{bitWidth}px;" />
 			{:else if numOfConnections === 3}
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
+				<div class={bitClass} style="width:{bitWidth}px;" />
+				<div class={bitClass} style="width:{bitWidth}px;" />
+				<div class={bitClass} style="width:{bitWidth}px;" />
 			{:else if numOfConnections === 2}
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
+				<div class={bitClass} style="background: {buttonColor}; width:{bitWidth}px;" />
+				<div class={bitClass} style="background: {buttonColor}; width:{bitWidth}px;" />
 			{:else if numOfConnections === 1}
-				<div class="bit" style="background: {buttonColor}; width:{bitWidth}px;" />
+				<div class={bitClass} style="width:{bitWidth}px;" />
 			{/if}
 		</div>
 		<!-- <div class="brick"> -->
@@ -253,23 +257,23 @@
 		{/if}
 	</div>
 
-	<div id="brick-wrap-2" style="width: {buttonWidth};">
+	<div id="brick-wrap-2" style="width:{buttonWidth};">
 		<div class={brick2Class}>
 			<div class="bits-2">
 				{#if numOfConnections === 4}
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
 				{:else if numOfConnections === 3}
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
 				{:else if numOfConnections === 2}
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
 				{:else if numOfConnections === 1}
-					<div class="bit-2" style="background: {buttonColor}; width:{bitWidth}px;" />
+					<div class={bit2Class} style="width:{bitWidth}px;" />
 				{/if}
 			</div>
 		</div>
