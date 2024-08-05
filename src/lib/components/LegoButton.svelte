@@ -9,17 +9,17 @@
 
 <div class="grid grid-cols-1">
 	<div id="brick-wrapper">
-		<div class="brick">
-			<Button id="lego" on:click={clicked} color="primary">
-				{label}
-				<div class="bits">
-					<div class="bit" />
-					<div class="bit" />
-					<div class="bit" />
-					<div class="bit" />
-				</div>
-			</Button>
-		</div>
+		<!-- <div class="brick"> -->
+		<Button class="button" on:click={clicked} color="primary">
+			{label}
+			<div class="bits">
+				<div class="bit" />
+				<div class="bit" />
+				<div class="bit" />
+				<div class="bit" />
+			</div>
+		</Button>
+		<!-- </div> -->
 	</div>
 
 	<div id="brick-wrap-2">
@@ -110,15 +110,15 @@
 		position: absolute;
 		/* top: -8px; */
 		/* top: 0.005%; */
-		top: -4px;
+		top: -8px;
 	}
 
 	.bit {
 		width: 13px;
 		height: 8px;
 		display: block;
-		background: #eb4f27;
-		/* background: #000; */
+		/* background: var(--bg-color); */
+		background: #000;
 		position: relative;
 		float: left;
 		margin: 0 6px;

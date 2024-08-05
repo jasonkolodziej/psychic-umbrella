@@ -17,6 +17,7 @@
 	} from 'flowbite-svelte';
 	import { SearchOutline, ChevronDownOutline } from 'flowbite-svelte-icons';
 	import LegoButton from '$lib/components/LegoButton.svelte';
+	import LegosButton from '$lib/components/flowbite/LegosButton.svelte';
 </script>
 
 <!-- <slot></slot> -->
@@ -31,7 +32,11 @@
 			>
 		</NavBrand>
 		<div class="flex md:order-2">
-			<LegoButton label="Get started" />
+			<!-- <LegoButton label="Get started" /> -->
+			<!-- <NavHamburger /> -->
+		</div>
+		<div class="flex md:order-2">
+			<LegosButton color="yellow">hisdfsdf</LegosButton>
 			<!-- <NavHamburger /> -->
 		</div>
 		<div class="flex md:order-2">
