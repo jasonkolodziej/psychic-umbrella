@@ -32,11 +32,7 @@
 			>
 		</NavBrand>
 		<div class="flex md:order-2">
-			<!-- <LegoButton label="Get started" /> -->
-			<!-- <NavHamburger /> -->
-		</div>
-		<div class="flex md:order-2">
-			<LegosButton color="yellow">hisdfsdf</LegosButton>
+			<LegosButton size="xs" color="yellow">hisdfsdf</LegosButton>
 			<!-- <NavHamburger /> -->
 		</div>
 		<div class="flex md:order-2">

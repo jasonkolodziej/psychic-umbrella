@@ -364,7 +364,7 @@
 	.brick-2 {
 		width: inherit;
 		/* width: 124px; */
-		height: 10px;
+		height: 8px;
 		display: block;
 		border-radius: 2px;
 		margin: 0 auto;
@@ -379,7 +379,7 @@
 	}
 
 	.bit-2 {
-		width: 19px;
+		/* width: 19px; */
 		height: 4px;
 		display: block;
 		/* background: #000; */
