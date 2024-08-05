@@ -337,8 +337,8 @@
 
 	.bits {
 		position: absolute;
-		/* align-items: center;
-		justify-content: center; */
+		align-items: center;
+		justify-content: center;
 		/* top: -8px; */
 	}
 
