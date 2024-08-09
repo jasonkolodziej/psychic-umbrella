@@ -1,16 +1,17 @@
+import type Image from '$lib/components/editable/Image.svelte';
 import { customAlphabet } from 'nanoid';
 
 export function is_safari() {
   // Detect Chrome
-  let chrome_agent = navigator.userAgent.indexOf("Chrome") > -1;
+  const chrome_agent = navigator.userAgent.indexOf("Chrome") > -1;
   // Detect Safari
-  let safari_agent = navigator.userAgent.indexOf("Safari") > -1;
+  const safari_agent = navigator.userAgent.indexOf("Safari") > -1;
   // Discard Safari since it also matches Chrome
-  if ((chrome_agent) && (safari_agent)) safari_agent = false;
+  if ((chrome_agent) && (safari_agent)) return false;
   return safari_agent;
 }
 
-export function classNames(...classes) {
+export function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -21,14 +22,14 @@ export function nanoid() {
   return _nanoid();
 }
 
-export function formatDate(dateString, withTime) {
+export function formatDate(dateString:string, withTime:Date) {
   const date = new Date(dateString);
   if (withTime) {
     if (date.toDateString() === new Date().toDateString()) {
       // on same day, only show the time
       return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     } else {
-      const opts = {
+      const opts: Intl.DateTimeFormatOptions = {
         month: 'short',
         day: 'numeric',
         hour: 'numeric',
@@ -63,7 +64,7 @@ export function debounce(node, params) {
   };
 }
 
-export function extractTeaser(body) {
+export function extractTeaser(body: HTMLBodyElement) {
   const teaser = [...body.querySelectorAll('p')].map(n => n.textContent).join(' ');
   if (teaser.length > 512) {
     return teaser.slice(0, 512).concat('…');
@@ -118,14 +119,15 @@ export function resizeImage(file, maxWidth, maxHeight, quality, content_type) {
 /**
  * Get image dimensions from a file
  */
-export async function getDimensions(file) {
-  return new Promise((resolve, reject) => {
-    const img = new window.Image();
-    img.onload = function () {
-      resolve({ width: this.width, height: this.height });
-    };
-    img.onerror = function () {
-      reject(img.error);
+export async function getDimensions(file: File) {
+  return new Promise<{ width: number; height: number }>((resolve, reject) => {
+    const img: HTMLImageElement = new window.Image();
+    // img.onload = function () {
+    //   resolve({ width: this.width, height: this.height });
+    // };
+    img.onload = () => {resolve({ width: img.width, height: img.height })};
+    img.onerror = (ev) => {
+      reject(ev);
     };
     img.src = URL.createObjectURL(file);
   });

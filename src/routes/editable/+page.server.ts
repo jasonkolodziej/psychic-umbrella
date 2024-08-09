@@ -1,7 +1,7 @@
 import {
 	// getArticles,
 	getPage
-} from '$lib/editable/api';
+} from '$lib/editable/api.ts';
 import { fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
 
@@ -27,7 +27,7 @@ export const load: PageServerLoad = async (event) => {
 	// 	// const articles = await getArticles();
 	const page = await getPage('home');
 	return {
-	  session.user,
+	//   session!.user!,
 		page
 	}
   }
