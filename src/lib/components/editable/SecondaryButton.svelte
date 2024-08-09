@@ -1,9 +1,9 @@
 <script lang="ts">
 	import BaseButton from '$lib/components/editable/BaseButton.svelte';
-	export let disabled = undefined;
+	export let disabled: boolean;
 	export let type = 'button';
-	export let size = undefined;
-	export let href = undefined;
+	export let size: 'sm' | 'md' = 'md';
+	export let href: string;
 </script>
 
 <BaseButton
