@@ -12,7 +12,11 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest"
+		"test:unit": "vitest",
+		"cf:deploy": "wrangler deploy",
+		"cf:dev": "wrangler dev",
+		"cf:start": "wrangler dev",
+		"cf:cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.46.0",
@@ -39,7 +43,8 @@
 		"typescript-eslint": "^8.0.1",
 		"vite": "^5.4.0",
 		"vitest": "^2.0.5",
-		"wrangler": "^3.70.0"
+		"wrangler": "^3.70.0",
+		"@cloudflare/workers-types": "^4.20240806.0"
 	},
 	"type": "module",
 	"packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
