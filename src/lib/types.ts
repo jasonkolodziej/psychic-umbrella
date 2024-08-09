@@ -1,5 +1,19 @@
+import type { User } from "@auth/sveltekit";
 
 export type Distinct<T, DistinctName> = T & { __TYPE__: DistinctName };
+
+export interface SqlMorph<T, Ts> extends Operations<T, Ts> {
+    sql_statement: string;
+    values?: T | Ts;
+}
+
+interface Operations<T, Ts> {
+    create: (user: User, data: T) => T | Ts | Promise<T | Ts>;
+    update: (user: User, data: T) => T | Ts | Promise<T | Ts>;
+    delete?(user: User, k: keyof T, data?: T): T | Ts | Promise<T | Ts>;
+    get?(user: User, k?: keyof T): T | Ts | Promise<T | Ts>;
+    next?<D, DName>(user: User, slug: Distinct<D, DName>): T | Ts | Promise<T | Ts>;
+}
 
 export type PageId = Distinct<string, 'PageId'>;
 export interface Pages {
@@ -45,3 +59,4 @@ export interface ArticleObject {
     published_at: Date;
     updated_at: Date;
 };
+

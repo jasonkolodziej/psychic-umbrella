@@ -6,8 +6,18 @@ declare global {
 		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}
-		// interface Platform {
-		// }
+		// * Cloudflare D1 Database
+		//? https://developers.cloudflare.com/d1/examples/d1-and-sveltekit/
+		interface Platform {
+			env: {
+				COUNTER: DurableObjectNamespace;
+			  DB: D1Database;
+			};
+			context: {
+			  waitUntil(promise: Promise<any>): void;
+			};
+			caches: CacheStorage & { default: Cache };
+		  }
 	}
 }
 

@@ -1,9 +1,9 @@
 #:schema node_modules/wrangler/config-schema.json
 name = "psychic-umbrella"
 #? for workers
-main = "src/index.ts"
+# main = "src/index.ts"
 #? for pages
-# pages_build_output_dir = ".svelte-kit/cloudflare"
+pages_build_output_dir = ".svelte-kit/cloudflare"
 compatibility_date = "2024-08-06"
 compatibility_flags = ["nodejs_compat"]
 account_id = "22e93a040a9ba3933abe6112c497b009"
