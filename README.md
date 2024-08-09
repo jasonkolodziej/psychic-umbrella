@@ -6,13 +6,45 @@ Everything you need to build a Svelte project, powered by [`create-svelte`](http
 
 If you're seeing this, you've probably already done this step. Congrats!
 
+### Sveltekit
+
 ```bash
 # create a new project in the current directory
-npm create svelte@latest
-
+pnpm create svelte@latest
 # create a new project in my-app
-npm create svelte@latest my-app
+pnpm create svelte@latest my-app
 ```
+
+### Cloudflare
+
+```bash
+# Via cloudflare
+pnpm create cloudflare@latest my-app -- --framework=svelte
+```
+
+#### Styling
+
+##### Tailwind
+
+```bash
+# tailwind
+pnpm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+##### Flowbite
+
+```bash
+# install tailwind css
+npx svelte-add@latest tailwindcss
+pnpm i
+# install all Flowbite dependencies
+pnpm i -D flowbite-svelte flowbite
+# install Flowbite icons
+pnpm i -D flowbite-svelte-icons
+```
+
+
 
 ## Developing
 
