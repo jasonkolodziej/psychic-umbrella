@@ -16,3 +16,9 @@ export const actions = {
 		throw redirect(303, '/');
 	}
 };
+
+//* Auth using @auth/sveltekit
+
+// import { signIn } from "../../auth"
+// import type { Actions } from "./$types"
+// export const actions: Actions = { default: signIn }

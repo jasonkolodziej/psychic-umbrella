@@ -19,6 +19,7 @@
 		"cf:cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240806.0",
 		"@playwright/test": "^1.46.0",
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/adapter-cloudflare": "^4.7.0",
@@ -43,17 +44,20 @@
 		"typescript-eslint": "^8.0.1",
 		"vite": "^5.4.0",
 		"vitest": "^2.0.5",
-		"wrangler": "^3.70.0",
-		"@cloudflare/workers-types": "^4.20240806.0"
+		"wrangler": "^3.70.0"
 	},
 	"type": "module",
 	"packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
 	"dependencies": {
+		"@auth/core": "^0.34.2",
+		"@auth/d1-adapter": "^1.4.2",
+		"@auth/sveltekit": "^1.4.2",
 		"@popperjs/core": "^2.11.8",
 		"flowbite": "^2.5.1",
 		"flowbite-svelte": "^0.46.15",
 		"flowbite-svelte-icons": "^1.6.1",
 		"nanoid": "^5.0.7",
+		"next-auth": "^4.24.7",
 		"prosemirror-commands": "^1.6.0",
 		"prosemirror-dropcursor": "^1.8.1",
 		"prosemirror-example-setup": "^1.2.2",
