@@ -5,7 +5,6 @@ Everything you need to build a Svelte project, powered by [`create-svelte`](http
 ## Creating a project
 
 If you're seeing this, you've probably already done this step. Congrats!
-
 ### Sveltekit
 
 ```bash
@@ -43,7 +42,6 @@ pnpm i -D flowbite-svelte flowbite
 # install Flowbite icons
 pnpm i -D flowbite-svelte-icons
 ```
-
 
 
 ## Developing

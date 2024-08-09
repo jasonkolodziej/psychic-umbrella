@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from "@sveltejs/kit";
 
 import type { User } from '@auth/core/types';
-import type { ArticleObject } from '$lib/types.js';
+import type { ArticleObject } from '$lib/types';
 import slugify from 'slugify';
 import { nanoid } from 'nanoid';
 // import { getPlatformProxy } from "wrangler";
