@@ -29,14 +29,14 @@
 
 	let current_user: any = {};
 	const path: string = '/crud/users';
-  const description: string = 'CRUD users examaple - Flowbite Svelte Admin Dashboard';
-  const title: string = 'Flowbite Svelte Admin Dashboard - CRUD Users';
-  const subtitle: string = 'CRUD Users';
+	const description: string = 'CRUD users examaple - Flowbite Svelte Admin Dashboard';
+	const title: string = 'Flowbite Svelte Admin Dashboard - CRUD Users';
+	const subtitle: string = 'CRUD Users';
 </script>
 
 <MetaTag {path} {description} {title} {subtitle} />
 
-<main class="relative h-full w-full overflow-y-auto bg-white dark:bg-gray-800">
+<main class="relative h-full w-full overflow-y-auto bg-white dark:bg-primary-800">
 	<div class="p-4">
 		<Breadcrumb class="mb-5">
 			<BreadcrumbItem home>Home</BreadcrumbItem>
