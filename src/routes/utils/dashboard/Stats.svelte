@@ -2,7 +2,7 @@
 	import { Avatar, Card, Heading, Popover, TabItem, Tabs } from 'flowbite-svelte';
 	import Change from '../../utils/dashboard/Change.svelte';
 	import Customers from '../../data/users.json';
-	import { avatarPath, imagesPath } from '../../utils/variables';
+	import { avatarPath, imagesPath } from '../variables';
 	import LastRange from '../widgets/LastRange.svelte';
 	import More from '../widgets/More.svelte';
 	import { QuestionCircleSolid } from 'flowbite-svelte-icons';

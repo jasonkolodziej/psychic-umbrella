@@ -17,7 +17,7 @@ import type {
 	Counters,
 	AssetObject,
 	Assets
-} from '$lib/types';
+} from '$lib/blogs';
 import type { User } from '@auth/core/types';
 import { getPlatformProxy } from 'wrangler';
 const { env } = await getPlatformProxy();

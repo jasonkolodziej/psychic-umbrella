@@ -1,5 +1,5 @@
 <script>
-	import { imagesPath } from '../../utils/variables';
+	import { imagesPath } from '../variables';
 	import { Avatar, Button, Card, Heading } from 'flowbite-svelte';
 	import Users from '../../data/users.json';
 </script>

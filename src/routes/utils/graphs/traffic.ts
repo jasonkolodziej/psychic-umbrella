@@ -1,4 +1,4 @@
-export default (dark) => {
+export default (dark: boolean) => {
 	let trafficChannelsChartColors = { strokeColor: '#ffffff' };
 
 	if (dark) {
@@ -55,7 +55,7 @@ export default (dark) => {
 			},
 			x: {
 				show: true,
-				formatter: function (_, { seriesIndex, w }) {
+				formatter: function (_: any, { seriesIndex: number, w: any }) {
 					const label = w.config.labels[seriesIndex];
 					return label;
 				}

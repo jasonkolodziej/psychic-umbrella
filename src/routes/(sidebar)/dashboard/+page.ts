@@ -1,6 +1,8 @@
-/** @type {import('./$types').PageLoad} */
-export function load({ params }) {
-	return {	
+import type { LoadEvent } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
+
+export const load: PageLoad = ({ params }: LoadEvent) => {
+	return {
 		series: [
 			{
 				name: 'Revenue',
@@ -14,4 +16,4 @@ export function load({ params }) {
 			}
 		]
 	};
-}
+};
