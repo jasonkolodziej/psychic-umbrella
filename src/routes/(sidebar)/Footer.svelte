@@ -30,7 +30,7 @@
 	tag="footer"
 	rounded
 	shadow
-	class="mx-4 my-2 rounded-lg bg-white p-4 shadow dark:bg-gray-800 md:flex md:items-center md:justify-between md:p-6 xl:p-8"
+	class="mx-4 my-2 rounded-lg bg-white p-4 shadow dark:bg-primary-800 md:flex md:items-center md:justify-between md:p-6 xl:p-8"
 >
 	<ul class="mb-6 flex flex-wrap items-center space-y-1 sm:gap-4 md:mb-0 xl:gap-6">
 		{#each links as { name, href }}
