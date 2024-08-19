@@ -25,103 +25,6 @@
 	import LoginMenu from '$lib/components/editable/LoginMenu.svelte';
 	import { fetchJSON } from '$lib/editable/util';
 	export let data: LayoutData;
-	let title,
-		faqs,
-		introStep1,
-		introStep2,
-		introStep3,
-		introStep4,
-		bioTitle,
-		bioPicture,
-		bio,
-		testimonials,
-		showUserMenu: any;
-	let currentUser: any;
-	function initOrReset() {
-		$currentUser = data.currentUser;
-		title = data.page?.title || 'Untitled Website';
-		faqs = data.page?.faqs;
-
-		// Make a deep copy
-		testimonials = JSON.parse(JSON.stringify(data.page?.testimonials));
-
-		introStep1 = JSON.parse(
-			JSON.stringify(
-				data.page?.introStep1 || {
-					label: 'THE PROBLEM',
-					title: 'The problem statement',
-					description: 'Describe the problem you are solving in a short sentence.'
-				}
-			)
-		);
-		introStep2 = JSON.parse(
-			JSON.stringify(
-				data.page?.introStep2 || {
-					label: 'THE DREAM',
-					title: 'This is how it should be.',
-					description: 'Describe why it should be like that.'
-				}
-			)
-		);
-		introStep3 = JSON.parse(
-			JSON.stringify(
-				data.page?.introStep3 || {
-					label: 'THE REALITY',
-					title: 'A statement why it is not that easy.',
-					description: 'Describe the reality a bit more.'
-				}
-			)
-		);
-		introStep4 = JSON.parse(
-			JSON.stringify(
-				data.page?.introStep4 || {
-					label: 'THE PROMISE',
-					title: 'Still the solution is worth it.',
-					description: 'And why this is, should be described here.'
-				}
-			)
-		);
-		bioPicture = data.page?.bioPicture || '/images/person-placeholder.jpg';
-		bioTitle = data.page?.bioTitle || "Hi, I'm Michael — I want your website to be editable.";
-		bio = data.page?.bio;
-		$isEditing = false;
-	}
-
-	// --------------------------------------------------------------------------
-	// Page logic
-	// --------------------------------------------------------------------------
-
-	function toggleEdit() {
-		$isEditing = true;
-		showUserMenu = false;
-	}
-
-	async function savePage() {
-		try {
-			// Only persist the start page when logged in as an admin
-			if ($currentUser) {
-				await fetchJSON('POST', '/api/save-page', {
-					pageId: 'editable',
-					page: {
-						title,
-						faqs,
-						testimonials,
-						introStep1,
-						introStep2,
-						introStep3,
-						introStep4,
-						bioPicture,
-						bioTitle,
-						bio
-					}
-				});
-			}
-			$isEditing = false;
-		} catch (err) {
-			console.error(err);
-			alert('There was an error. Please try again.');
-		}
-	}
 </script>
 
 <!-- <slot></slot> -->
@@ -190,9 +93,6 @@
 		<ImagePlaceholder class="my-8" />
 		<TextPlaceholder class="my-8" />
 	</div> -->
-	<WebsiteHeader bind:showUserMenu on:cancel={initOrReset} on:save={savePage}>
-		<PrimaryButton on:click={toggleEdit}>Edit page</PrimaryButton>
-		<LoginMenu />
-	</WebsiteHeader>
+
 	<!-- <slot></slot> -->
 </div>
