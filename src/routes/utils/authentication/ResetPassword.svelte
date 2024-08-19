@@ -3,7 +3,7 @@
 	export let title = 'Reset your password';
 	export let site = {
 		name: 'Flowbite',
-		img: '/images/flowbite-svelte-icon-logo.svg',
+		img: '/images/noun-lego-brick.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};
@@ -53,7 +53,7 @@
 @prop export let title = 'Reset your password';
 @prop export let site = {
 		name: 'Flowbite',
-		img: '/images/flowbite-svelte-icon-logo.svg',
+		img: '/images/noun-lego-brick.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};

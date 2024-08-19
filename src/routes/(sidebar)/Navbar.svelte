@@ -29,11 +29,7 @@
 			class="m-0 me-3 md:block lg:hidden"
 		/>
 		<NavBrand href="/" class={list ? 'w-40' : 'lg:w-60'}>
-			<img
-				src="/images/flowbite-svelte-icon-logo.svg"
-				class="me-2.5 h-6 sm:h-8"
-				alt="Flowbite Logo"
-			/>
+			<img src="/images/noun-lego-brick.svg" class="me-2.5 h-6 sm:h-8" alt="Flowbite Logo" />
 			<span
 				class="ml-px self-center whitespace-nowrap text-xl font-semibold dark:text-white sm:text-2xl"
 			>
@@ -49,7 +45,7 @@
 					<NavLi href="#top">Settings</NavLi>
 					<NavLi class="cursor-pointer">
 						Dropdown
-						<ChevronDownOutline  class="ms-0 inline" />
+						<ChevronDownOutline class="ms-0 inline" />
 					</NavLi>
 					<Dropdown class="z-20 w-44">
 						<DropdownItem href="#top">Item 1</DropdownItem>

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Label, Input } from 'flowbite-svelte';
 	import SignIn from '../utils/authentication/SignIn.svelte';
-  import MetaTag from '../utils/MetaTag.svelte';
+	import MetaTag from '../utils/MetaTag.svelte';
 	let title = 'Sign in to platform';
 	let site = {
 		name: 'Flowbite',
-		img: '/images/flowbite-svelte-icon-logo.svg',
+		img: '/images/noun-lego-brick.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};
@@ -29,9 +29,9 @@
 	};
 
 	const path: string = '/authentication/sign-in';
-  const description: string = 'Sign in example - Flowbite Svelte Admin Dashboard';
+	const description: string = 'Sign in example - Flowbite Svelte Admin Dashboard';
 	const metaTitle: string = 'Flowbite Svelte Admin Dashboard - Sign in';
-  const subtitle: string = 'Sign in';
+	const subtitle: string = 'Sign in';
 </script>
 
 <MetaTag {path} {description} title={metaTitle} {subtitle} />
