@@ -59,7 +59,7 @@
 				</form>
 			{/if}
 		</div>
-		<div class="ms-auto flex items-center text-gray-500 dark:text-gray-400 sm:order-2">
+		<div class="ms-auto flex items-center text-primary-500 dark:text-primary-400 sm:order-2">
 			<Notifications />
 			<AppsMenu />
 			<DarkMode />
