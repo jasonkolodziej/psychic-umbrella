@@ -2,7 +2,7 @@
 	import Footer from '../(no-sidebar)/Footer.svelte';
 	import Navbar from '../(sidebar)/Navbar.svelte';
 
-	import '../../app.pcss';
+	import '../../app.css';
 </script>
 
 <header

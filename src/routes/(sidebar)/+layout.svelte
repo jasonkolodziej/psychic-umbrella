@@ -1,5 +1,5 @@
 <script>
-	import '../../app.pcss';
+	import '../../app.css';
 	import Navbar from './Navbar.svelte';
 	import Sidebar from './Sidebar.svelte';
 	let drawerHidden = false;
@@ -12,8 +12,7 @@
 </header>
 <div class="overflow-hidden lg:flex">
 	<Sidebar bind:drawerHidden />
-	<div class="relative h-full w-full overflow-y-auto lg:ml-64 pt-[70px]">
+	<div class="relative h-full w-full overflow-y-auto pt-[70px] lg:ml-64">
 		<slot />
-		
 	</div>
 </div>
