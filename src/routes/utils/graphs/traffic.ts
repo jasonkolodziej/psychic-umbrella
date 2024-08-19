@@ -56,13 +56,13 @@ export default (dark: boolean): ApexOptions => {
 			},
 			x: {
 				show: true,
-				formatter: function (_: any, { seriesIndex: number, w: any }) {
+				formatter: function (_: number, { seriesIndex, w }) {
 					const label = w.config.labels[seriesIndex];
 					return label;
 				}
 			},
 			y: {
-				formatter: function (value) {
+				formatter: function (value: number) {
 					return value + '%';
 				}
 			}

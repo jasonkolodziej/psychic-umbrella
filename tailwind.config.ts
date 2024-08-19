@@ -7,24 +7,41 @@ export default {
 		'./src/**/*.{html,js,svelte,ts}',
 		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
 	],
-
+	safelist: [
+		{
+			pattern: /^datatable-.*$/
+		}
+	],
 	darkMode: 'class',
 
 	theme: {
 		extend: {
 			colors: {
 				// flowbite-svelte
+				// primary: {
+				// 	50: '#FFF5F2',
+				// 	100: '#FFF1EE',
+				// 	200: '#FFE4DE',
+				// 	300: '#FFD5CC',
+				// 	400: '#FFBCAD',
+				// 	500: '#FE795D',
+				// 	600: '#EF562F',
+				// 	700: '#EB4F27',
+				// 	800: '#CC4522',
+				// 	900: '#A5371B'
+				// },
+				//? https://maketintsandshades.com
 				primary: {
-					50: '#FFF5F2',
-					100: '#FFF1EE',
-					200: '#FFE4DE',
-					300: '#FFD5CC',
-					400: '#FFBCAD',
-					500: '#FE795D',
-					600: '#EF562F',
-					700: '#EB4F27',
-					800: '#CC4522',
-					900: '#A5371B'
+					50: '#e7e7e8',
+					100: '#cfcfd1',
+					200: '#b6b8b9',
+					300: '#9ea0a2',
+					400: '#86888b',
+					500: '#6e7074',
+					600: '#56585d',
+					700: '#3d4145',
+					800: '##25292e',
+					900: '#0d1117'
 				}
 				// rose
 				// primary: { "50": "#fff1f2", "100": "#ffe4e6", "200": "#fecdd3", "300": "#fda4af", "400": "#fb7185", "500": "#f43f5e", "600": "#e11d48", "700": "#be123c", "800": "#9f1239", "900": "#881337" }
@@ -95,5 +112,12 @@ export default {
 		}
 	},
 
-	plugins: [typeographyPlugin, flowbitePlugin]
+	plugins: [
+		typeographyPlugin,
+		flowbitePlugin({
+			// charts: true
+			//  forms: true,
+			// tooltips: true
+		})
+	]
 } as Config;
