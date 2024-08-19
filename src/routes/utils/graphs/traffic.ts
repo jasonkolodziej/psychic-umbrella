@@ -1,4 +1,5 @@
-export default (dark: boolean) => {
+import type { ApexOptions } from 'apexcharts';
+export default (dark: boolean): ApexOptions => {
 	let trafficChannelsChartColors = { strokeColor: '#ffffff' };
 
 	if (dark) {
