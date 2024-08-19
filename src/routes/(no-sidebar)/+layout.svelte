@@ -1,4 +1,5 @@
 <script>
+	import { DarkMode } from 'flowbite-svelte';
 	import Footer from '../(no-sidebar)/Footer.svelte';
 	import Navbar from '../(sidebar)/Navbar.svelte';
 
@@ -10,6 +11,8 @@
 >
 	<Navbar />
 </header>
+
+<!-- TODO: debug darkmode -->
 <div class="mx-auto max-w-screen-2xl pt-[70px]">
 	<slot />
 	<Footer />

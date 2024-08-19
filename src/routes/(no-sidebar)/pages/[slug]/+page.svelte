@@ -4,6 +4,5 @@
 	export let data: PageData;
 </script>
 
-<!-- <DarkMode> -->
+<DarkMode />
 <svelte:component this={data.content} />
-<!-- </DarkMode> -->
