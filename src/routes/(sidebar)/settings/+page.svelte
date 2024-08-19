@@ -16,9 +16,9 @@
 	import MetaTag from '../../utils/MetaTag.svelte';
 
 	const path: string = '/settings';
-  const description: string = 'Settings examaple - Flowbite Svelte Admin Dashboard';
-  const title: string = 'Flowbite Svelte Admin Dashboard - Settings';
-  const subtitle: string = 'Settings';
+	const description: string = 'Settings examaple - Flowbite Svelte Admin Dashboard';
+	const title: string = 'Flowbite Svelte Admin Dashboard - Settings';
+	const subtitle: string = 'Settings';
 </script>
 
 <MetaTag {path} {description} {title} {subtitle} />
@@ -30,7 +30,7 @@
 				<BreadcrumbItem home>Home</BreadcrumbItem>
 				<BreadcrumbItem
 					class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white"
-					href="/curd/users">Users</BreadcrumbItem
+					href="/crud/users">Users</BreadcrumbItem
 				>
 				<BreadcrumbItem>Settings</BreadcrumbItem>
 			</Breadcrumb>
