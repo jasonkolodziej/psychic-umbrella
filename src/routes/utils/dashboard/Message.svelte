@@ -2,10 +2,19 @@
 	import { Button, Textarea, Toolbar, ToolbarButton } from 'flowbite-svelte';
 	import { ImageSolid, MapPinAltSolid, PaperClipOutline } from 'flowbite-svelte-icons';
 	import { setContext } from 'svelte';
+	import { twMerge } from 'tailwind-merge';
+	const cardClassBase = '';
+	const innerStyling = 'dark:bg-gray-800';
+	const unwrappedStyling = 'border-gray-300';
+	const colorStyle = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
 
 	setContext('background', false);
 </script>
 
+<!-- TODO: Fix color -->
 <form>
 	<Textarea rows="8" placeholder="Write your message" required>
 		<div slot="footer" class="flex items-center justify-between">

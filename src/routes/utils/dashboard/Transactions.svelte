@@ -21,8 +21,14 @@
 	} from 'flowbite-svelte-icons';
 	import CreditCard from './CreditCard.svelte';
 	import StatusBadge from './StatusBadge.svelte';
+	import { twMerge } from 'tailwind-merge';
 
 	export let dark: boolean = false;
+	const cardClassBase = 'max-w-none shadow-sm';
+	const cardClass = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
 
 	const headers = [
 		'Transaction',
@@ -46,7 +52,7 @@
 	];
 </script>
 
-<Card size="xl" class="shadow-sm max-w-none">
+<Card size="xl" class={cardClass}>
 	<div class="items-center justify-between lg:flex">
 		<div class="mb-4 mt-px lg:mb-0">
 			<Heading tag="h3" class="-ml-0.25 mb-2 text-xl font-semibold dark:text-white">

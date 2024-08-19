@@ -8,9 +8,15 @@
 	export let title: string = '';
 	export let subtitle: string = '';
 	export let chartOptions: ApexOptions;
+	import { twMerge } from 'tailwind-merge';
+	const cardClassBase = 'w-full max-w-none 2xl:col-span-2';
+	const cardClass = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
 </script>
 
-<Card size="xl" class="w-full max-w-none 2xl:col-span-2">
+<Card size="xl" class={cardClass}>
 	<div class="mb-4 flex items-center justify-between">
 		<div class="flex-shrink-0">
 			<Heading tag="h3" class="text-2xl">{title}</Heading>

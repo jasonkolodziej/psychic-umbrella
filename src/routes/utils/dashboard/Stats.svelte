@@ -6,6 +6,12 @@
 	import LastRange from '../widgets/LastRange.svelte';
 	import More from '../widgets/More.svelte';
 	import { QuestionCircleSolid } from 'flowbite-svelte-icons';
+	import { twMerge } from 'tailwind-merge';
+	const cardClassBase = '';
+	const cardClass = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
 
 	const products = [
 		{
@@ -48,7 +54,7 @@
 	const customers = Customers.slice(0, 5);
 </script>
 
-<Card size="xl">
+<Card class={cardClass} size="xl">
 	<div class="mb-4 flex items-center gap-2">
 		<Heading tag="h3" class="w-fit text-lg font-semibold dark:text-white">
 			Statistics this month
@@ -57,7 +63,7 @@
 			<span class="sr-only">Show information</span>
 			<QuestionCircleSolid size="sm" class="text-gray-400 hover:text-gray-500" />
 		</button>
-		<Popover placement="bottom-start">
+		<Popover placement="bottom-start" defaultClass="py-2 px-3 bg-primary-700">
 			<div class="w-72 space-y-2 text-sm font-normal text-gray-500 dark:text-gray-400">
 				<h3 class="font-semibold text-gray-900 dark:text-white">Statistics</h3>
 				<p>
@@ -70,12 +76,13 @@
 	</div>
 	<Tabs
 		style="full"
-		defaultClass="flex divide-x rtl:divide-x-reverse divide-gray-200 shadow dark:divide-gray-700"
-		contentClass="p-3 mt-4"
+		defaultClass="flex divide-x rtl:divide-x-reverse divide-primary-200 shadow dark:divide-primary-700"
+		contentClass="p-3 mt-4 bg-primary-50 dark:bg-primary-800"
+		activeClasses="p-4 text-gray-600 bg-primary-100 rounded-t-lg dark:bg-primary-800 dark:text-gray-500"
 	>
 		<TabItem class="w-full" open>
 			<span slot="title">Top products</span>
-			<ul class="-m-3 divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800">
+			<ul class="-m-3 divide-y divide-gray-200 dark:divide-gray-700 dark:bg-primary-800">
 				{#each products as { src, image, label, price, change }}
 					<li class="py-3 sm:py-4">
 						<div class="flex items-center justify-between">
@@ -104,7 +111,7 @@
 		</TabItem>
 		<TabItem class="w-full">
 			<span slot="title">Top customers</span>
-			<ul class="-m-3 divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+			<ul class="-m-3 divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-primary-800">
 				{#each customers as { email, name, avatar }}
 					<li class="py-3 sm:py-3.5">
 						<div class="flex items-center justify-between">

@@ -4,11 +4,17 @@
 	import SmallPanel from './SmallPanel.svelte';
 	import { DesktopPcOutline, MobilePhoneOutline, TabletOutline } from 'flowbite-svelte-icons';
 	import More from '../widgets/More.svelte';
+	import { twMerge } from 'tailwind-merge';
+	const cardClassBase = 'h-fit';
+	const cardClass = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
 
 	export let dark: boolean = false;
 </script>
 
-<Card size="xl" class="h-fit">
+<Card class={cardClass} size="xl">
 	<div
 		class="mb-4 items-center justify-between border-b border-gray-200 pb-4 dark:border-gray-700 sm:flex"
 	>

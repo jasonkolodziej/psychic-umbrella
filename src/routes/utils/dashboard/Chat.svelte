@@ -11,9 +11,15 @@
 	import Users from '../../data/users.json';
 	import ChatMsg from './ChatMsg.svelte';
 	import Message from './Message.svelte';
+	import { twMerge } from 'tailwind-merge';
+	const cardClassBase = '';
+	const cardClass = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
 </script>
 
-<Card size="xl">
+<Card size="xl" class={cardClass}>
 	<div class="mb-4 flex items-center justify-between">
 		<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Smart chat</h3>
 		<a

@@ -10,6 +10,13 @@
 		RocketSolid
 	} from 'flowbite-svelte-icons';
 	import { fade, fly } from 'svelte/transition';
+	import { twMerge } from 'tailwind-merge';
+	const cardClassBase = '';
+	const cardClass = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
+
 	const items = [{}, {}, {}];
 	let animation = (node: Element) => fade(node, { duration: 200 });
 
@@ -26,7 +33,7 @@
 	};
 </script>
 
-<Card size="xl">
+<Card class={cardClass} size="xl">
 	<Carousel images={items} let:Controls class="flex h-full">
 		<div slot="slide" let:index>
 			{#if index == 0}

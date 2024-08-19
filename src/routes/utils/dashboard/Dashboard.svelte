@@ -18,6 +18,7 @@
 	import Insights from './Insights.svelte';
 	import Traffic from './Traffic.svelte';
 	import Transactions from './Transactions.svelte';
+	import { twMerge } from 'tailwind-merge';
 
 	export let data: PageData;
 
@@ -25,6 +26,12 @@
 	chartOptions.series = data.series;
 
 	let dark = false;
+
+	const cardClassBase = 'items-center justify-between';
+	const cardClass = twMerge(
+		cardClassBase,
+		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
+	);
 
 	function handler(ev: Event) {
 		if ('detail' in ev) {
@@ -47,7 +54,7 @@
 		<Stats />
 	</div>
 	<div class="grid grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3">
-		<Card horizontal class="items-center justify-between" size="xl">
+		<Card horizontal class={cardClass} size="xl">
 			<div class="w-full">
 				<p>New products</p>
 				<p class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -57,7 +64,7 @@
 			</div>
 			<Chart options={thickbars} class="w-full" />
 		</Card>
-		<Card horizontal class="items-center justify-between" size="xl">
+		<Card horizontal class={cardClass} size="xl">
 			<div class="w-full">
 				<p>Users</p>
 				<p class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -67,7 +74,7 @@
 			</div>
 			<DarkChart configFunc={users} class="w-full" />
 		</Card>
-		<Card horizontal class="items-center justify-between" size="xl">
+		<Card horizontal class={cardClass} size="xl">
 			<div class="w-full">
 				<p>Users</p>
 				<p class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
