@@ -6,8 +6,8 @@
 	import { isEditing, currentUser } from '$lib/editable/stores';
 
 	// TODO: Replace with a globally managed context menu implementation (only one active)
-	export let showUserMenu = undefined;
-	export let showSearch = undefined;
+	export let showUserMenu: boolean = false;
+	export let showSearch: boolean = false;
 
 	function onKeyDown(e) {
 		// Close modals

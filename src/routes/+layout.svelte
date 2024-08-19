@@ -13,11 +13,115 @@
 		Button,
 		Dropdown,
 		DropdownItem,
-		DropdownDivider
+		DropdownDivider,
+		Avatar,
+		DropdownHeader
 	} from 'flowbite-svelte';
 	import { SearchOutline, ChevronDownOutline } from 'flowbite-svelte-icons';
 	import LegoButton from '$lib/components/LegoButton.svelte';
 	import LegosButton from '$lib/components/flowbite/LegosButton.svelte';
+	import WebsiteHeader from '$lib/components/editable/WebsiteHeader.svelte';
+	import PrimaryButton from '$lib/components/editable/PrimaryButton.svelte';
+	import LoginMenu from '$lib/components/editable/LoginMenu.svelte';
+	import { fetchJSON } from '$lib/editable/util';
+	export let data: LayoutData;
+	let title,
+		faqs,
+		introStep1,
+		introStep2,
+		introStep3,
+		introStep4,
+		bioTitle,
+		bioPicture,
+		bio,
+		testimonials,
+		showUserMenu: any;
+	let currentUser: any;
+	function initOrReset() {
+		$currentUser = data.currentUser;
+		title = data.page?.title || 'Untitled Website';
+		faqs = data.page?.faqs;
+
+		// Make a deep copy
+		testimonials = JSON.parse(JSON.stringify(data.page?.testimonials));
+
+		introStep1 = JSON.parse(
+			JSON.stringify(
+				data.page?.introStep1 || {
+					label: 'THE PROBLEM',
+					title: 'The problem statement',
+					description: 'Describe the problem you are solving in a short sentence.'
+				}
+			)
+		);
+		introStep2 = JSON.parse(
+			JSON.stringify(
+				data.page?.introStep2 || {
+					label: 'THE DREAM',
+					title: 'This is how it should be.',
+					description: 'Describe why it should be like that.'
+				}
+			)
+		);
+		introStep3 = JSON.parse(
+			JSON.stringify(
+				data.page?.introStep3 || {
+					label: 'THE REALITY',
+					title: 'A statement why it is not that easy.',
+					description: 'Describe the reality a bit more.'
+				}
+			)
+		);
+		introStep4 = JSON.parse(
+			JSON.stringify(
+				data.page?.introStep4 || {
+					label: 'THE PROMISE',
+					title: 'Still the solution is worth it.',
+					description: 'And why this is, should be described here.'
+				}
+			)
+		);
+		bioPicture = data.page?.bioPicture || '/images/person-placeholder.jpg';
+		bioTitle = data.page?.bioTitle || "Hi, I'm Michael — I want your website to be editable.";
+		bio = data.page?.bio;
+		$isEditing = false;
+	}
+
+	// --------------------------------------------------------------------------
+	// Page logic
+	// --------------------------------------------------------------------------
+
+	function toggleEdit() {
+		$isEditing = true;
+		showUserMenu = false;
+	}
+
+	async function savePage() {
+		try {
+			// Only persist the start page when logged in as an admin
+			if ($currentUser) {
+				await fetchJSON('POST', '/api/save-page', {
+					pageId: 'editable',
+					page: {
+						title,
+						faqs,
+						testimonials,
+						introStep1,
+						introStep2,
+						introStep3,
+						introStep4,
+						bioPicture,
+						bioTitle,
+						bio
+					}
+				});
+			}
+			$isEditing = false;
+		} catch (err) {
+			console.error(err);
+			alert('There was an error. Please try again.');
+		}
+	}
 </script>
 
 <!-- <slot></slot> -->
@@ -31,7 +135,7 @@
 				>Flowbite</span
 			>
 		</NavBrand>
-		<div class="flex md:order-2">
+		<!-- <div class="flex md:order-2">
 			<LegosButton size="xs" color="yellow">Home</LegosButton>
 		</div>
 		<div class="flex md:order-2">
@@ -39,7 +143,7 @@
 		</div>
 		<div class="flex md:order-2">
 			<LegosButton size="xs" color="blue">Contact</LegosButton>
-		</div>
+		</div> -->
 		<div class="flex md:order-2">
 			<Button
 				color="none"
@@ -58,28 +162,37 @@
 			</div>
 			<NavHamburger />
 		</div>
+		<div class="flex items-center md:order-2">
+			<Avatar id="avatar-menu" src="/images/profile-picture-3.webp" />
+			<NavHamburger class1="w-full md:flex md:w-auto md:order-1" />
+		</div>
+		<Dropdown placement="bottom" triggeredBy="#avatar-menu">
+			<DropdownHeader>
+				<span class="block text-sm">Bonnie Green</span>
+				<span class="block truncate text-sm font-medium">name@flowbite.com</span>
+			</DropdownHeader>
+			<DropdownItem>Dashboard</DropdownItem>
+			<DropdownItem>Settings</DropdownItem>
+			<DropdownItem>Earnings</DropdownItem>
+			<DropdownDivider />
+			<DropdownItem>Sign out</DropdownItem>
+		</Dropdown>
 		<NavUl>
 			<NavLi href="/" active={true}>Home</NavLi>
 			<NavLi href="/about">About</NavLi>
-			<NavLi href="/docs/components/navbar">Navbar</NavLi>
-			<NavLi href="/pricing">Pricing</NavLi>
-			<NavLi class="cursor-pointer">
-				Dropdown<ChevronDownOutline class="ms-2 inline h-6 w-6 text-primary-800 dark:text-white" />
-			</NavLi>
-			<Dropdown class="z-20 w-44">
-				<DropdownItem href="/">Dashboard</DropdownItem>
-				<DropdownItem href="/docs/components/navbar">Settings</DropdownItem>
-				<DropdownItem href="/">Earnings</DropdownItem>
-				<DropdownDivider />
-				<DropdownItem href="/">Sign out</DropdownItem>
-			</Dropdown>
+			<NavLi href="/blog">Blog</NavLi>
 			<NavLi href="/contact">Contact</NavLi>
 		</NavUl>
 	</Navbar>
 	<!-- <div style="height:300px;" class="overflow-scroll pb-16"> -->
-	<div class="overflow-scroll pb-16">
+	<!-- <div class="overflow-scroll pb-16">
 		<Skeleton class="mb-8 mt-16" />
 		<ImagePlaceholder class="my-8" />
 		<TextPlaceholder class="my-8" />
-	</div>
+	</div> -->
+	<WebsiteHeader bind:showUserMenu on:cancel={initOrReset} on:save={savePage}>
+		<PrimaryButton on:click={toggleEdit}>Edit page</PrimaryButton>
+		<LoginMenu />
+	</WebsiteHeader>
+	<!-- <slot></slot> -->
 </div>

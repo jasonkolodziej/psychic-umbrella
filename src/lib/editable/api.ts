@@ -5,10 +5,21 @@ import { SHORTCUTS } from './constants';
 // import { DB_PATH, ADMIN_PASSWORD } from '$env/static/private';
 import { nanoid } from '$lib/editable/util';
 import { Blob } from 'node:buffer';
-import type { RequestHandler } from "@sveltejs/kit";
-import type { Articles, ArticleObject, SqlMorph, Distinct, Pages, PageObject, CounterObject, Counters, AssetObject, Assets } from '$lib/types';
+import type { RequestHandler } from '@sveltejs/kit';
+import type {
+	Articles,
+	ArticleObject,
+	SqlMorph,
+	Distinct,
+	Pages,
+	PageObject,
+	CounterObject,
+	Counters,
+	AssetObject,
+	Assets
+} from '$lib/types';
 import type { User } from '@auth/core/types';
-import { getPlatformProxy } from "wrangler";
+import { getPlatformProxy } from 'wrangler';
 const { env } = await getPlatformProxy();
 
 //* for just sqllite3
@@ -23,8 +34,8 @@ const db: D1Database = env.DB;
 export const ArticlesTable: SqlMorph<ArticleObject, Articles> = {
 	sql_statement: 'SELECT slug, created_at FROM articles WHERE slug = ?',
 	/**
- * Creates a new article
- */
+	 * Creates a new article
+	 */
 	async create(user: User, data: ArticleObject): Promise<Articles> {
 		if (!user) throw new Error('Not authorized');
 
@@ -32,28 +43,27 @@ export const ArticlesTable: SqlMorph<ArticleObject, Articles> = {
 			lower: true,
 			strict: true
 		});
-	
+
 		// If slug is already used, we add a unique postfix
 		const articleExists = db.prepare('SELECT * FROM articles WHERE slug = ?').bind(slug);
 		if (articleExists) {
 			slug = slug + '-' + nanoid();
 		}
-	
+
 		db.prepare(
 			`
 			INSERT INTO articles (slug, title, content, teaser, published_at)
 			VALUES(?, ?, ?, ?, DATETIME('now'))
 		  `
 		).bind(slug, title, content, teaser);
-	
+
 		const newArticleQuery = 'SELECT slug, created_at FROM articles WHERE slug = ?';
 		const newArticle = db.prepare(newArticleQuery).bind(slug);
 		return newArticle;
-		
 	},
 	/**
-	* We automatically extract a teaser text from the document's content.
-	*/
+	 * We automatically extract a teaser text from the document's content.
+	 */
 	async update(user: User, data: ArticleObject): Promise<Articles> {
 		if (!user) throw new Error('Not authorized');
 
@@ -64,31 +74,31 @@ export const ArticlesTable: SqlMorph<ArticleObject, Articles> = {
 	  `;
 		const updateStmt = db.prepare(query);
 		updateStmt.bind(data.title, data.content, data.teaser, data.slug);
-	
+
 		const updatedArticleQuery = 'SELECT slug, updated_at FROM articles WHERE slug = ?';
 		const updatedArticle = db.prepare(updatedArticleQuery).bind(data.slug);
-	
+
 		const result = await updatedArticle.run();
 		return result;
 	},
 	/**
-	* Remove the entire article
-	*/
+	 * Remove the entire article
+	 */
 	delete(user: User, k: keyof ArticleObject, data?: ArticleObject): Articles {
 		if (!user) throw new Error('Not authorized');
 
 		const query = 'DELETE FROM articles WHERE slug = ?';
 		const result = db.prepare(query).bind(data!.slug);
-	
+
 		return result.changes > 0;
 	},
 	/**
-	* List all available articles (newest first)
-	*/
+	 * List all available articles (newest first)
+	 */
 	async get(user: User, k?: keyof ArticleObject): Promise<Articles> {
 		let articles;
 		let stmnt;
-	
+
 		if (user) {
 			// When logged in, show both drafts and published articles
 			stmnt = db.prepare(
@@ -99,15 +109,15 @@ export const ArticlesTable: SqlMorph<ArticleObject, Articles> = {
 				'SELECT * FROM articles WHERE published_at IS NOT NULL ORDER BY published_at DESC'
 			);
 		}
-	
+
 		articles = stmnt.all();
 		return articles;
 	},
 	/**
-	* Given a slug, determine article to "read next"
-	*/
-	async next<D = string, DName = 'slug'>(user: User, slug: Distinct<D,DName>): Promise<Articles> {
-			const query = `
+	 * Given a slug, determine article to "read next"
+	 */
+	async next<D = string, DName = 'slug'>(user: User, slug: Distinct<D, DName>): Promise<Articles> {
+		const query = `
 			WITH previous_published AS (
 			  SELECT
 				title,
@@ -140,10 +150,10 @@ export const ArticlesTable: SqlMorph<ArticleObject, Articles> = {
 			ORDER BY published_at ASC
 			LIMIT 1;
 		  `;
-		
-			const result = db.prepare(query).bind(slug, slug);
-			return result;
-		}
+
+		const result = db.prepare(query).bind(slug, slug);
+		return result;
+	}
 };
 
 /**
@@ -154,7 +164,6 @@ export async function getArticleBySlug(slug) {
 	const article = db.prepare(query).bind(slug);
 	return article;
 }
-
 
 /*
   This can be replaced with any user-based authentication system
@@ -187,8 +196,6 @@ export async function destroySession(sessionId: string) {
 	return true;
 }
 
-
-
 /**
  * Search within all searchable items (including articles and website sections)
  */
@@ -210,20 +217,17 @@ export async function search(q: string, currentUser: User) {
     `;
 	}
 
-	const results = db.prepare(query).all();// .all(`%${q}%`);
+	const results = db.prepare(query).all(); // .all(`%${q}%`);
 
 	// Also include predefined shortcuts in search
-	SHORTCUTS.forEach((shortcut) => {
-		if (shortcut.name.toLowerCase().includes(q.toLowerCase())) {
-			results.push(shortcut);
-		}
-	});
+	// SHORTCUTS.forEach((shortcut) => {
+	// 	if (shortcut.name.toLowerCase().includes(q.toLowerCase())) {
+	// 		results.push(shortcut);
+	// 	}
+	// });
 
 	return results;
 }
-
-
-
 
 /**
  * In this minimal setup there is only one user, the website admin.
@@ -237,7 +241,7 @@ export async function getCurrentUser(session_id: string) {
 	const stmt = db.prepare(
 		'SELECT session_id, expires FROM sessions WHERE session_id = ? AND expires > ?'
 	);
-	const session = stmt.bind(session_id, new Date().toISOString());// .get(session_id, new Date().toISOString());
+	const session = stmt.bind(session_id, new Date().toISOString()); // .get(session_id, new Date().toISOString());
 
 	if (session) {
 		return { name: 'Admin' };
@@ -249,13 +253,13 @@ export async function getCurrentUser(session_id: string) {
 export const PagesTable: SqlMorph<PageObject, Pages> = {
 	sql_statement: 'SELECT data FROM pages WHERE page_id = ?',
 	/**
- * Update the page
- */
+	 * Update the page
+	 */
 	update: createOrUpdatePage,
 	create: createOrUpdatePage,
 	/**
- * E.g. getPage("home") gets all dynamic data for the home page
- */
+	 * E.g. getPage("home") gets all dynamic data for the home page
+	 */
 	async get(user: User, k: keyof PageObject): Promise<Pages> {
 		const page = db.prepare('SELECT data FROM pages WHERE page_id = ?').get(k);
 		if (page?.data) {
@@ -269,53 +273,68 @@ export const PagesTable: SqlMorph<PageObject, Pages> = {
  * Update the page
  */
 // async function createOrUpdatePage(page_id, page, currentUser) {
-	async function createOrUpdatePage(user: User, data: PageObject): Promise<Pages> {
+async function createOrUpdatePage(user: User, data: PageObject): Promise<Pages> {
 	if (!user) throw new Error('Not authorized');
-	const pageExists = db.prepare('SELECT page_id FROM pages WHERE page_id = ?')
-	// .get(data.page_id);
-	.bind(data.page_id).run();
+	const pageExists = db
+		.prepare('SELECT page_id FROM pages WHERE page_id = ?')
+		// .get(data.page_id);
+		.bind(data.page_id)
+		.run();
 	if (pageExists) {
-		return db
-			.prepare('UPDATE pages SET data = ?, updated_at = ? WHERE page_id = ? RETURNING page_id')
-			// .get(JSON.stringify(data), new Date().toISOString(), data.page_id);
-			.bind(JSON.stringify(data), new Date().toISOString(), data.page_id).run();
+		return (
+			db
+				.prepare('UPDATE pages SET data = ?, updated_at = ? WHERE page_id = ? RETURNING page_id')
+				// .get(JSON.stringify(data), new Date().toISOString(), data.page_id);
+				.bind(JSON.stringify(data), new Date().toISOString(), data.page_id)
+				.run()
+		);
 	} else {
-		return db
-			.prepare('INSERT INTO pages (page_id, data, updated_at) values(?, ?, ?) RETURNING page_id')
-			// .get(data.page_id, JSON.stringify(data), new Date().toISOString());
-			.bind(data.page_id, JSON.stringify(data), new Date().toISOString()).run();
+		return (
+			db
+				.prepare('INSERT INTO pages (page_id, data, updated_at) values(?, ?, ?) RETURNING page_id')
+				// .get(data.page_id, JSON.stringify(data), new Date().toISOString());
+				.bind(data.page_id, JSON.stringify(data), new Date().toISOString())
+				.run()
+		);
 	}
 }
 
 export const CounterTable: SqlMorph<CounterObject, Counters> = {
 	sql_statement: 'SELECT data FROM pages WHERE page_id = ?',
 	/**
- * Update the page
- */
+	 * Update the page
+	 */
 	update: createOrUpdateCounter,
-	create: createOrUpdateCounter,
+	create: createOrUpdateCounter
 };
 /**
  * We can count all kinds of things with this.
  */
 // export async function createOrUpdateCounter(counter_id) {
-	export async function createOrUpdateCounter(user: User, data: CounterObject): Promise<Counters> {
+export async function createOrUpdateCounter(user: User, data: CounterObject): Promise<Counters> {
 	return db.transaction(() => {
 		// Remove recipients associated with the friend if there are any entries
 		const counter_exists = db
 			.prepare('SELECT counter_id FROM counters WHERE counter_id = ?')
 			// .get(data.counter_id);
-			.bind(data.counter_id).run();
+			.bind(data.counter_id)
+			.run();
 		if (counter_exists) {
-			return db
-				.prepare('UPDATE counters SET count = count + 1 WHERE counter_id = ? RETURNING count')
-				// .get(data.counter_id);
-				.bind(data.counter_id).run();
+			return (
+				db
+					.prepare('UPDATE counters SET count = count + 1 WHERE counter_id = ? RETURNING count')
+					// .get(data.counter_id);
+					.bind(data.counter_id)
+					.run()
+			);
 		} else {
-			return db
-				.prepare('INSERT INTO counters (counter_id, count) values(?, 1) RETURNING count')
-				//.get(data.counter_id);
-				.bind(data.counter_id).run();
+			return (
+				db
+					.prepare('INSERT INTO counters (counter_id, count) values(?, 1) RETURNING count')
+					//.get(data.counter_id);
+					.bind(data.counter_id)
+					.run()
+			);
 		}
 	})();
 }
@@ -349,7 +368,7 @@ export async function storeAsset(asset_id: string, file: File) {
 	stmnt.bind(asset_id, file.type, new Date().toISOString(), file.size, buffer).run();
 }
 
-export function getAsset(asset_id:string) {
+export function getAsset(asset_id: string) {
 	const sql = `
   SELECT
     asset_id,

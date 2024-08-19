@@ -4,7 +4,7 @@
 	import EditorToolbar from '$lib/components/editable/tools/EditorToolbar.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let showUserMenu = false;
+	export let showUserMenu: boolean = false;
 	const dispatch = createEventDispatcher();
 </script>
 

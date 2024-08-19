@@ -17,6 +17,9 @@ importers:
       '@auth/sveltekit':
         specifier: ^1.4.2
         version: 1.4.2(@sveltejs/kit@2.5.21(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0)))(svelte@4.2.18)(vite@5.4.0(@types/node@22.2.0)))(svelte@4.2.18)
+      '@cloudflare/pages-plugin-cloudflare-access':
+        specifier: ^1.0.5
+        version: 1.0.5
       flowbite:
         specifier: ^2.5.1
         version: 2.5.1(rollup@4.20.0)
@@ -198,6 +201,9 @@ packages:
   '@cloudflare/kv-asset-handler@0.3.4':
     resolution: {integrity: sha512-YLPHc8yASwjNkmcDMQMY35yiWjoKAKnhUbPRszBRS0YgH+IXtsMp61j+yTcnCE3oO2DgP0U3iejLC8FTtKDC8Q==}
     engines: {node: '>=16.13'}
+
+  '@cloudflare/pages-plugin-cloudflare-access@1.0.5':
+    resolution: {integrity: sha512-EGVSaUoFLxKfds2tgLWGzIk/xXLO2RqwZDUKsH/olXdNOckOMr4ShR8Pt1AJpZrakCDNiDVXmfLDJYTufxuQRw==}
 
   '@cloudflare/workerd-darwin-64@1.20240806.0':
     resolution: {integrity: sha512-FqcVBBCO//I39K5F+HqE/v+UkqY1UrRnS653Jv+XsNNH9TpX5fTs7VCKG4kDSnmxlAaKttyIN5sMEt7lpuNExQ==}
@@ -2651,6 +2657,8 @@ snapshots:
   '@cloudflare/kv-asset-handler@0.3.4':
     dependencies:
       mime: 3.0.0
+
+  '@cloudflare/pages-plugin-cloudflare-access@1.0.5': {}
 
   '@cloudflare/workerd-darwin-64@1.20240806.0':
     optional: true

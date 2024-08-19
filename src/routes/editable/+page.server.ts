@@ -1,9 +1,9 @@
 import {
 	// getArticles,
 	getPage
-} from '$lib/editable/api.ts';
+} from '$lib/editable/api';
 import { fail, redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad } from './$types';
 
 // export async function load({ locals }) {
 // 	const currentUser = locals.user;
@@ -17,17 +17,17 @@ import type { PageServerLoad } from "./$types";
 // 	};
 // }
 
-export const load: PageServerLoad = async (event) => {
-	const session = await event.locals.auth()
-   
+export const load: PageServerLoad = async ({ locals }) => {
+	const session = await locals.auth();
+
 	if (!session?.user?.userId) {
-	  return fail(401, { type: "error", error: "Unauthenticated" })
+		return fail(401, { type: 'error', error: 'Unauthenticated' });
 	}
-   
+
 	// 	// const articles = await getArticles();
 	const page = await getPage('home');
 	return {
-	//   session!.user!,
+		//   session!.user!,
 		page
-	}
-  }
+	};
+};

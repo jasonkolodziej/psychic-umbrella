@@ -57,7 +57,7 @@
 	</div>
 </div> -->
 
-<style>
+<style lang="css">
 	#brick-wrapper {
 		cursor: pointer !important;
 		z-index: 10;
@@ -94,16 +94,6 @@
 		justify-content: center;
 		padding-top: 0.25rem !important;
 		padding-bottom: 0.25rem !important;
-	}
-	p {
-		/* color: #fff; */
-		color: inherit;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: auto;
-		font-size: 16px;
 	}
 
 	.bits {
