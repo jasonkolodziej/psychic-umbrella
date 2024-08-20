@@ -3,7 +3,7 @@
 	export let title = 'Forgot your password?';
 	export let site = {
 		name: 'Flowbite',
-		img: '/images/noun-lego-brick.svg',
+		img: '/images/flowbite-svelte-icon-logo.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};
@@ -46,7 +46,7 @@
 @prop export let title = 'Forgot your password?';
 @prop export let site = {
 		name: 'Flowbite',
-		img: '/images/noun-lego-brick.svg',
+		img: '/images/flowbite-svelte-icon-logo.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};

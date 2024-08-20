@@ -3,7 +3,7 @@
 	import { LockOpenSolid } from 'flowbite-svelte-icons';
 	export let site = {
 		name: 'Flowbite',
-		img: '/images/noun-lego-brick.svg',
+		img: '/images/flowbite-svelte-icon-logo.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};
@@ -68,7 +68,7 @@
 ## Props
 @prop export let site = {
 		name: 'Flowbite',
-		img: '/images/noun-lego-brick.svg',
+		img: '/images/flowbite-svelte-icon-logo.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};

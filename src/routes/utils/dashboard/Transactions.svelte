@@ -21,14 +21,8 @@
 	} from 'flowbite-svelte-icons';
 	import CreditCard from './CreditCard.svelte';
 	import StatusBadge from './StatusBadge.svelte';
-	import { twMerge } from 'tailwind-merge';
 
 	export let dark: boolean = false;
-	const cardClassBase = 'max-w-none shadow-sm';
-	const cardClass = twMerge(
-		cardClassBase,
-		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
-	);
 
 	const headers = [
 		'Transaction',
@@ -52,7 +46,7 @@
 	];
 </script>
 
-<Card size="xl" class={cardClass}>
+<Card size="xl" class="shadow-sm max-w-none">
 	<div class="items-center justify-between lg:flex">
 		<div class="mb-4 mt-px lg:mb-0">
 			<Heading tag="h3" class="-ml-0.25 mb-2 text-xl font-semibold dark:text-white">
@@ -89,17 +83,16 @@
 		hoverable={true}
 		noborder
 		striped
-		class="mt-6 min-w-full divide-y divide-primary-200 dark:divide-primary-600 dark:bg-primary-800"
+		class="mt-6 min-w-full divide-y divide-gray-200 dark:divide-gray-600"
 	>
-		<!-- class="bg-gray-50 dark:bg-gray-700" -->
-		<TableHead>
+		<TableHead class="bg-gray-50 dark:bg-gray-700">
 			{#each headers as header}
 				<TableHeadCell class="whitespace-nowrap p-4 font-normal">{header}</TableHeadCell>
 			{/each}
 		</TableHead>
-		<TableBody tableBodyClass="dark:bg-primary-700">
+		<TableBody>
 			{#each data as [name, date, amount, reference, method, status]}
-				<TableBodyRow color="custom">
+				<TableBodyRow>
 					<TableBodyCell class="px-4 font-normal">{name}</TableBodyCell>
 					<TableBodyCell class="px-4 font-normal text-gray-500 dark:text-gray-400">
 						{date}
@@ -124,7 +117,7 @@
 		<LastRange />
 		<a
 			href="#top"
-			class="inline-flex items-center rounded-lg p-1 text-xs font-medium uppercase text-gray-700 hover:bg-primary-100 dark:text-gray-500 dark:hover:bg-primary-700 sm:text-sm"
+			class="inline-flex items-center rounded-lg p-1 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700 sm:text-sm"
 		>
 			Transactions report <ChevronRightOutline size="lg" />
 		</a>

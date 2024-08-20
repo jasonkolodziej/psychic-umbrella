@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '../app.pcss';
 	import { page } from '$app/stores';
 	import NotFound from './utils/pages/NotFound.svelte';
 	import Maintenance from './utils/pages/Maintenance.svelte';
@@ -26,5 +26,6 @@
 </script>
 
 <MetaTag {path} {description} {title} {subtitle} />
+
 
 <svelte:component this={component}></svelte:component>

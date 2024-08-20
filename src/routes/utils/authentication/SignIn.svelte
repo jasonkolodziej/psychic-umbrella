@@ -3,7 +3,7 @@
 	export let title = 'Sign in to platform';
 	export let site = {
 		name: 'Flowbite',
-		img: '/images/noun-lego-brick.svg',
+		img: '/images/flowbite-svelte-icon-logo.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};
@@ -65,7 +65,7 @@
 @prop export let title = 'Sign in to platform';
 @prop export let site = {
 		name: 'Flowbite',
-		img: '/images/noun-lego-brick.svg',
+		img: '/images/flowbite-svelte-icon-logo.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};

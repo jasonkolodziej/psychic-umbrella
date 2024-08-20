@@ -10,7 +10,7 @@
 	import DarkChart from '../widgets/DarkChart.svelte';
 	import { onMount } from 'svelte';
 	// import chart_options_func from '../../routes/(sidebar)/dashboard/chart_options';
-	import chart_options_func from '../../(sidebar)/dashboard/chart_options';
+  import chart_options_func from '../../(sidebar)/dashboard/chart_options';
 	import ActivityList from './ActivityList.svelte';
 	import Change from './Change.svelte';
 	import Chat from './Chat.svelte';
@@ -18,7 +18,6 @@
 	import Insights from './Insights.svelte';
 	import Traffic from './Traffic.svelte';
 	import Transactions from './Transactions.svelte';
-	import { twMerge } from 'tailwind-merge';
 
 	export let data: PageData;
 
@@ -26,12 +25,6 @@
 	chartOptions.series = data.series;
 
 	let dark = false;
-
-	const cardClassBase = 'items-center justify-between';
-	const cardClass = twMerge(
-		cardClassBase,
-		'border-primary-200 dark:border-primary-700 dark:bg-primary-800'
-	);
 
 	function handler(ev: Event) {
 		if ('detail' in ev) {
@@ -54,7 +47,7 @@
 		<Stats />
 	</div>
 	<div class="grid grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3">
-		<Card horizontal class={cardClass} size="xl">
+		<Card horizontal class="items-center justify-between" size="xl">
 			<div class="w-full">
 				<p>New products</p>
 				<p class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -64,7 +57,7 @@
 			</div>
 			<Chart options={thickbars} class="w-full" />
 		</Card>
-		<Card horizontal class={cardClass} size="xl">
+		<Card horizontal class="items-center justify-between" size="xl">
 			<div class="w-full">
 				<p>Users</p>
 				<p class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -74,7 +67,7 @@
 			</div>
 			<DarkChart configFunc={users} class="w-full" />
 		</Card>
-		<Card horizontal class={cardClass} size="xl">
+		<Card horizontal class="items-center justify-between" size="xl">
 			<div class="w-full">
 				<p>Users</p>
 				<p class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
@@ -82,14 +75,7 @@
 				</p>
 				<Change size="sm" value={-3.4} since="Since last month" class="w-full" />
 			</div>
-			<DarkChart
-				configFunc={(d) => {
-					const x = users(d);
-					x.plotOptions.bar.horizontal = true;
-					return x;
-				}}
-				class="w-full"
-			/>
+			<DarkChart configFunc={(d)=>{const x = users(d); x.plotOptions.bar.horizontal=true; return x}} class="w-full"/>
 		</Card>
 	</div>
 	<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">

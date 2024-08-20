@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { Label, Input } from 'flowbite-svelte';
 	import SignUp from '../utils/authentication/SignUp.svelte';
-	import MetaTag from '../utils/MetaTag.svelte';
+  import MetaTag from '../utils/MetaTag.svelte';
 
 	const title = 'Create a Free Account';
 	const site = {
 		name: 'Flowbite',
-		img: '/images/noun-lego-brick.svg',
+		img: '/images/flowbite-svelte-icon-logo.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};
@@ -28,12 +28,13 @@
 	};
 
 	const path: string = '/authentication/sign-up';
-	const description: string = 'Sign up example - Flowbite Svelte Admin Dashboard';
+  const description: string = 'Sign up example - Flowbite Svelte Admin Dashboard';
 	const metaTitle: string = 'Flowbite Svelte Admin Dashboard - Sign up';
-	const subtitle: string = 'Sign up';
+  const subtitle: string = 'Sign up';
 </script>
 
 <MetaTag {path} {description} title={metaTitle} {subtitle} />
+
 
 <SignUp
 	{title}
