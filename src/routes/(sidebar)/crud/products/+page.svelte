@@ -1,6 +1,28 @@
 <script lang="ts">
-	import { Breadcrumb, BreadcrumbItem, Button, Checkbox, Drawer, Heading, Input, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Toolbar, ToolbarButton } from 'flowbite-svelte';
-	import { CogSolid, DotsVerticalOutline, EditOutline, ExclamationCircleSolid, TrashBinSolid } from 'flowbite-svelte-icons';
+	import {
+		Breadcrumb,
+		BreadcrumbItem,
+		Button,
+		Checkbox,
+		Drawer,
+		Heading,
+		Input,
+		Table,
+		TableBody,
+		TableBodyCell,
+		TableBodyRow,
+		TableHead,
+		TableHeadCell,
+		Toolbar,
+		ToolbarButton
+	} from 'flowbite-svelte';
+	import {
+		CogSolid,
+		DotsVerticalOutline,
+		EditOutline,
+		ExclamationCircleSolid,
+		TrashBinSolid
+	} from 'flowbite-svelte-icons';
 	import type { ComponentType } from 'svelte';
 	import { sineIn } from 'svelte/easing';
 	import Products from '../../../data/product.json';
@@ -17,7 +39,7 @@
 	};
 
 	const path: string = '/crud/products';
-  	const description: string = 'CRUD products examaple - Flowbite Svelte Admin Dashboard';
+	const description: string = 'CRUD products examaple - Flowbite Svelte Admin Dashboard';
 	const title: string = 'Flowbite Svelte Admin Dashboard - CRUD Products';
 	const subtitle: string = 'CRUD Products';
 	let transitionParams = {
@@ -29,8 +51,7 @@
 
 <MetaTag {path} {description} {title} {subtitle} />
 
-
-<main class="relative h-full w-full overflow-y-auto bg-white dark:bg-gray-800">
+<main class="relative h-full w-full overflow-y-auto bg-white dark:bg-primary-800">
 	<div class="p-4">
 		<Breadcrumb class="mb-5">
 			<BreadcrumbItem home>Home</BreadcrumbItem>
@@ -115,7 +136,6 @@
 		</TableBody>
 	</Table>
 </main>
-
 
 <Drawer placement="right" transitionType="fly" {transitionParams} bind:hidden>
 	<svelte:component this={drawerComponent} bind:hidden />

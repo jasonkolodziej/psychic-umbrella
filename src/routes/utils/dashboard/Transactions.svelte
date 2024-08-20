@@ -89,16 +89,17 @@
 		hoverable={true}
 		noborder
 		striped
-		class="mt-6 min-w-full divide-y divide-gray-200 dark:divide-gray-600"
+		class="mt-6 min-w-full divide-y divide-primary-200 dark:divide-primary-600 dark:bg-primary-800"
 	>
-		<TableHead class="bg-gray-50 dark:bg-gray-700">
+		<!-- class="bg-gray-50 dark:bg-gray-700" -->
+		<TableHead>
 			{#each headers as header}
 				<TableHeadCell class="whitespace-nowrap p-4 font-normal">{header}</TableHeadCell>
 			{/each}
 		</TableHead>
-		<TableBody>
+		<TableBody tableBodyClass="dark:bg-primary-700">
 			{#each data as [name, date, amount, reference, method, status]}
-				<TableBodyRow>
+				<TableBodyRow color="custom">
 					<TableBodyCell class="px-4 font-normal">{name}</TableBodyCell>
 					<TableBodyCell class="px-4 font-normal text-gray-500 dark:text-gray-400">
 						{date}
@@ -123,7 +124,7 @@
 		<LastRange />
 		<a
 			href="#top"
-			class="inline-flex items-center rounded-lg p-1 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700 sm:text-sm"
+			class="inline-flex items-center rounded-lg p-1 text-xs font-medium uppercase text-gray-700 hover:bg-primary-100 dark:text-gray-500 dark:hover:bg-primary-700 sm:text-sm"
 		>
 			Transactions report <ChevronRightOutline size="lg" />
 		</a>
