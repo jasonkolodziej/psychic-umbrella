@@ -5,7 +5,6 @@
 	import More from './More.svelte';
 	import Change from '../dashboard/components/Change.svelte';
 	import type { ComponentProps, SvelteComponent } from 'svelte';
-	import type { MicrophoneOutlineProps } from 'flowbite-svelte-icons/MicrophoneOutline.svelte';
 
 	export let title: string = '';
 	export let subtitle: string = '';

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Button, Popover, ToolbarButton } from 'flowbite-svelte';
 	import {
 		AnnotationSolid,
@@ -11,17 +11,23 @@
 	} from 'flowbite-svelte-icons';
 	import Users from '$lib/data/users.json';
 	import Notification from './Notification.svelte';
+	import type { User } from '$lib/utils/crud/users/data';
+	export let title: string = 'Notifications';
+	export let users: User[] = Users;
 </script>
 
 <ToolbarButton size="lg" class="-mx-0.5 hover:text-gray-900 dark:hover:text-white">
 	<BellSolid size="lg" />
 </ToolbarButton>
+
 <Popover class="max-w-sm border-0" trigger="click" defaultClass="p-0" arrow={false} offset={10}>
-	<div slot="title" class="rounded text-center">Notifications</div>
+	<div slot="title" class="rounded text-center">
+		{title}
+	</div>
 	<div class="bg-50 dark:bg-gray-700">
 		<Notification
 			href="#"
-			src={Users[0].avatar}
+			src={users[0].avatar}
 			icon={DownloadSolid}
 			when="a few moments ago"
 			color="purple"
@@ -31,7 +37,7 @@
 		</Notification>
 		<Notification
 			href="#"
-			src={Users[1].avatar}
+			src={users[1].avatar}
 			icon={UsersGroupSolid}
 			when="10 minutes ago"
 			color="dark"

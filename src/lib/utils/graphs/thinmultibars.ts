@@ -1,3 +1,4 @@
+import type { ApexOptions } from 'apexcharts';
 /** @type {import('apexcharts').ApexOptions} */
 export default {
 	colors: ['#EF562F', '#FDBA8C'],
@@ -105,4 +106,4 @@ export default {
 	fill: {
 		opacity: 1
 	}
-};
+} satisfies ApexOptions;

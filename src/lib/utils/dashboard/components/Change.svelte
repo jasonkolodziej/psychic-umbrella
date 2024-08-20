@@ -4,12 +4,11 @@
 	export let value: number;
 	export let unit: string = '%';
 	export let since: string = 'vs last month';
+	export let size: SizeType = 'md';
+	export let equalHeight: boolean = false;
 
 	const colorUp = 'text-green-500 dark:text-green-400';
 	const colorDown = 'text-red-500 dark:text-red-400';
-
-	export let size: SizeType = 'md';
-	export let equalHeight: boolean = false;
 
 	const textSize = {
 		xs: 'text-xs',

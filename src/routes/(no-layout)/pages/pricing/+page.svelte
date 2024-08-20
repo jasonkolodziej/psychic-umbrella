@@ -12,9 +12,9 @@
 	import { ArrowLeftToBracketOutline, CloseOutline } from 'flowbite-svelte-icons';
 	import MetaTag from '$lib/utils/MetaTag.svelte';
 	import ComparisonTable from '$lib/utils/pages/pricing/ComparisonTable.svelte';
-	import Faq from './FAQ.svelte';
-	import Footer from './Footer.svelte';
-	import PriceCard from './PriceCard.svelte';
+	import Faq from '$lib/utils/pages/pricing/Faq.svelte';
+	import Footer from '$lib/utils/pages/pricing/Footer.svelte';
+	import PriceCard from '$lib/utils/pages/pricing/PriceCard.svelte';
 
 	let yearly: boolean = false;
 	let prices: string[][] = [
