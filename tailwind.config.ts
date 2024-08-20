@@ -31,10 +31,10 @@ export default {
 				// 	900: '#A5371B'
 				// },
 				//? https://maketintsandshades.com
-				primary: {
-					50: '#e7e7e8',
-					100: '#cfcfd1',
-					200: '#b6b8b9',
+				gray: {
+					50: '#f9fafb',
+					100: '#f3f4f6',
+					200: '#cfcfd1',
 					300: '#9ea0a2',
 					400: '#86888b',
 					500: '#6e7074',
