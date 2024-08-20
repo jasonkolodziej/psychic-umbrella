@@ -48,6 +48,10 @@
 	},
 	"type": "module",
 	"packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
+	"engineStrict": true,
+	"engines": {
+		"node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+	},
 	"dependencies": {
 		"@auth/core": "^0.34.2",
 		"@auth/d1-adapter": "^1.4.2",
