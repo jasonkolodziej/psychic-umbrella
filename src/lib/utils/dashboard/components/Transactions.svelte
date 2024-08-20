@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LastRange from '../widgets/LastRange.svelte';
+	import LastRange from '$lib/utils/widgets/LastRange.svelte';
 	import {
 		Button,
 		Card,
@@ -46,7 +46,7 @@
 	];
 </script>
 
-<Card size="xl" class="shadow-sm max-w-none">
+<Card size="xl" class="max-w-none shadow-sm">
 	<div class="items-center justify-between lg:flex">
 		<div class="mb-4 mt-px lg:mb-0">
 			<Heading tag="h3" class="-ml-0.25 mb-2 text-xl font-semibold dark:text-white">
@@ -117,7 +117,7 @@
 		<LastRange />
 		<a
 			href="#top"
-			class="inline-flex items-center rounded-lg p-1 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700 sm:text-sm"
+			class="text-primary-700 dark:text-primary-500 inline-flex items-center rounded-lg p-1 text-xs font-medium uppercase hover:bg-gray-100 dark:hover:bg-gray-700 sm:text-sm"
 		>
 			Transactions report <ChevronRightOutline size="lg" />
 		</a>

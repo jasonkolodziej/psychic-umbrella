@@ -9,7 +9,7 @@
 		HeartSolid,
 		UsersGroupSolid
 	} from 'flowbite-svelte-icons';
-	import Users from '../../data/users.json';
+	import Users from '$lib/data/users.json';
 	import Notification from './Notification.svelte';
 </script>
 
@@ -61,7 +61,7 @@
 		>
 			<span class="font-semibold text-gray-900 dark:text-white">Leslie Livingston</span>
 			mentioned you in a comment:
-			<span class="font-medium text-primary-700 dark:text-primary-500">@bonnie.green</span> what do you
+			<span class="text-primary-700 dark:text-primary-500 font-medium">@bonnie.green</span> what do you
 			say?
 		</Notification>
 

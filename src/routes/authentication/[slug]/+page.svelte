@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from '../../authentication copy/[slug]/$types';
+	import type { PageData } from '../../authentication/[slug]/$types';
 	export let data: PageData;
 </script>
 

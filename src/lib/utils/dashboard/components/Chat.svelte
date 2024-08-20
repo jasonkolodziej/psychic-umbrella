@@ -1,5 +1,5 @@
 <script>
-	import { imagesPath } from '../variables';
+	import { imagesPath } from '$lib/utils/variables';
 	import { Card, Textarea, ToolbarButton } from 'flowbite-svelte';
 	import {
 		ChevronUpOutline,
@@ -8,7 +8,7 @@
 		FileLinesSolid,
 		TableColumnOutline
 	} from 'flowbite-svelte-icons';
-	import Users from '../../data/users.json';
+	import Users from '$lib/data/users.json';
 	import ChatMsg from './ChatMsg.svelte';
 	import Message from './Message.svelte';
 </script>
@@ -18,7 +18,7 @@
 		<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Smart chat</h3>
 		<a
 			href="#top"
-			class="inline-flex items-center rounded-lg p-2 text-sm font-medium text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700"
+			class="text-primary-700 dark:text-primary-500 inline-flex items-center rounded-lg p-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700"
 		>
 			View all
 		</a>
@@ -29,7 +29,7 @@
 			<p>
 				Hello <a
 					href="#top"
-					class="font-medium text-primary-600 hover:underline dark:text-primary-500">@designteam</a
+					class="text-primary-600 dark:text-primary-500 font-medium hover:underline">@designteam</a
 				> Let's schedule a kick-off meeting and workshop this week. It would be great to gather everyone
 				involved in the design project. Let me know about your availability in the thread.
 			</p>
@@ -178,7 +178,7 @@
 		</ChatMsg>
 		<ChatMsg replays={0} name={Users[3].name} avatar={imagesPath(Users[3].avatar, 'users')}>
 			<p>
-				Ok <a href="#top" class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+				Ok <a href="#top" class="text-primary-600 dark:text-primary-500 font-medium hover:underline"
 					>@team</a
 				> I'am attaching our offer and pitch deck. Take your time to review everything. I'am looking
 				forward to the next steps! Thank you.
@@ -190,7 +190,7 @@
 					class="mb-3.5 flex items-center rounded-lg border border-gray-200 p-3 dark:border-gray-700"
 				>
 					<div
-						class="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-100 text-primary-600 dark:bg-primary-900 dark:text-primary-300"
+						class="bg-primary-100 text-primary-600 dark:bg-primary-900 dark:text-primary-300 mr-3 flex h-10 w-10 items-center justify-center rounded-lg"
 					>
 						<FileLinesSolid size="lg" />
 					</div>
@@ -240,7 +240,7 @@
 			<p>
 				Hello <a
 					href="#top"
-					class="font-medium text-primary-600 hover:underline dark:text-primary-500">@jeseleos</a
+					class="text-primary-600 dark:text-primary-500 font-medium hover:underline">@jeseleos</a
 				> I need some informations about flowbite react version.
 			</p>
 		</ChatMsg>
@@ -251,7 +251,7 @@
 			class="pl-12"
 		>
 			<p class="mb-5">
-				Hi <a href="#top" class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+				Hi <a href="#top" class="text-primary-600 dark:text-primary-500 font-medium hover:underline"
 					>@josephh</a
 				> Sure, just let me know whean you are available and we can speak.
 			</p>
@@ -262,7 +262,7 @@
 				<ToolbarButton
 					type="submit"
 					color="default"
-					class="p-2 text-primary-600 hover:bg-primary-100"
+					class="text-primary-600 hover:bg-primary-100 p-2"
 				>
 					<svg
 						aria-hidden="true"
@@ -279,7 +279,7 @@
 			</div>
 
 			<span
-				class="inline-flex cursor-pointer items-center gap-1 text-xs font-medium text-primary-700 hover:underline dark:text-primary-500 sm:text-sm"
+				class="text-primary-700 dark:text-primary-500 inline-flex cursor-pointer items-center gap-1 text-xs font-medium hover:underline sm:text-sm"
 			>
 				Hide thread <ChevronUpOutline size="lg" />
 			</span>

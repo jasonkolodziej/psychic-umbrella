@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Avatar, Card, Heading, Popover, TabItem, Tabs } from 'flowbite-svelte';
-	import Change from '../../utils/dashboard/Change.svelte';
-	import Customers from '../../data/users.json';
-	import { avatarPath, imagesPath } from '../../utils/variables';
-	import LastRange from '../widgets/LastRange.svelte';
-	import More from '../widgets/More.svelte';
+	import Change from '$lib/utils/dashboard/components/Change.svelte';
+	import Customers from '$lib/data/users.json';
+	import { avatarPath, imagesPath } from '$lib/utils/variables';
+	import LastRange from '$lib/utils/widgets/LastRange.svelte';
+	import More from '$lib/utils/widgets/More.svelte';
 	import { QuestionCircleSolid } from 'flowbite-svelte-icons';
 
 	const products = [

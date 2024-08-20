@@ -1,23 +1,24 @@
 <script lang="ts">
-	import thickbars from '../graphs/thickbars';
-	import ChartWidget from '../widgets/ChartWidget.svelte';
+	import thickbars from '$lib/utils/graphs/thickbars';
+	import ChartWidget from '$lib/utils/widgets/ChartWidget.svelte';
 	import { Card, Chart } from 'flowbite-svelte';
 	// import type { PageData } from '../../routes/(sidebar)/$types';
-	import type { PageData } from '../../(sidebar)/$types';
-	import Stats from './Stats.svelte';
+	// import type { PageData } from '../../(sidebar)/$types';
+	import type { PageData } from '@sveltejs/kit';
+	import Stats from '$lib/utils/dashboard/components/Stats.svelte';
 
-	import users from '../graphs/users';
-	import DarkChart from '../widgets/DarkChart.svelte';
+	import users from '$lib/utils/graphs/users';
+	import DarkChart from '$lib/utils/widgets/DarkChart.svelte';
 	import { onMount } from 'svelte';
 	// import chart_options_func from '../../routes/(sidebar)/dashboard/chart_options';
-  import chart_options_func from '../../(sidebar)/dashboard/chart_options';
-	import ActivityList from './ActivityList.svelte';
-	import Change from './Change.svelte';
-	import Chat from './Chat.svelte';
-	import DesktopPc from './DesktopPc.svelte';
-	import Insights from './Insights.svelte';
-	import Traffic from './Traffic.svelte';
-	import Transactions from './Transactions.svelte';
+	import chart_options_func from '$lib/utils/dashboard/chart_options';
+	import ActivityList from '$lib/utils/dashboard/components/ActivityList.svelte';
+	import Change from '$lib/utils/dashboard/components/Change.svelte';
+	import Chat from '$lib/utils/dashboard/components/Chat.svelte';
+	import DesktopPc from '$lib/utils/dashboard/components/DesktopPc.svelte';
+	import Insights from '$lib/utils/dashboard/components/Insights.svelte';
+	import Traffic from '$lib/utils/dashboard/components/Traffic.svelte';
+	import Transactions from '$lib/utils/dashboard/components/Transactions.svelte';
 
 	export let data: PageData;
 
@@ -75,7 +76,14 @@
 				</p>
 				<Change size="sm" value={-3.4} since="Since last month" class="w-full" />
 			</div>
-			<DarkChart configFunc={(d)=>{const x = users(d); x.plotOptions.bar.horizontal=true; return x}} class="w-full"/>
+			<DarkChart
+				configFunc={(d) => {
+					const x = users(d);
+					x.plotOptions.bar.horizontal = true;
+					return x;
+				}}
+				class="w-full"
+			/>
 		</Card>
 	</div>
 	<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">

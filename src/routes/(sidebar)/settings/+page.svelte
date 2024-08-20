@@ -1,24 +1,24 @@
 <script lang="ts">
-	import Accounts from '../../utils/settings/Accounts.svelte';
-	import Alerts from '../../utils/settings/Alerts.svelte';
-	import Emails from '../../utils/settings/Emails.svelte';
-	import GeneralInfo from '../../utils/settings/GeneralInfo.svelte';
-	import LanguageTime from '../../utils/settings/LanguageTime.svelte';
-	import PasswordInfo from '../../utils/settings/PasswordInfo.svelte';
-	import ProfilePicture from '../../utils/settings/ProfilePicture.svelte';
-	import Sessions from '../../utils/settings/Sessions.svelte';
-	import SocialAccounts from '../../utils/settings/SocialAccounts.svelte';
+	import Accounts from '$lib/utils/settings/Accounts.svelte';
+	import Alerts from '$lib/utils/settings/Alerts.svelte';
+	import Emails from '$lib/utils/settings/Emails.svelte';
+	import GeneralInfo from '$lib/utils/settings/GeneralInfo.svelte';
+	import LanguageTime from '$lib/utils/settings/LanguageTime.svelte';
+	import PasswordInfo from '$lib/utils/settings/PasswordInfo.svelte';
+	import ProfilePicture from '$lib/utils/settings/ProfilePicture.svelte';
+	import Sessions from '$lib/utils/settings/Sessions.svelte';
+	import SocialAccounts from '$lib/utils/settings/SocialAccounts.svelte';
 	import { Breadcrumb, BreadcrumbItem, Heading } from 'flowbite-svelte';
 	import Footer from '../Footer.svelte';
 
-	import { imagesPath } from '../../utils/variables';
-	import Users from '../../data/users.json';
-	import MetaTag from '../../utils/MetaTag.svelte';
+	import { imagesPath } from '$lib/utils/variables';
+	import Users from '../.$lib/data/users.json';
+	import MetaTag from '$lib/utils/MetaTag.svelte';
 
 	const path: string = '/settings';
-  const description: string = 'Settings examaple - Flowbite Svelte Admin Dashboard';
-  const title: string = 'Flowbite Svelte Admin Dashboard - Settings';
-  const subtitle: string = 'Settings';
+	const description: string = 'Settings examaple - Flowbite Svelte Admin Dashboard';
+	const title: string = 'Flowbite Svelte Admin Dashboard - Settings';
+	const subtitle: string = 'Settings';
 </script>
 
 <MetaTag {path} {description} {title} {subtitle} />
@@ -29,7 +29,7 @@
 			<Breadcrumb class="mb-6">
 				<BreadcrumbItem home>Home</BreadcrumbItem>
 				<BreadcrumbItem
-					class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white"
+					class="hover:text-primary-600 inline-flex items-center text-gray-700 dark:text-gray-300 dark:hover:text-white"
 					href="/curd/users">Users</BreadcrumbItem
 				>
 				<BreadcrumbItem>Settings</BreadcrumbItem>

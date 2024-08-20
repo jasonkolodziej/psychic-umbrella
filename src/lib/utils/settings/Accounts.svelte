@@ -1,7 +1,7 @@
 <script>
-	import { imagesPath } from '../../utils/variables';
+	import { imagesPath } from '$lib/utils/variables';
 	import { Avatar, Button, Card, Heading } from 'flowbite-svelte';
-	import Users from '../../data/users.json';
+	import Users from '../.$lib/data/users.json';
 </script>
 
 <Card size="xl">
@@ -15,7 +15,7 @@
 						<p class="truncate text-base font-semibold text-gray-900 dark:text-white">
 							{name}
 						</p>
-						<p class="truncate text-sm font-normal text-primary-700 dark:text-primary-500">
+						<p class="text-primary-700 dark:text-primary-500 truncate text-sm font-normal">
 							{country}
 						</p>
 						<p class="mt-1 text-xs font-medium text-gray-500 dark:text-gray-400">

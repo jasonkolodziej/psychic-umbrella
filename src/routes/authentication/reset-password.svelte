@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Label, Input } from 'flowbite-svelte';
-	import ResetPassword from '../utils/authentication/ResetPassword.svelte';
-	import MetaTag from '../utils/MetaTag.svelte';
+	import ResetPassword from '$lib/utils/authentication/ResetPassword.svelte';
+	import MetaTag from '$lib/utils/MetaTag.svelte';
 	const title = 'Reset your password';
 	const site = {
 		name: 'Flowbite',
-		img: '/images/flowbite-svelte-icon-logo.svg',
+		img: '/images/noun-lego-brick.svg',
 		link: '/',
 		imgAlt: 'FlowBite Logo'
 	};
@@ -24,11 +24,11 @@
 		}
 		console.log(data);
 	};
-	
+
 	const path: string = '/authentication/reset-password';
-  const description: string = 'Reset password example - Flowbite Svelte Admin Dashboard';
+	const description: string = 'Reset password example - Flowbite Svelte Admin Dashboard';
 	const metaTitle: string = 'Flowbite Svelte Admin Dashboard - Reset password';
-  const subtitle: string = 'Reset password';
+	const subtitle: string = 'Reset password';
 </script>
 
 <MetaTag {path} {description} title={metaTitle} {subtitle} />

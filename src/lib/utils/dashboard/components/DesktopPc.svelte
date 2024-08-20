@@ -1,10 +1,10 @@
 <script lang="ts">
-	import options from '../graphs/thinmultibars';
-	import LastRange from '../widgets/LastRange.svelte';
-	import More from '../widgets/More.svelte';
+	import options from '$lib/utils/graphs/thinmultibars';
+	import LastRange from '$lib/utils/widgets/LastRange.svelte';
+	import More from '$lib/utils/widgets/More.svelte';
 	import { Card, Chart, Input } from 'flowbite-svelte';
 	import { CalendarMonthOutline } from 'flowbite-svelte-icons';
-	import Change from './Change.svelte';
+	import Change from '$lib/utils/dashboard/components/Change.svelte';
 </script>
 
 <Card size="xl" class="h-fit">

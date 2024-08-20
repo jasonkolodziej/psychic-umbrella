@@ -1,12 +1,18 @@
 <script lang="ts">
-	import Change from '../dashboard/Change.svelte';
 	import type { ApexOptions } from 'apexcharts';
 	import { Card, Chart, Heading } from 'flowbite-svelte';
 	import LastRange from './LastRange.svelte';
 	import More from './More.svelte';
+	import Change from '../dashboard/components/Change.svelte';
+	import type { ComponentProps, SvelteComponent } from 'svelte';
+	import type { MicrophoneOutlineProps } from 'flowbite-svelte-icons/MicrophoneOutline.svelte';
 
 	export let title: string = '';
 	export let subtitle: string = '';
+	export let moreLink: ComponentProps<More> = {
+		title: 'More',
+		href: '#top'
+	} as ComponentProps<More>;
 	export let chartOptions: ApexOptions;
 </script>
 
@@ -24,7 +30,7 @@
 		class="mt-4 flex items-center justify-between border-t border-gray-200 pt-3 dark:border-gray-700 sm:pt-6"
 	>
 		<LastRange />
-		<More title="Sales Report" href="#top" />
+		<More {...moreLink} />
 	</div>
 </Card>
 

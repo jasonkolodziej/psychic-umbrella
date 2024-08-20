@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconAvatar from '../widgets/IconAvatar.svelte';
+	import IconAvatar from '$lib/utils/widgets/IconAvatar.svelte';
 
 	export let src: string = '';
 	export let icon: ConstructorOfATypedSvelteComponent | null = null;
@@ -22,7 +22,7 @@
 			<slot />
 		</div>
 		{#if when}
-			<div class="text-xs font-medium text-primary-700 dark:text-primary-400">{when}</div>
+			<div class="text-primary-700 dark:text-primary-400 text-xs font-medium">{when}</div>
 		{/if}
 	</div>
 </a>

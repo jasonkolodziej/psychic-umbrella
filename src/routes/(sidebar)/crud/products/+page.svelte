@@ -1,11 +1,33 @@
 <script lang="ts">
-	import { Breadcrumb, BreadcrumbItem, Button, Checkbox, Drawer, Heading, Input, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Toolbar, ToolbarButton } from 'flowbite-svelte';
-	import { CogSolid, DotsVerticalOutline, EditOutline, ExclamationCircleSolid, TrashBinSolid } from 'flowbite-svelte-icons';
+	import {
+		Breadcrumb,
+		BreadcrumbItem,
+		Button,
+		Checkbox,
+		Drawer,
+		Heading,
+		Input,
+		Table,
+		TableBody,
+		TableBodyCell,
+		TableBodyRow,
+		TableHead,
+		TableHeadCell,
+		Toolbar,
+		ToolbarButton
+	} from 'flowbite-svelte';
+	import {
+		CogSolid,
+		DotsVerticalOutline,
+		EditOutline,
+		ExclamationCircleSolid,
+		TrashBinSolid
+	} from 'flowbite-svelte-icons';
 	import type { ComponentType } from 'svelte';
 	import { sineIn } from 'svelte/easing';
-	import Products from '../../../data/product.json';
-	import MetaTag from '../../../utils/MetaTag.svelte';
-	import Delete from './Delete.svelte';
+	import Products from '$lib/data/product.json';
+	import MetaTag from '$lib/utils/MetaTag.svelte';
+	import Delete from '$lib/utils/crud/products/Delete.svelte';
 	import Product from './Product.svelte';
 
 	let hidden: boolean = true; // modal control
@@ -17,7 +39,7 @@
 	};
 
 	const path: string = '/crud/products';
-  	const description: string = 'CRUD products examaple - Flowbite Svelte Admin Dashboard';
+	const description: string = 'CRUD products examaple - Flowbite Svelte Admin Dashboard';
 	const title: string = 'Flowbite Svelte Admin Dashboard - CRUD Products';
 	const subtitle: string = 'CRUD Products';
 	let transitionParams = {
@@ -28,7 +50,6 @@
 </script>
 
 <MetaTag {path} {description} {title} {subtitle} />
-
 
 <main class="relative h-full w-full overflow-y-auto bg-white dark:bg-gray-800">
 	<div class="p-4">
@@ -115,7 +136,6 @@
 		</TableBody>
 	</Table>
 </main>
-
 
 <Drawer placement="right" transitionType="fly" {transitionParams} bind:hidden>
 	<svelte:component this={drawerComponent} bind:hidden />
