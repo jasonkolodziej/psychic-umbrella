@@ -22,7 +22,7 @@
 	export let list = false;
 </script>
 
-<Navbar {fluid} class="text-black" color="primary" let:NavContainer>
+<Navbar {fluid} class="text-black" color="default" let:NavContainer>
 	<NavContainer class="mb-px mt-px px-1" {fluid}>
 		<NavHamburger
 			onClick={() => (drawerHidden = !drawerHidden)}

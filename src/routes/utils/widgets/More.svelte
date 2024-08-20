@@ -8,8 +8,8 @@
 	export let flat: boolean = false;
 
 	$: aClass = twMerge(
-		'inline-flex items-center text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-500',
-		flat ? '' : 'rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-primary-700 uppercase'
+		'inline-flex items-center text-xs font-medium text-primary-700 sm:text-sm dark:text-primary-500',
+		flat ? '' : 'rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700 uppercase'
 	);
 </script>
 
