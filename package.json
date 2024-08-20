@@ -50,7 +50,8 @@
 	"packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
 	"engineStrict": false,
 	"engines": {
-		"node": "<=20.9.0 >=21.1.0"
+		"node": "<=21.1.0",
+		"pnpm": ">=6.0.0"
 	},
 	"dependencies": {
 		"@auth/core": "^0.34.2",
