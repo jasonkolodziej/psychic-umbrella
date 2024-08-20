@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
+		"install": "npm .",
 		"build": "vite build",
 		"build:local": "CF_PAGES=1 vite build",
 		"preview": "pnpm run build && wrangler pages dev",
