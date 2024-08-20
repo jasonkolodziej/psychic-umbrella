@@ -6,15 +6,15 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"build:local": "CF_PAGES=1 vite build",
-		"preview": "npm run build && wrangler pages dev",
-		"test": "npm run test:integration && npm run test:unit",
+		"preview": "pnpm run build && wrangler pages dev",
+		"test": "pnpm run test:integration && pnpm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"deploy": "npm run build && wrangler pages deploy",
+		"deploy": "pnpm run build && wrangler pages deploy",
 		"cf-typegen": "wrangler types && mv worker-configuration.d.ts src/"
 	},
 	"devDependencies": {
@@ -48,7 +48,7 @@
 	},
 	"type": "module",
 	"packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
-	"engineStrict": true,
+	"engineStrict": false,
 	"engines": {
 		"node": "<=20.9.0 >=21.1.0"
 	},

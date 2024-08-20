@@ -28,7 +28,7 @@
 	import Products from '$lib/data/product.json';
 	import MetaTag from '$lib/utils/MetaTag.svelte';
 	import Delete from '$lib/utils/crud/products/Delete.svelte';
-	import Product from './Product.svelte';
+	import Product from '$lib/utils/crud/products/Product.svelte';
 
 	let hidden: boolean = true; // modal control
 	let drawerComponent: ComponentType = Product; // drawer component
