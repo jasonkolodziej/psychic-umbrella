@@ -12,7 +12,7 @@
 	import Footer from '../Footer.svelte';
 
 	import { imagesPath } from '$lib/utils/variables';
-	import Users from '../.$lib/data/users.json';
+	import Users from '$lib/data/users.json';
 	import MetaTag from '$lib/utils/MetaTag.svelte';
 
 	const path: string = '/settings';
@@ -30,7 +30,7 @@
 				<BreadcrumbItem home>Home</BreadcrumbItem>
 				<BreadcrumbItem
 					class="hover:text-primary-600 inline-flex items-center text-gray-700 dark:text-gray-300 dark:hover:text-white"
-					href="/curd/users">Users</BreadcrumbItem
+					href="/crud/users">Users</BreadcrumbItem
 				>
 				<BreadcrumbItem>Settings</BreadcrumbItem>
 			</Breadcrumb>
