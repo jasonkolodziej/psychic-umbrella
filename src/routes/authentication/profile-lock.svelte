@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ProfileLock from '$lib/utils/authentication/ProfileLock.svelte';
 	import { Input, Label } from 'flowbite-svelte';
-	import Users from '.$lib/data/users.json';
+	import Users from '$lib/data/users.json';
 	import { avatarPath, imagesPath } from '$lib/utils/variables';
 	import MetaTag from '$lib/utils/MetaTag.svelte';
 	const onSubmit = (e: Event) => {
