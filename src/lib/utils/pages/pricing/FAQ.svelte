@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
 	import { Heading, Hr } from 'flowbite-svelte';
+	export let text: string = 'Frequently asked questions';
 </script>
 
 <Heading
@@ -7,7 +8,7 @@
 	size="xl"
 	class="mb-3 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl sm:leading-none sm:tracking-tight"
 >
-	Frequently asked questions
+	{text}
 </Heading>
 <p class="mb-6 text-lg font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
 	All types of businesses need access to development resources, so we give you the option to decide
