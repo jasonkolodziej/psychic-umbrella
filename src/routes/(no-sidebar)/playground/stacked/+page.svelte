@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MetaTag from '$lib/utils/MetaTag.svelte';
-	import Playground from './Playground.svelte';
+	import Playground from '$lib/utils/playground/Playground.svelte';
 
 	const path: string = '/playground/stacked';
 	const description: string = 'Playground stacked example - Flowbite Svelte Admin Dashboard';
