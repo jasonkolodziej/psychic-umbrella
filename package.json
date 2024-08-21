@@ -47,10 +47,6 @@
 		"wrangler": "^3.72.1"
 	},
 	"type": "module",
-	"engineStrict": false,
-	"engines": {
-		"node": "^18.18.0 || ^20.9.0 || >=21.1.0"
-	},
 	"dependencies": {
 		"@auth/core": "^0.34.2",
 		"@auth/d1-adapter": "^1.4.2",
@@ -75,5 +71,6 @@
 		"prosemirror-view": "^1.33.11",
 		"slugify": "^1.6.6",
 		"tailwind-merge": "^2.5.2"
-	}
+	},
+	"packageManager": "pnpm@9.7.1+sha256.46f1bbc8f8020aa9869568c387198f1a813f21fb44c82f400e7d1dbde6c70b40"
 }

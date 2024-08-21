@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Playground from '../../../(no-sidebar)/playground/stacked/Playground.svelte';
+	import Playground from '$lib/utils/playground/Playground.svelte';
 	import MetaTag from '$lib/utils/MetaTag.svelte';
 	import Footer from '../../Footer.svelte';
 
