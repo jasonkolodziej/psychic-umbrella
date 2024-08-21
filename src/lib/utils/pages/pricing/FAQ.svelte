@@ -14,7 +14,7 @@
 	how much you need to use.
 </p>
 <Hr />
-<div class="lg:columns-3 gap-8 space-y-10">
+<div class="gap-8 space-y-10 lg:columns-3">
 	<div class="space-y-4">
 		<h3 class="text-lg font-medium text-gray-900 dark:text-white">
 			What do you mean by "Figma assets"?
@@ -43,7 +43,7 @@
 		<p class="text-gray-600 dark:text-gray-400">
 			Feel free to <a
 				href="/"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 				target="_blank"
 				rel="noreferrer">contact us</a
 			> and we'll help you out as soon as we can.
@@ -61,7 +61,7 @@
 		<p class="text-gray-600 dark:text-gray-400">
 			Find out more information by <link
 				to="/license"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 			/>reading the license.
 		</p>
 	</div>
@@ -72,7 +72,7 @@
 		<p class="text-gray-600 dark:text-gray-400">
 			The free updates that will be provided is based on the <a
 				href="/"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 				>roadmap</a
 			> that we have laid out for this project. It is also possible that we will provide extra updates
 			outside of the roadmap as well.
@@ -85,7 +85,7 @@
 		<p class="text-gray-600 dark:text-gray-400">
 			The <a
 				href="/"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 				>free version</a
 			> of FlowBite includes a minimal style guidelines, component variants, and a dashboard page with
 			the mobile version alongside it.
@@ -118,19 +118,19 @@
 		<ul class="list-disc pl-4">
 			<li class="mb-2 text-gray-600">
 				<span
-					class="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500"
+					class="text-primary-600 dark:text-primary-500 cursor-pointer font-medium hover:underline"
 					>Figma Files - Buy a team license for $299 USD</span
 				>
 			</li>
 			<li class="mb-2 text-gray-600">
 				<span
-					class="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500"
+					class="text-primary-600 dark:text-primary-500 cursor-pointer font-medium hover:underline"
 					>Figma Files + Tailwind CSS code pre-order - Buy a team license for <del>$699</del> $559 USD</span
 				>
 			</li>
 			<li class="text-gray-600 dark:text-gray-400">
 				<span
-					class="cursor-pointer font-medium text-primary-600 hover:underline dark:text-primary-500"
+					class="text-primary-600 dark:text-primary-500 cursor-pointer font-medium hover:underline"
 					>Tailwind CSS code pre-order - Buy a team license for <del>$399</del> $319 USD</span
 				>
 			</li>
@@ -150,7 +150,7 @@
 		<p class="text-gray-600 dark:text-gray-400">
 			Find out more information by <link
 				to="/license"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 			/>reading the license.
 		</p>
 	</div>
@@ -169,7 +169,7 @@
 		<p class="text-gray-600 dark:text-gray-400">
 			Find out more information by <link
 				to="/license"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 			/>reading the license.
 		</p>
 	</div>
@@ -186,9 +186,10 @@
 			commercial purposes.
 		</p>
 		<p class="text-gray-600 dark:text-gray-400">
-			Find out more information by <link
+			Find out more information by
+			<link
 				to="/license"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 			/>reading the license.
 		</p>
 	</div>
@@ -203,7 +204,7 @@
 			If you forgot to complete the information, or you didn't get the invoice by email, feel free
 			to <a
 				href="/"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 				target="_blank"
 				rel="noreferrer">contact us</a
 			> and help you out with the invoice.
@@ -228,7 +229,7 @@
 		<p class="text-gray-600 dark:text-gray-400">
 			If you are unhappy with your purchase, just <a
 				href="/"
-				class="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
+				class="text-primary-600 dark:text-primary-500 font-medium underline hover:no-underline"
 				target="_blank"
 				rel="noreferrer">contact us</a
 			> within 30 days and we'll issue a full refund.
