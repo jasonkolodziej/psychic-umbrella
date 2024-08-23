@@ -9,7 +9,7 @@
 	import Sessions from '$lib/utils/settings/Sessions.svelte';
 	import SocialAccounts from '$lib/utils/settings/SocialAccounts.svelte';
 	import { Breadcrumb, BreadcrumbItem, Heading } from 'flowbite-svelte';
-	import Footer from '../Footer.svelte';
+	import Footer from '$lib/components/admin-dashboard/sidebar/Footer.svelte';
 
 	import { imagesPath } from '$lib/utils/variables';
 	import Users from '$lib/data/users.json';

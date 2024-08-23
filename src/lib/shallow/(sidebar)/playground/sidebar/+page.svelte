@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Playground from '$lib/utils/playground/Playground.svelte';
 	import MetaTag from '$lib/utils/MetaTag.svelte';
-	import Footer from '../../Footer.svelte';
+	import Footer from '$lib/components/admin-dashboard/sidebar/Footer.svelte';
 
 	const path: string = '/playground/sidebar';
 	const description: string = 'Playground Sidebar example - Flowbite Svelte Admin Dashboard';

@@ -1,8 +1,7 @@
 <script>
-	import Footer from '$lib/components/admin-dashboard/noSidebar/Footer.svelte';
-	import Navbar from '$lib/components/admin-dashboard/sidebar/Navbar.svelte';
-
-	import '../../app.pcss';
+	// import '../../app.pcss';
+	import Navbar from '$lib/components/blog/Navbar.svelte';
+	let drawerHidden = false;
 </script>
 
 <header
@@ -12,5 +11,5 @@
 </header>
 <div class="mx-auto max-w-screen-2xl pt-[70px]">
 	<slot />
-	<Footer />
+	<!-- <Footer /> -->
 </div>
