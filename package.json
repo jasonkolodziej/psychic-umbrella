@@ -62,6 +62,7 @@
 		"flowbite": "^2.5.1",
 		"flowbite-svelte": "^0.46.15",
 		"flowbite-svelte-icons": "^1.6.1",
+		"isomorphic-dompurify": "^2.14.0",
 		"nanoid": "^5.0.7",
 		"next-auth": "^4.24.7",
 		"prosemirror-commands": "^1.6.0",
