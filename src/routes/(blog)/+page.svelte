@@ -22,8 +22,10 @@
 	** +page@(app).svelte - inherits from src/routes/(app)/+layout.svelte
 	** +page@.svelte - inherits from src/routes/+layout.svelte
     */
+
+	import Editor from '$lib/components/carta/Editor.svelte';
 </script>
 
 <main class="p-4">
-	<Sections />
+	<Editor />
 </main>
