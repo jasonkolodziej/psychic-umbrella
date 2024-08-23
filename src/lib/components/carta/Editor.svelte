@@ -9,9 +9,9 @@
 	import { svelte, svelteCustom, initializeComponents } from '@cartamd/plugin-component/svelte';
 	import Heading from './elements/Heading.svelte';
 	// GitHub theme
-	// import '../../../app.css';
+	import '../../../app.css';
 	// import '$lib/styles/github.scss';
-	import 'carta-md/default.css'; /* Default theme */
+	// import 'carta-md/default.css'; /* Default theme */
 
 	export let mode: 'auto' | 'split' | 'tabs' = 'auto';
 
@@ -50,4 +50,4 @@
 	let value = '';
 </script>
 
-<MarkdownEditor bind:value bind:mode {carta} />
+<MarkdownEditor bind:value bind:mode {carta} theme="github" />

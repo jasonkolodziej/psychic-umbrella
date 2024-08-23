@@ -4,9 +4,8 @@
 
 .carta-theme__github.carta-editor {
 	/* background-color: #0d1117; */
-	background-color: var(--bg-color);
-	border: 1px solid var(--border-gray-200);
-	/* #2b3138; */
+	background-color: var(--bg-gray-900);
+	border: 1px solid #2b3138;
 	border-radius: 0.5rem;
 }
 .carta-theme__github.carta-editor:focus-within {
@@ -24,13 +23,14 @@
 }
 .carta-theme__github.carta-editor .carta-font-code {
 	font-family: 'Fira Code', monospace;
-	/* caret-color: white; */
-	caret-color: var(--color-gray-500);
+	/* caret-color: var(--text-gray-900); */
+	caret-color: black;
 	font-size: 1.1rem;
 }
 .carta-theme__github.carta-editor .carta-toolbar {
 	height: 2.5rem;
-	background-color: #161b22;
+	background-color: white;
+	/* background-color: #161b22; */
 	border-top-left-radius: 0.5rem;
 	border-top-right-radius: 0.5rem;
 }
