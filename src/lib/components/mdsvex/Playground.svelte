@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Repl from '$lib/components/mdsvex/Repl/Repl.svelte';
+	// import { Repl } from 'mdsvex-playground';
 	// import { code_1, code_2, code_3, code_4, code_5 } from "../_source.js";
 
 	let repl: Repl;

@@ -15,11 +15,15 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"deploy": "npm run build && wrangler pages deploy",
-		"cf-typegen": "wrangler types && mv worker-configuration.d.ts src/"
+		"cf-typegen": "wrangler types && mv worker-configuration.d.ts src/",
+		"roll:workers": "rollup -c rollup.workers.js"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20240815.0",
 		"@playwright/test": "^1.46.1",
+		"@rollup/plugin-json": "^6.1.0",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-terser": "^0.4.4",
 		"@sveltejs/adapter-auto": "^3.2.4",
 		"@sveltejs/adapter-cloudflare": "^4.7.2",
 		"@sveltejs/kit": "^2.5.24",
@@ -37,6 +41,8 @@
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.6",
 		"prettier-plugin-tailwindcss": "^0.6.6",
+		"rollup": "^4.21.1",
+		"rollup-plugin-svelte": "^7.2.2",
 		"svelte": "^4.2.18",
 		"svelte-check": "^3.8.5",
 		"svelte-lib-helpers": "^0.4.7",
@@ -69,6 +75,7 @@
 		"isomorphic-dompurify": "^2.14.0",
 		"nanoid": "^5.0.7",
 		"next-auth": "^4.24.7",
+		"prism-svelte": "^0.5.0",
 		"prosemirror-commands": "^1.6.0",
 		"prosemirror-dropcursor": "^1.8.1",
 		"prosemirror-example-setup": "^1.2.3",
