@@ -3,8 +3,8 @@ import { defineConfig } from 'vitest/config';
 import { extname } from 'node:path';
 //? Import mdsvex and rehype plugins
 import { mdsvex } from 'mdsvex';
-import slug from 'rehype-slug';
-import link from 'rehype-autolink-headings';
+// import slug from 'rehype-slug';
+// import link from 'rehype-autolink-headings';
 
 function mdsvex_transform() {
 	return {
@@ -33,7 +33,10 @@ function mdsvex_transform() {
 }
 
 export default defineConfig({
-	plugins: [mdsvex_transform(), sveltekit()],
+	plugins: [
+		// mdsvex_transform(),
+		sveltekit()
+	],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	}
