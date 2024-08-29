@@ -3,7 +3,11 @@
 	import Repl from '$lib/components/mdsvex/Repl/Repl.svelte';
 	// import { Repl } from 'mdsvex-playground';
 	// import { code_1, code_2, code_3, code_4, code_5 } from "../_source.js";
-
+	let source = {
+		type: 'md',
+		name: 'App',
+		source: `# Hello, world!`
+	};
 	let repl: Repl;
 	let checked = 'input';
 	let width;
@@ -13,6 +17,7 @@
 	onMount(() => {
 		repl.set({
 			components: [
+				source
 				// {
 				// 	type: 'svx',
 				// 	name: 'App',
