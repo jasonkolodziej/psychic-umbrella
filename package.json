@@ -33,6 +33,7 @@
 		"eslint-plugin-svelte": "^2.43.0",
 		"flowbite-svelte-blocks": "^1.1.3",
 		"globals": "^15.9.0",
+		"mdsvex": "^0.12.3",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.6",
 		"prettier-plugin-tailwindcss": "^0.6.6",
@@ -81,5 +82,5 @@
 		"slugify": "^1.6.6",
 		"tailwind-merge": "^2.5.2"
 	},
-	"packageManager": "pnpm@9.7.1+sha256.46f1bbc8f8020aa9869568c387198f1a813f21fb44c82f400e7d1dbde6c70b40"
+	"packageManager": "pnpm@9.9.0"
 }

@@ -115,7 +115,7 @@ export default {
 	plugins: [
 		typeographyPlugin,
 		flowbitePlugin({
-			// charts: true
+			charts: true
 			//  forms: true,
 			// tooltips: true
 		})
