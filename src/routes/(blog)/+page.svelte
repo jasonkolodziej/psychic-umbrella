@@ -24,11 +24,12 @@
     */
 
 	import Editor from '$lib/components/carta/Editor.svelte';
-	import Playground from '$lib/components/mdsvex/Playground.svelte';
+	// import Playground from 'mdsvex-playground';
+	// import Playground from '$lib/components/mdsvex/Playground.svelte';
 </script>
 
 <main class="p-4">
-	<Playground />
+	<!-- <Playground /> -->
 	<!-- <Sections /> -->
 	<!-- <Editor /> -->
 </main>
