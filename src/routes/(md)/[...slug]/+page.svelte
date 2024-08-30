@@ -28,6 +28,7 @@
 		$page.url;
 		clientSideComponent = null;
 		renderClientSideComponent();
+		console.log('rendered', data);
 	}
 </script>
 

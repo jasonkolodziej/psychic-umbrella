@@ -13,7 +13,7 @@
 	// GitHub theme
 	import '../../../app.css';
 	import { SvelteComponent } from 'svelte';
-	import PrerenderedHeader from './elements/PrerenderedHeader.svelte';
+	// import PrerenderedHeader from './elements/PrerenderedHeader.svelte';
 
 	// import '$lib/styles/github.scss';
 	// import 'carta-md/default.css'; /* Default theme */

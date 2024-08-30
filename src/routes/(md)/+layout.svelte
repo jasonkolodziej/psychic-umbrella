@@ -9,6 +9,7 @@
 >
 	<Navbar />
 </header>
+
 <div class="mx-auto max-w-screen-2xl pt-[70px]">
 	<slot />
 	<!-- <Footer /> -->

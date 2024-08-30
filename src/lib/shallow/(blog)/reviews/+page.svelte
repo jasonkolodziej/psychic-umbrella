@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Sections from '$lib/components/blog/Sections.svelte';
+	import Sections from '$lib/components/editable/Sections.svelte';
 	/**
 		** Pages can break out of the current layout hierarchy on a route-by-route basis. 
 		** Suppose we have an /item/[id]/embed route inside the (app) group from the previous example:
