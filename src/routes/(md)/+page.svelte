@@ -1,18 +1,20 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import { SectionBlog } from '$components/blog/ui/section';
+	import { Article, ArticleAuthor, ArticleBody, ArticleHead } from '$components/blog/ui/article';
 	import { onMount } from 'svelte';
 	onMount(() => {
-		goto(`${base}/home`);
+		goto(`${base}/news/main`);
 	});
 </script>
 
-<!-- <main class="p-4">
-	<Sections title="Blog" description="Welcome to the blog">
+<!-- <main class="p-4"> -->
+<!-- <SectionBlog title="Blog" description="Welcome to the blog">
 		<Article>
 			<ArticleAuthor />
 			<ArticleHead />
 			<ArticleBody />
 		</Article>
-	</Sections>
-</main> -->
+	</SectionBlog> -->
+<!-- </main> -->

@@ -5,49 +5,14 @@
 	import { BlogBodyWrapper, BlogHead, Section } from 'flowbite-svelte-blocks';
 
 	type $$Props = HTMLAttributes<HTMLParagraphElement> & {
-		name:
-			| 'advancedTable'
-			| 'blog'
-			| 'comment'
-			| 'cta'
-			| 'ctawithimg'
-			| 'contact'
-			| 'content'
-			| 'contentwithimg'
-			| 'crudcreatedrawer'
-			| 'crudcreateform'
-			| 'crudreadsection'
-			| 'default'
-			| 'faq'
-			| 'feature'
-			| 'forgotpassword'
-			| 'headingwithctabutton'
-			| 'heroDefault'
-			| 'heroVisual'
-			| 'login'
-			| 'logos'
-			| 'maintenance'
-			| 'newsletter'
-			| 'none'
-			| 'page500'
-			| 'page404'
-			| 'portfolio'
-			| 'pricing'
-			| 'register'
-			| 'reset'
-			| 'schedule'
-			| 'social'
-			| 'tableheader'
-			| 'team'
-			| 'testimonial'
-			| undefined;
 		title: string;
 		description: string;
 		sectionClass?: string;
 	};
 
 	let className: $$Props['class'] = undefined;
-	export let name: $$Props['name'] = undefined;
+	// export let name: $$Props['name'] = undefined;
+	let name = 'blog';
 	export let sectionClass: $$Props['sectionClass'] =
 		name === 'blog' ? 'pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900' : '';
 	export let title: $$Props['title'] = '';

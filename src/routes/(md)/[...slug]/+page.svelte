@@ -3,10 +3,11 @@
 	import { onMount, type SvelteComponent } from 'svelte';
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
+	import Post from '$components/blog/ui/post/Post.svelte';
 
 	// import '$lib/styles/markdown.scss';
 	// import '$lib/styles/coldark.scss';
-
+	import '../../../app.pcss';
 	export let data: PageData;
 
 	let mounted = false;
@@ -32,16 +33,22 @@
 	}
 </script>
 
-<!-- <svelte:head>
-	<title>{data.metadata['title']} - Carta</title>
+<svelte:head>
+	<title>{data.metadata['title']}</title>
 </svelte:head>
 
-<h3 class="mb-2 font-semibold text-sky-300">{data.metadata['section']}</h3>
+<!-- <h3 class="mb-2 font-semibold text-sky-300">{data.metadata['section']}</h3>
 
 <h1 class="mb-4 text-5xl font-bold text-white">{data.metadata['title']}</h1> -->
 
+<!-- <main class="p-4">
+
+</main> -->
+
 <div class="markdown">
-	{#if clientSideComponent}
+	{#if data.blogPost}
+		<Post blog={data.blogPost} />
+	{:else if clientSideComponent}
 		<svelte:component this={clientSideComponent} />
 	{:else}
 		{#key $page.url}
@@ -50,3 +57,4 @@
 		{/key}
 	{/if}
 </div>
+<!-- </main> -->

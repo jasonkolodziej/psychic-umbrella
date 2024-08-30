@@ -2,6 +2,7 @@ import type { SvelteComponent } from 'svelte';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 import { base } from '$app/paths';
+import type { BlogPost } from '$lib/filtering/blog';
 
 export const load: PageServerLoad = async (event) => {
 	const pages = import.meta.glob('../../../pages/**/*.svelte.md');
@@ -16,12 +17,24 @@ export const load: PageServerLoad = async (event) => {
 		default: SvelteComponent;
 		metadata: Record<string, unknown>;
 	};
+
 	const content = Markdown.default.render();
 	const metadata = Markdown.metadata;
-	console.log('Markdown content', content, 'Markdown metadata', metadata);
+	if (path.includes('news')) {
+		let blogPost: BlogPost = metadata;
+		console.log('Blog post', blogPost);
+		blogPost.content = content.html;
+		return {
+			content,
+			metadata,
+			blogPost
+		};
+	}
+	console.log('Markdown metadata', metadata, 'Markdown content', content);
 
 	return {
 		content,
-		metadata
+		metadata,
+		blogPost: null
 	};
 };

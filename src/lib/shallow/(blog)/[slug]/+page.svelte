@@ -48,6 +48,8 @@
 			replies: []
 		}
 	];
+
+	$: console.log(JSON.stringify(comments, null, 2));
 </script>
 
 <Section name="blogTemplate" classSection="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
