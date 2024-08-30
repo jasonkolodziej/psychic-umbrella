@@ -5,21 +5,26 @@ section: Overview
 
 <script>
 	// import * as Card from "$lib/carta/components/ui/card";
-	import * as Sections from "$lib/components/blog/ui/sections";
-	import * as Article from "$lib/components/blog/ui/article";
+	// import * as Sections from "$lib/components/blog/ui/sections";
+	// import * as Article from "$lib/components/blog/ui/article";
+	import Sections from '$components/blog/ui/sections/sections.svelte';
+	import Article from '$components/blog/ui/article/article.svelte';
+	import ArticleAuthor from '$components/blog/ui/article/article-author.svelte';
+	import ArticleBody from '$components/blog/ui/article/article-body.svelte';
+	import ArticleHead from '$components/blog/ui/article/article-head.svelte';
 </script>
 
 <!-- ## Blog
 
 <br /> -->
 
-<Sections.Root title="Our Blog" description="We use an agile approach to test assumptions and connect with the needs of your audience early and often.">
-<Article.Root>
-<Article.Head when="Tst"/>
-<Article.Author />
-<Article.Body />
-</Article.Root>
-</Sections.Root>
+<Sections title="Our Blog" description="We use an agile approach to test assumptions and connect with the needs of your audience early and often.">
+<Article>
+<ArticleHead when="Tst"/>
+<ArticleAuthor />
+<ArticleBody />
+</Article>
+</Sections>
 
 
 <!-- > Modern, lightweight, powerful Markdown Editor.
