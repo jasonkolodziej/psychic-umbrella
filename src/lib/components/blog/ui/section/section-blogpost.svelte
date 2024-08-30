@@ -1,8 +1,12 @@
 <script lang="ts">
+	// import Link from '$lib/carta/components/link/Link.svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import { cn } from '$lib/carta/utils';
 	import { Section, BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
 	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
-	import blog from './blog-example.json';
+	import example from '$lib/shallow/(blog)/[slug]/blog-example.json';
+	import type { BlogPost } from '$lib/filtering/blog';
 	const comments = [
 		{
 			id: 'comment1',
@@ -48,35 +52,19 @@
 			replies: []
 		}
 	];
+
+	type $$Props = HTMLAttributes<HTMLParagraphElement> & {};
+
+	let className: $$Props['class'] = undefined;
+
+	export { className as class };
+	// export let href: string;
 </script>
 
-<Section name="blogTemplate" classSection="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
+<Section name="blog">
 	<article
 		class="format format-sm sm:format-base lg:format-lg format-blue dark:format-invert mx-auto w-full max-w-2xl"
 	>
-		<BlogTemplate {blog} classArticle="dark:text-white" />
-
-		<Section name="comment" classSection="not-format" classDiv="px-0">
-			<Comment title="Discussion (20)">
-				<form class="mb-6">
-					<Label for="comment" class="sr-only">Your comment</Label>
-					<Textarea id="comment" rows="6" class="mb-4" placeholder="Write a comment..." required
-					></Textarea>
-					<Button type="submit" class="px-4 text-xs font-medium">Post comment</Button>
-				</form>
-				{#each comments as comment, i}
-					<CommentItem {comment} articleClass={i !== 0 ? 'border-t' : ''}>
-						<svelte:fragment slot="dropdownMenu">
-							<DotsHorizontalOutline class="dots-menu dark:text-white" />
-							<Dropdown triggeredBy=".dots-menu">
-								<DropdownItem>Edit</DropdownItem>
-								<DropdownItem>Remove</DropdownItem>
-								<DropdownItem>Report</DropdownItem>
-							</Dropdown>
-						</svelte:fragment>
-					</CommentItem>
-				{/each}
-			</Comment>
-		</Section>
+		<slot />
 	</article>
 </Section>

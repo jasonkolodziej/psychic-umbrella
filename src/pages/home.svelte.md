@@ -4,10 +4,9 @@ section: Overview
 ---
 
 <script>
-	// import * as Card from "$lib/carta/components/ui/card";
-	// import * as Sections from "$lib/components/blog/ui/sections";
-	// import * as Article from "$lib/components/blog/ui/article";
-	import Sections from '$components/blog/ui/sections/sections.svelte';
+	import Section from '$components/blog/ui/section/section.svelte';
+	import SectionBlogPost from '$components/blog/ui/section/section-blogpost.svelte';
+	import Post from '$components/blog/ui/post/Post.svelte';
 	import Article from '$components/blog/ui/article/article.svelte';
 	import ArticleAuthor from '$components/blog/ui/article/article-author.svelte';
 	import ArticleBody from '$components/blog/ui/article/article-body.svelte';
@@ -18,13 +17,18 @@ section: Overview
 
 <br /> -->
 
-<Sections title="Our Blog" description="We use an agile approach to test assumptions and connect with the needs of your audience early and often.">
+<!-- <Section title="Our Blog" description="We use an agile approach to test assumptions and connect with the needs of your audience early and often.">
 <Article>
 <ArticleHead when="Tst"/>
-<ArticleAuthor />
 <ArticleBody />
+<ArticleAuthor />
 </Article>
-</Sections>
+</Section> -->
+
+<SectionBlogPost>
+<Post/>
+</SectionBlogPost>
+
 
 
 <!-- > Modern, lightweight, powerful Markdown Editor.

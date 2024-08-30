@@ -55,3 +55,37 @@ export class Post<T> implements PostData<T> {
 		this.UpdatedAt = new Date();
 	}
 }
+
+// * use
+export type Commenter = {
+	name: string;
+	profilePicture: string;
+};
+
+// * use
+export interface Comment {
+	id: string;
+	commenter: Commenter;
+	date: string;
+	content: string;
+	replies?: Comment[];
+}
+
+// * use
+export interface Author {
+	name: string;
+	title?: string;
+	profilePicture?: string;
+	href?: string;
+}
+
+// * use
+export interface BlogPost {
+	id: string;
+	title: string;
+	lead?: string | undefined;
+	author: Author;
+	date?: string | undefined;
+	isoDate?: string | undefined;
+	content: string;
+}
