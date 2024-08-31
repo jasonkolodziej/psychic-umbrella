@@ -8,8 +8,10 @@ const config = {
 	//? Refer to: https://mdsvex.pngwn.io/docs#use-it
 	// extensions: ['.svelte', '.svx', '.md'],
 	extensions: ['.svelte', ...mdsvexConfig.extensions],
-	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
-	// for more information about preprocessors
+	//? Consult https://kit.svelte.dev/docs/integrations#preprocessors
+	//? for more information about preprocessors
+	//? https://tailwindcss.com/docs/guides/sveltekit
+	//? to enable processing <style> blocks as PostCSS.
 	preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
 
 	kit: {
@@ -21,13 +23,7 @@ const config = {
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		// adapter: adapter()
-		adapter: adapter({
-			// default options are shown
-			// out: 'build',
-			pages: 'build',
-			assets: 'build'
-			// workers: true,
-		})
+		adapter: adapter()
 		// {
 		// 	// default options are shown
 		// 	// out: 'build',

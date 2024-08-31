@@ -7,8 +7,8 @@
 	import Section from '$components/blog/ui/section/section.svelte';
 	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
-	import example from '$lib/shallow/(blog)/[slug]/blog-example.json';
-	import comments from '$lib/shallow/(blog)/[slug]/comments-example.json';
+	import example from '../../../../../routes/(blog)/[slug]/blog-example.json';
+	import comments from '../../../../../routes/(blog)/[slug]/comments-example.json';
 	import type { BlogPost } from '$lib/filtering/blog';
 
 	import '../../../../../app.pcss';

@@ -13,7 +13,7 @@ export default {
 		}
 	],
 	darkMode: 'class',
-
+	// darkMode: 'selector',
 	theme: {
 		extend: {
 			colors: {
