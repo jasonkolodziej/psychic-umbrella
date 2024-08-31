@@ -12,8 +12,11 @@ export default {
 			pattern: /^datatable-.*$/
 		}
 	],
-	darkMode: 'class',
-	// darkMode: 'selector',
+	//? https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
+	// darkMode: 'class',
+	darkMode: 'selector',
+	//? https://tailwindcss.com/docs/configuration/prefix
+	// prefix: 'tw-',
 	theme: {
 		extend: {
 			colors: {
