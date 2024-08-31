@@ -1,5 +1,5 @@
 import flowbitePlugin from 'flowbite/plugin';
-import typeographyPlugin from '@tailwindcss/typography';
+import typographyPlugin from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 
 export default {
@@ -116,7 +116,7 @@ export default {
 	},
 
 	plugins: [
-		typeographyPlugin,
+		typographyPlugin,
 		flowbitePlugin({
 			charts: true
 			//  forms: true,

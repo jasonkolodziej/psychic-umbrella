@@ -2,7 +2,7 @@
 	import modeobserver from '$lib/utils/modeObserver';
 	import { onMount } from 'svelte';
 	import Runatics from '$lib/utils/Runatics.svelte';
-	import '../app.css';
+	import '../app.pcss';
 
 	// import { Section } from 'flowbite-svelte-blocks';
 	// export let data;

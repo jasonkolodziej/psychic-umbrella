@@ -1,5 +1,11 @@
 import type { MappedComponent } from '@cartamd/plugin-component';
-import type { SvelteComponent } from 'svelte';
+import Heading from '$components/carta-md/Heading.svelte';
+import {
+	type ComponentConstructorOptions,
+	ComponentType,
+	type ComponentProps,
+	SvelteComponent
+} from 'svelte';
 // import type * as hast from 'hast';
 // import { BROWSER } from 'esm-env';
 // import { unified } from 'unified';
@@ -109,12 +115,14 @@ export const initializeFlowbiteComponents = (
 		wrapper.setAttribute('data-mounted-component', id);
 		wrapper.style.display = 'contents';
 		placeholder.replaceWith(wrapper);
-
-		new component.component({
+		const feedingProps: ComponentProps<Heading> = JSON.parse(placeholder.dataset.props || '{}');
+		const options: ComponentConstructorOptions<typeof feedingProps> = {
+			// target: wrapper,
 			target: wrapper,
-			props: newProps
-			// props
-		});
+			props: feedingProps
+		};
+		console.log('options', options);
+		new component.component(options);
 
 		// Add children to the slot
 		const slot = wrapper.querySelector('[data-slot]') as HTMLElement | undefined;
