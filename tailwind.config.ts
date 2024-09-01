@@ -1,10 +1,10 @@
 import flowbitePlugin from 'flowbite/plugin';
-import typeographyPlugin from '@tailwindcss/typography';
+import typographyPlugin from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 
 export default {
 	content: [
-		'./src/**/*.{html,js,svelte,ts}',
+		'./src/**/*.{html,js,svelte,ts,md}',
 		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
 	],
 	safelist: [
@@ -12,8 +12,11 @@ export default {
 			pattern: /^datatable-.*$/
 		}
 	],
-	darkMode: 'class',
-
+	//? https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
+	// darkMode: 'class',
+	darkMode: 'selector',
+	//? https://tailwindcss.com/docs/configuration/prefix
+	// prefix: 'tw-',
 	theme: {
 		extend: {
 			colors: {
@@ -113,9 +116,9 @@ export default {
 	},
 
 	plugins: [
-		typeographyPlugin,
+		typographyPlugin,
 		flowbitePlugin({
-			// charts: true
+			charts: true
 			//  forms: true,
 			// tooltips: true
 		})

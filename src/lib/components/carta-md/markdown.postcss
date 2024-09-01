@@ -1,0 +1,54 @@
+.markdown {
+	@apply text-[1.05rem] leading-7 text-gray-700;
+}
+.markdown p {
+	@apply mb-4;
+}
+/* TODO: fix dark class application */
+.markdown h1 {
+	@apply mb-4 mt-8 text-4xl font-bold first:mt-0 dark:text-white;
+}
+.markdown h2 {
+	@apply mb-4 mt-8 text-3xl font-semibold first:mt-0 dark:text-white;
+}
+.markdown h3 {
+	@apply mb-3 mt-7 text-2xl font-medium first:mt-0 dark:text-white;
+}
+.markdown h4 {
+	@apply mb-3 mt-3 text-lg font-medium first:mt-0 dark:text-white;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+	@apply scroll-mt-16;
+}
+.markdown blockquote {
+	@apply mb-3 text-lg italic text-gray-300;
+}
+.markdown ol {
+	@apply list-decimal;
+}
+.markdown ul {
+	@apply list-disc;
+}
+.markdown li {
+	@apply ml-4;
+}
+.markdown strong {
+	@apply text-gray-300;
+}
+.markdown a:not(h1 > a, h2 > a, h3 > a, h4 > a, .bg-card) {
+	@apply text-sky-300 underline;
+}
+.markdown code {
+	@apply rounded bg-gray-800 px-1 text-gray-50;
+}
+.markdown pre > code {
+	@apply px-0;
+}
+.markdown .carta-editor code {
+	font-family: 'Fira Code', monospace;
+	background: transparent;
+	padding: 0;
+}

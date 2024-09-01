@@ -47,8 +47,9 @@
 				'Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects.',
 			replies: []
 		}
-		// Add more comments and replies here
 	];
+
+	$: console.log(JSON.stringify(comments, null, 2));
 </script>
 
 <Section name="blogTemplate" classSection="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">

@@ -1,3 +1,21 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Editor dark mode */
+/* Only if you are using the default theme */
+html.dark .carta-theme__default {
+	--border-color: var(--border-color-dark);
+	--selection-color: var(--selection-color-dark);
+	--focus-outline: var(--focus-outline-dark);
+	--hover-color: var(--hover-color-dark);
+	--caret-color: var(--caret-color-dark);
+	--text-color: var(--text-color-dark);
+}
+
+/* Code dark mode */
+/* Only if you didn't specify a custom code theme */
+html.dark .shiki,
+html.dark .shiki span {
+	color: var(--shiki-dark) !important;
+}

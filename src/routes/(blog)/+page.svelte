@@ -1,5 +1,7 @@
 <script lang="ts">
-	import Sections from '$lib/components/blog/Sections.svelte';
+	import Editor from '$components/carta-md/Editor.svelte';
+	// import AceEditor from '$components/ace/editor.svelte';
+
 	/**
 		** Pages can break out of the current layout hierarchy on a route-by-route basis. 
 		** Suppose we have an /item/[id]/embed route inside the (app) group from the previous example:
@@ -22,8 +24,14 @@
 	** +page@(app).svelte - inherits from src/routes/(app)/+layout.svelte
 	** +page@.svelte - inherits from src/routes/+layout.svelte
     */
+
+	// import Editor from '$lib/components/carta/Editor.svelte';
+	// import Playground from 'mdsvex-playground';
+	// import Playground from '$lib/components/mdsvex/Playground.svelte';
 </script>
 
 <main class="p-4">
-	<Sections />
+	<!-- <Playground /> -->
+	<!-- <Sections /> -->
+	<Editor />
 </main>
