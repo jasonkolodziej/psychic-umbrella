@@ -5,6 +5,7 @@ import {
 	type MarkdownOptions,
 	type Renderers
 } from '@magidoc/plugin-svelte-marked';
+import defaultRenderers from '@magidoc/plugin-svelte-marked';
 import {
 	marked,
 	type MarkedExtension,
@@ -20,6 +21,8 @@ import ListItem from '$components/flowbite/marked/typeography/ListItem.svelte';
 import BlockQuote from '$components/flowbite/marked/typeography/BlockQuote.svelte';
 import Paragraph from '$components/flowbite/marked/typeography/Paragraph.svelte';
 import Link from '$components/flowbite/marked/typeography/Link.svelte';
+import Hr from '$components/flowbite/marked/typeography/Hr.svelte';
+import Table from '$components/flowbite/marked/table/Table.svelte';
 
 //? Reference: https://marked.js.org/docs/using_pro#renderer
 //? Reference: https://magidoc.js.org/svelte-plugins/marked
@@ -57,9 +60,9 @@ export const customOptions: MarkedExtension = {
 
 //! Step 2, register our custom renderer
 // marked.use(customOptions);
-
 // Step 3, create a custom renderer
 export const mappedRenderers: Renderers = {
+	//? Default renderers
 	img: Img,
 	heading: Heading,
 	list: List,
@@ -67,7 +70,8 @@ export const mappedRenderers: Renderers = {
 	blockquote: BlockQuote,
 	paragraph: Paragraph,
 	link: Link,
-
+	hr: Hr,
+	table: Table,
 	//? Custom container extension
 	'background-color': BackgroundColor
 };

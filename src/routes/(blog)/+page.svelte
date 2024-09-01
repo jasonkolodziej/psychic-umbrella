@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Renderer from '$components/flowbite/marked/Renderer.svelte';
+	import type { PageData } from './$types';
+	import * as markdownContent from '$mdsvexPages/FullExample.md';
+	import { onMount } from 'svelte';
 
 	// import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
@@ -26,15 +29,28 @@
 	** +page@(app).svelte - inherits from src/routes/(app)/+layout.svelte
 	** +page@.svelte - inherits from src/routes/+layout.svelte
     */
-
 	// import Editor from '$lib/components/carta/Editor.svelte';
 	// import Playground from 'mdsvex-playground';
 	// import Playground from '$lib/components/mdsvex/Playground.svelte';
+	const site =
+		'https://gist.githubusercontent.com/allysonsilva/85fff14a22bbdf55485be947566cc09e/raw/fa8048a906ebed3c445d08b20c9173afd1b4a1e5/Full-Markdown.md';
+
+	let src: string = undefined;
+
+	onMount(() => {
+		fetch(site)
+			.then((response) => response.text())
+			.then((text) => {
+				src = text;
+			});
+	});
 </script>
 
 <main class="p-4">
 	<!-- <Playground /> -->
 	<!-- <Sections /> -->
-	<Renderer />
+	{#key src}
+		<Renderer source={src} />
+	{/key}
 	<!-- <Editor /> -->
 </main>

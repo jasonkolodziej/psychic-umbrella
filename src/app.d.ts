@@ -19,5 +19,8 @@ declare global {
 		// interface PageState {}
 	}
 }
-
+// declare module '*.md' {
+// 	const content: string;
+// 	export default content;
+// }
 export {};
