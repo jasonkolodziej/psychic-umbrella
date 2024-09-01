@@ -3,16 +3,13 @@
 	import { emoji } from '@cartamd/plugin-emoji';
 	import { slash } from '@cartamd/plugin-slash';
 	import { code } from '@cartamd/plugin-code';
+	import { component } from '@cartamd/plugin-component';
 	import DOMPurify from 'isomorphic-dompurify';
 
 	import 'carta-md/default.css'; /* Default theme */
 	import '../../../app.css';
-	import {
-		FlowbiteBlockquote,
-		FlowbiteHeading,
-		FlowbiteLink,
-		FlowbiteParagraph
-	} from '$components/flowbite/mappings';
+	import { mappedFlow, FlowbiteInitializer } from '$components/flowbite/mappings';
+	import type { initializeComponents } from '@cartamd/plugin-component/svelte';
 
 	export let mode: 'auto' | 'split' | 'tabs' = 'auto';
 
@@ -30,7 +27,7 @@
 			code(),
 			// FlowbiteHeading,
 			// FlowbiteParagraph
-			FlowbiteBlockquote
+			component(mappedFlow, FlowbiteInitializer)
 			// FlowbiteLink
 		],
 		theme: {
