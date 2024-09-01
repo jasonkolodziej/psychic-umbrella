@@ -28,7 +28,7 @@
 	let weight: PweightType = token.strong ? 'bold' : 'normal';
 	let inline = 'underline hover:no-underline';
 
-	$: console.log('Link', { token });
+	// $: console.log('Link', { token });
 </script>
 
 <A href={token.href}>

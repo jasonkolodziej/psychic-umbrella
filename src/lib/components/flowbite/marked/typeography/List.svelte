@@ -22,7 +22,7 @@
 	let tag: ListType = token.ordered ? 'ol' : 'ul';
 	let className = token.nested ? 'ps-5 mt-2 space-y-1' : undefined;
 
-	$: console.log('List', { token });
+	// $: console.log('List', { token });
 </script>
 
 <List bind:tag start={token.start} class={className}>
