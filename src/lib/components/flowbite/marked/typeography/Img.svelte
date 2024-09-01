@@ -8,8 +8,8 @@
 	export let token: Tokens.Image &
 		Tokens.Generic &
 		ComponentProps<Img> & { radiusBorder: boolean; retinaReady: boolean };
-	export const options: MarkdownOptions = undefined;
-	export const renderers: Renderers = undefined;
+	export let options: MarkdownOptions;
+	export let renderers: Renderers;
 	const radiusBorder = token.radiusBorder ?? true;
 	// let srcset
 	let size = token.radiusBorder ? 'max-w-lg' : token.retinaReady ? 'w-full max-w-xl' : '';
