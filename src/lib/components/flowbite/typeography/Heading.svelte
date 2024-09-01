@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { HeadingLevel } from '$components/blog/ui/card';
-	import { Heading, P, A } from 'flowbite-svelte';
+	import { Heading } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
 	type $$Props = ComponentProps<Heading> & { tag?: HeadingLevel; value?: string };
 	export let value: $$Props['value'] = undefined;

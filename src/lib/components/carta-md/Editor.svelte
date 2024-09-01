@@ -7,7 +7,12 @@
 
 	import 'carta-md/default.css'; /* Default theme */
 	import '../../../app.css';
-	import { FlowbiteHeading } from '$components/flowbite/mappings';
+	import {
+		FlowbiteBlockquote,
+		FlowbiteHeading,
+		FlowbiteLink,
+		FlowbiteParagraph
+	} from '$components/flowbite/mappings';
 
 	export let mode: 'auto' | 'split' | 'tabs' = 'auto';
 
@@ -23,7 +28,10 @@
 			emoji(),
 			slash(),
 			code(),
-			FlowbiteHeading
+			// FlowbiteHeading,
+			// FlowbiteParagraph
+			FlowbiteBlockquote
+			// FlowbiteLink
 		],
 		theme: {
 			light: 'github-light',
