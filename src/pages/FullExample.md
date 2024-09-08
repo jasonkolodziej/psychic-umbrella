@@ -1,6 +1,6 @@
 # Headers
 
-```
+```md
 # h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading
@@ -15,7 +15,7 @@ Alt-H1
 
 Alt-H2
 ------
-```	
+```
 
 # h1 Heading 8-)
 ## h2 Heading
@@ -36,7 +36,7 @@ Alt-H2
 
 # Emphasis
 
-```
+```md
 Emphasis, aka italics, with *asterisks* or _underscores_.
 
 Strong emphasis, aka bold, with **asterisks** or __underscores__.
@@ -78,7 +78,7 @@ _This is italic text_
 
 # Lists
 
-```
+```md
 1. First ordered list item
 2. Another item
 ⋅⋅* Unordered sub-list.
@@ -154,7 +154,7 @@ _This is italic text_
 
 # Task lists
 
-```
+```md
 - [x] Finish my changes
 - [ ] Push my commits to GitHub
 - [ ] Open a pull request
@@ -178,7 +178,7 @@ _This is italic text_
 
 You can tell GitHub to ignore (or escape) Markdown formatting by using \ before the Markdown character.
 
-```
+```md
 Let's rename \*our-new-project\* to \*our-old-project\*.
 ```
 
@@ -188,7 +188,7 @@ Let's rename \*our-new-project\* to \*our-old-project\*.
 
 # Links
 
-```
+```md
 [I'm an inline-style link](https://www.google.com)
 
 [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
@@ -238,7 +238,7 @@ Some text to show that the reference links can follow later.
 
 # Images
 
-```
+```md
 Here's our logo (hover to see the title text):
 
 Inline-style:
@@ -286,7 +286,7 @@ With a reference later in the document defining the URL location:
 
 # [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
 
-```
+```md
 Footnote 1 link[^first].
 
 Footnote 2 link[^second].
@@ -320,7 +320,7 @@ Duplicated footnote reference[^second].
 
 # Code and Syntax Highlighting
 
-```
+```md
 Inline `code` has `back-ticks around` it.
 ```
 
@@ -440,7 +440,7 @@ datahere
 
 # Tables
 
-```
+```md
 Colons can be used to align columns.
 
 | Tables        |      Are      |  Cool |
@@ -530,7 +530,7 @@ raw Markdown line up prettily. You can also use inline Markdown.
 
 # Blockquotes
 
-```
+```md
 > Blockquotes are very handy in email to emulate reply text.
 > This line is part of the same quote.
 
@@ -558,7 +558,7 @@ Quote break.
 
 # Inline HTML
 
-```
+```html
 <dl>
   <dt>Definition list</dt>
   <dd>Is something people use sometimes.</dd>
@@ -580,7 +580,7 @@ Quote break.
 
 # Horizontal Rules
 
-```
+```md
 Three or more...
 
 ---
@@ -614,7 +614,7 @@ Underscores
 
 # YouTube Videos
 
-```
+```html
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE" target="_blank">
 <img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
 </a>
@@ -624,7 +624,7 @@ Underscores
 <img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
 </a>
 
-```
+```md
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 ```
 

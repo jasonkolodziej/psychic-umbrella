@@ -2,13 +2,14 @@
 	import type { Token, Tokens } from 'marked';
 	import {
 		MarkdownTokens,
+		urlUtils,
 		type MarkdownOptions,
 		type Renderers
 	} from '@magidoc/plugin-svelte-marked';
 	import { A, type PweightType } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
-
+	const { isRelative, joinUrlPaths } = urlUtils;
 	export let token: Tokens.Link &
 		ComponentProps<A> &
 		Tokens.Generic & {
@@ -34,3 +35,12 @@
 <A href={token.href}>
 	<MarkdownTokens tokens={token.tokens} {renderers} {options} />
 </A>
+
+<!-- <a
+  href={isRelative(token.href) 
+    ? joinUrlPaths(options.baseUrl, token.href)
+    : token.href}
+  title={token.title}
+>
+  <slot />
+</a> -->

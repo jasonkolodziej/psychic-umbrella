@@ -1,12 +1,10 @@
 <script lang="ts">
+	import type { MarkdownOptions, Renderers } from '../../markedConfiguration';
+
 	import type { Token, Tokens } from 'marked';
-	import {
-		MarkdownTokens,
-		type MarkdownOptions,
-		type Renderers
-	} from '@magidoc/plugin-svelte-marked';
 	import { Li } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
+	import { MarkdownTokens } from '@magidoc/plugin-svelte-marked';
 
 	type ListType = 'ul' | 'ol' | 'dl';
 	type ListStyle = 'disc' | 'none' | 'decimal';
@@ -22,8 +20,12 @@
 	}) as Tokens.Generic[];
 	let tag: ListType;
 
-	$: console.log('ListItem', { isNested, token });
+	// export const token: Tokens.ListItem = undefined
+	// export const options: MarkdownOptions = undefined
+	// export const renderers: Renderers = undefined
 </script>
+
+<!-- <li><slot /></li> -->
 
 <Li bind:tag>
 	{token.text}
@@ -33,4 +35,5 @@
 	{:else}
 		{token.text}
 	{/if}
+	<!-- <slot /> -->
 </Li>
