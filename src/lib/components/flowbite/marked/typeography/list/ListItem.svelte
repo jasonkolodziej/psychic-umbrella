@@ -30,12 +30,13 @@
 <!-- <li><slot /></li> -->
 
 <Li bind:tag>
-	{token.text}
+	<!-- {token.text} -->
 	<!-- <MarkdownTokens tokens={moreTokens} {renderers} {options} /> -->
 	{#if isNested}
-		<MarkdownTokens tokens={moreTokens} {renderers} {options} />
+		<!-- <MarkdownTokens tokens={moreTokens} {renderers} {options} /> -->
 	{:else}
-		{token.text}
+		<slot />
+		<!-- {token.text} -->
 	{/if}
 	<!-- <slot /> -->
 </Li>
