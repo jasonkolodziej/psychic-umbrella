@@ -1,10 +1,6 @@
 <script lang="ts">
 	import type { Tokens } from 'marked';
-	import {
-		MarkdownTokens,
-		type Renderers,
-		type MarkdownOptions
-	} from '@magidoc/plugin-svelte-marked';
+	import type { MarkdownOptions, Renderers } from '../markedConfiguration';
 
 	// export const token: Tokens.Paragraph = undefined
 	import { P, type PweightType } from 'flowbite-svelte';

@@ -3,7 +3,9 @@
 	import type { Tokens } from 'marked';
 	import type { MarkdownOptions, Renderers } from '@magidoc/plugin-svelte-marked';
 	import { Img } from 'flowbite-svelte';
+	import { urlUtils } from '@magidoc/plugin-svelte-marked';
 	import type { ComponentProps } from 'svelte';
+	const { isRelative, joinUrlPaths } = urlUtils;
 
 	export let token: Tokens.Image &
 		Tokens.Generic &
@@ -17,6 +19,15 @@
 
 	let caption: string = undefined;
 </script>
+
+<!-- <img
+  src={isRelative(token.href)
+    ? joinUrlPaths(options.baseUrl, token.href)
+    : token.href}
+  title={token.title}
+  alt={token.text}
+  class="markdown-image"
+/> -->
 
 <Img src={token.href} title={token.title} alt={token.text} bind:caption bind:size bind:imgClass />
 

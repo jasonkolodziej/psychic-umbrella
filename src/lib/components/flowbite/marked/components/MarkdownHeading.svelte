@@ -2,6 +2,7 @@
 	// import { generatePathSegment } from '$lib/utils/url';
 
 	import type { Tokens } from 'marked';
+	// import type { MarkdownOptions, Renderers } from '../markedConfiguration';
 	import {
 		MarkdownTokens,
 		urlUtils,

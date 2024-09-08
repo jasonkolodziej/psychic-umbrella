@@ -1,13 +1,11 @@
 <script lang="ts">
 	import type { Tokens } from 'marked';
+	import type { MarkdownOptions, Renderers } from '../markedConfiguration';
+
 	import { Blockquote } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
-	import {
-		MarkdownTokens,
-		type Renderers,
-		type MarkdownOptions
-	} from '@magidoc/plugin-svelte-marked';
+	import { MarkdownTokens } from '@magidoc/plugin-svelte-marked';
 
 	export let token: Tokens.Blockquote &
 		ComponentProps<Blockquote> &

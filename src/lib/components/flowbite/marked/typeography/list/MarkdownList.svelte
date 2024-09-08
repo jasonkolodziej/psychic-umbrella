@@ -1,14 +1,20 @@
 <script lang="ts">
-	import type { Token, Tokens } from 'marked';
+	// import MarkdownToken from '$lib/markdown/MarkdownToken.svelte';
 	import {
 		MarkdownToken,
-		MarkdownTokens,
 		type MarkdownOptions,
 		type Renderers
 	} from '@magidoc/plugin-svelte-marked';
-	import { List } from 'flowbite-svelte';
+	import type { Tokens } from 'marked';
 	import type { ComponentProps } from 'svelte';
-	import type { HeadingLevel } from '$components/blog/ui/card';
+	import { List } from 'flowbite-svelte';
+
+	// export let token: Tokens.List
+	// export let options: MarkdownOptions
+	// export let renderers: Renderers
+
+	// let component: 'ol' | 'ul'
+	// $: component = token.ordered ? 'ol' : 'ul'
 
 	type ListType = 'ul' | 'ol' | 'dl';
 	type ListStyle = 'disc' | 'none' | 'decimal';
@@ -21,9 +27,13 @@
 
 	let tag: ListType = token.ordered ? 'ol' : 'ul';
 	let className = token.nested ? 'ps-5 mt-2 space-y-1' : undefined;
-
-	// $: console.log('List', { token });
 </script>
+
+<!-- <svelte:element this={component} start={token.start || 1}>
+  {#each token.items as item}
+    <MarkdownToken token={{ ...item }} {options} {renderers} />
+  {/each}
+</svelte:element> -->
 
 <List bind:tag start={token.start} class={className}>
 	{#each token.items as item}
