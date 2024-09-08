@@ -30,6 +30,7 @@
 	export let data: PageData;
 	// $: console.log(data);
 	let src = data.data;
+	let classRef = 'w-full min-w-0 flex-auto lg:static lg:max-h-full lg:overflow-visible';
 	//? this is for fetching the markdown file from a url
 	// const site =
 	// 	'https://gist.githubusercontent.com/allysonsilva/85fff14a22bbdf55485be947566cc09e/raw/fa8048a906ebed3c445d08b20c9173afd1b4a1e5/Full-Markdown.md';
