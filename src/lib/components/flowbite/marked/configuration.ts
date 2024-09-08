@@ -15,6 +15,27 @@ import {
 import DOMPurify from 'isomorphic-dompurify';
 //? my custom components
 import BackgroundColor from '$components/flowbite/marked/extensions/BackgroundColor.svelte';
+import {
+	BlockQuote,
+	Br,
+	Del,
+	Dfn,
+	Em,
+	Heading,
+	Hr,
+	Html,
+	Img,
+	Link,
+	List,
+	ListItem,
+	MarkdownCode,
+	MarkdownCodeSpan,
+	Paragraph,
+	Space,
+	Strong,
+	Table,
+	Text
+} from './typeography';
 
 //? Reference: https://marked.js.org/docs/using_pro#renderer
 //? Reference: https://magidoc.js.org/svelte-plugins/marked
@@ -56,16 +77,25 @@ export const customOptions: MarkedExtension = {
 export const mappedRenderers: Renderers = {
 	//? Default renderers
 	img: Img,
-	// heading: Heading,
-	heading: MarkdownHeading,
-	list: List,
-	listItem: ListItem,
+	heading: Heading,
 	blockquote: BlockQuote,
-	paragraph: MarkdownParagraph,
-	strong: MarkdownStrong,
-	link: Link,
-	hr: Hr,
+	list: List,
+	list_item: ListItem,
+	br: Br,
+	code: MarkdownCode,
+	codespan: MarkdownCodeSpan,
 	table: Table,
+	html: Html,
+	paragraph: Paragraph,
+	link: Link,
+	text: Text,
+	def: Dfn,
+	del: Del,
+	em: Em,
+	hr: Hr,
+	strong: Strong,
+	space: Space,
+	escape: Space,
 	//? Custom container extension
 	'background-color': BackgroundColor
 };
