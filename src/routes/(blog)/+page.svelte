@@ -50,9 +50,9 @@
 <main class="p-4">
 	<!-- <Playground /> -->
 	<!-- <Sections /> -->
-	<!-- {#key src}
+	{#key src}
 		<Renderer source={src} />
-	{/key} -->
+	{/key}
 	<!-- <WysiwygEditor /> -->
 	<!-- <Editor /> -->
 </main>

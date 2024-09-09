@@ -8,10 +8,16 @@
 		FaceGrinOutline,
 		PaperPlaneOutline
 	} from 'flowbite-svelte-icons';
-	import type { SvelteComponent, ComponentProps } from 'svelte';
+	import type { Tokens } from 'marked';
+	import { highlighter } from './marked/configuration';
+	import type { BundledLanguage } from 'shiki';
+	import type { BundledTheme } from 'shiki/themes';
+	import { type SvelteComponent, type ComponentProps, onMount } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
+	import { text } from '@sveltejs/kit';
 	type $$Props = {
 		value?: any;
+		code?: Tokens.Code;
 		placeholder?: string;
 		toolbarBtnIconClass?: string;
 		iconButtonLabel?: string;
@@ -22,6 +28,7 @@
 	// TODO: make more dynamic
 	export let iconButtonLabel: $$Props['iconButtonLabel'] = 'Publish post';
 	export let value: $$Props['value'] = undefined;
+	export let code: $$Props['code'] = undefined;
 	export let placeholder: $$Props['placeholder'] = 'Write a comment';
 	export let toolbarBtnIconClass: $$Props['toolbarBtnIconClass'] = 'h-6 w-6';
 	export let toolbarButtons: $$Props['toolbarButtons'] = [
@@ -35,6 +42,23 @@
 			{ name: 'Add emoji', icon: FaceGrinOutline }
 		]
 	];
+	let toggle: boolean = false;
+	let lang: BundledLanguage;
+	let theme: BundledTheme = 'houston';
+
+	value = code ? code.text : value;
+	lang = code ? (code!.lang as unknown as BundledLanguage) : 'markdown';
+	// onMount(() => {
+	// 	highlighter
+	// 		.then((hl) => {
+	// 			hl.setTheme(theme);
+	// 			hl.loadLanguage(lang);
+	// 			return hl.codeToHtml(value, { lang, theme });
+	// 		})
+	// 		.then((ht) => {
+	// 			value = ht;
+	// 		});
+	// });
 </script>
 
 <form>
@@ -65,6 +89,15 @@
 				<PaperPlaneOutline class="h-6 w-6 rotate-45" />
 			</ToolbarButton>
 		</Toolbar>
+		<svelte:self this={value}>
+			{#if code}
+				{#await highlighter then { codeToHtml }}
+					{@html codeToHtml(code.text, { lang, theme })}
+				{/await}
+			{:else}
+				<pre><code>{value}</code></pre>
+			{/if}
+		</svelte:self>
 	</Textarea>
 	<Button>{iconButtonLabel}</Button>
 </form>
