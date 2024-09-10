@@ -36,7 +36,7 @@ import {
 	Table,
 	Text
 } from './typeography';
-import { bundledLanguages, bundledThemes, createHighlighter } from 'shiki';
+// import { bundledLanguages, bundledThemes, createHighlighter } from 'shiki';
 
 //? Reference: https://marked.js.org/docs/using_pro#renderer
 //? Reference: https://magidoc.js.org/svelte-plugins/marked
@@ -64,10 +64,10 @@ const postprocess = (html: string | Node) => {
 	return DOMPurify.sanitize(html);
 };
 
-export const highlighter = createHighlighter({
-	themes: Object.values(bundledThemes),
-	langs: Object.values(bundledLanguages)
-});
+// export const highlighter = await createHighlighter({
+// 	themes: Object.values(bundledThemes),
+// 	langs: Object.values(bundledLanguages)
+// });
 
 // Step 1, register our custom extension
 export const customOptions: MarkedExtension = {
