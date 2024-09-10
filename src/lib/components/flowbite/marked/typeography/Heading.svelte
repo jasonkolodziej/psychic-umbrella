@@ -13,13 +13,14 @@
 	import type { HeadingLevel } from '$components/blog/ui/card';
 	import { twJoin } from 'tailwind-merge';
 
-	export let token: Tokens.Heading & ComponentProps<Heading> & { level: number };
+	export let token: Tokens.Heading & ComponentProps<Heading> & { level: number; size?: string };
 
 	// export let token: Tokens.Heading
 	export let options: MarkdownOptions;
 	export const renderers: Renderers = undefined;
 	let headingClass: string = 'text-gray-900 dark:text-white';
 	let tag: HeadingLevel = ('h' + token.depth) as HeadingLevel;
+	// let size: string = token.size || 'text-2xl font-bold';
 	let id: string | undefined;
 	let href: string | undefined;
 	$: id = urlUtils.generatePathSegment(token.text, options.slugger);
