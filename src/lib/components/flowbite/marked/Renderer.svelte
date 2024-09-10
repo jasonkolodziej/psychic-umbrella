@@ -29,7 +29,12 @@
 			</p>
 		</div>
 		<div id="mainContent" class="py-8">
-			<Markdown bind:source {renderers} />
+			<!-- ? Reference: https://github.com/tailwindlabs/tailwindcss-typography -->
+			<article
+				class="prose prose-sm m-auto sm:prose-base lg:prose-lg xl:prose-2xl focus:outline-none"
+			>
+				<Markdown bind:source {renderers} />
+			</article>
 		</div>
 	</div>
 </div>
