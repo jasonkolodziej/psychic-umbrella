@@ -9,16 +9,19 @@
 		PaperPlaneOutline
 	} from 'flowbite-svelte-icons';
 	import type { Tokens } from 'marked';
-	import { type SvelteComponent, type ComponentProps, onMount } from 'svelte';
+	import { type SvelteComponent, type ComponentProps, onMount, onDestroy } from 'svelte';
 	import { twJoin, twMerge } from 'tailwind-merge';
-	import { setContext } from 'svelte';
+	import { Editor } from '@tiptap/core';
+	import StarterKit from '@tiptap/starter-kit';
+
+	type ToolbarButtons = Array<Array<ComponentProps<ToolbarButton> & { icon: SvelteComponent }>>;
 	type $$Props = {
-		value?: any;
+		value?: HTMLElement;
 		codeLang?: string;
 		placeholder?: string;
 		toolbarBtnIconClass?: string;
 		iconButtonLabel?: string;
-		toolbarButtons?: Array<Array<ComponentProps<ToolbarButton> & { icon: SvelteComponent }>>;
+		toolbarButtons?: ToolbarButtons;
 	};
 	// type $$RestProps = Omit<$$Props, 'value'>;
 	// type $$Slots = BlockquoteSlots & { default: {} };
@@ -35,7 +38,10 @@
 			{ name: 'Upload image', icon: ImageOutline }
 		],
 		[
-			{ name: 'Format code', icon: CodeOutline },
+			{
+				name: 'Format code',
+				icon: CodeOutline
+			},
 			{ name: 'Add emoji', icon: FaceGrinOutline }
 		]
 	];
@@ -46,13 +52,15 @@
 	<Textarea id="editor" rows="8" class="mb-4" bind:placeholder bind:value>
 		<Toolbar slot="header" embedded>
 			{#each toolbarButtons as group, i}
-				<ToolbarGroup>
-					{#each group as { name, icon, customClass }, j}
-						<ToolbarButton {name} class={customClass}>
-							<svelte:component this={icon} class={twMerge(toolbarBtnIconClass, customClass)} />
-						</ToolbarButton>
-					{/each}
-				</ToolbarGroup>
+				{#if group}
+					<ToolbarGroup>
+						{#each group as { name, icon, customClass }, j}
+							<ToolbarButton bind:name class={customClass}>
+								<svelte:component this={icon} class={twMerge(toolbarBtnIconClass, customClass)} />
+							</ToolbarButton>
+						{/each}
+					</ToolbarGroup>
+				{/if}
 			{/each}
 			<ToolbarButton name="send" slot="end">
 				<PaperPlaneOutline class="h-6 w-6 rotate-45" />
