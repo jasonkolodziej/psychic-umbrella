@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Slot } from '@cartamd/plugin-component/svelte';
 	import { A } from 'flowbite-svelte';
 	import type { ASlots } from 'flowbite-svelte/A.svelte';
 	import type { ComponentProps } from 'svelte';
