@@ -34,7 +34,7 @@
 	let tdCell: string = 'px-6 py-4 whitespace-nowrap font-normal';
 	let thClass: string = 'text-xs uppercase';
 
-	let checkboxes = token.checkboxes ?? true;
+	let checkboxes = token.checkboxes ?? false;
 	let striped = token.striped ?? true;
 	let hoverable = token.hoverable ?? true;
 	let shadow = token.shadow ?? false;
@@ -42,7 +42,7 @@
 	let checkedCells: Array<{ row: Tokens.TableCell[]; checked: boolean }> = [];
 	let allChecked: boolean = false;
 
-	$: console.log('Table', token);
+	// $: console.log('Table', token);
 </script>
 
 <Table bind:striped bind:hoverable>

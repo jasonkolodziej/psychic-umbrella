@@ -26,7 +26,7 @@
 	$: id = urlUtils.generatePathSegment(token.text, options.slugger);
 	$: headingClass = id ? twJoin('group', 'relative', headingClass) : headingClass;
 	$: href = '#' + id;
-	$: console.log('Heading id', id, 'class', headingClass);
+	// $: console.log('Heading id', id, 'class', headingClass);
 </script>
 
 <!-- <span class="absolute -top-[140px]" {id}> -->

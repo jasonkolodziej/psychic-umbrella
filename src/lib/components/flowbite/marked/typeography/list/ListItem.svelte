@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Token, Tokens } from 'marked';
-	import { Li } from 'flowbite-svelte';
+	import { Checkbox, Li } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
 	import {
 		MarkdownTokens,
@@ -21,6 +21,7 @@
 		}
 	}) as Tokens.Generic[];
 	let tag: ListType;
+	let icon = token.task;
 
 	// export const token: Tokens.ListItem = undefined
 	// export const options: MarkdownOptions = undefined
@@ -29,7 +30,10 @@
 
 <!-- <li><slot /></li> -->
 
-<Li bind:tag>
+<Li bind:tag bind:icon class={icon ? 'gap-3' : undefined}>
+	{#if icon}
+		<Checkbox checked={token.checked} />
+	{/if}
 	<!-- {token.text} -->
 	<!-- <MarkdownTokens tokens={moreTokens} {renderers} {options} /> -->
 	{#if isNested}
