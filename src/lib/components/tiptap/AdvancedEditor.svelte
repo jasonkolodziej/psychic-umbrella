@@ -27,7 +27,7 @@
 	const lowlight = createLowlight(all);
 	//? Reference: https://tiptap.dev/docs/editor/getting-started/style-editor#editor
 	let editorClass: string =
-		'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto text-sm leading-none';
+		'prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl mx-auto focus:outline-none';
 
 	let wrapped: boolean;
 	$: wrapped = $$slots.header || $$slots.footer;

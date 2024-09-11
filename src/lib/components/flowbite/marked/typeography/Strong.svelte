@@ -13,7 +13,7 @@
 	export const renderers: Renderers = undefined;
 
 	let weight: PweightType = token.type == 'strong' ? 'bold' : 'normal';
-	$: console.log('Strong', { token });
+	// $: console.log('Strong', { token });
 </script>
 
 <strong>

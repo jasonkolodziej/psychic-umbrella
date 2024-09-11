@@ -67,6 +67,5 @@
 		</Toolbar>
 		<Button color="dark" slot="footer">{iconButtonLabel}</Button>
 	</AdvancedEditor>
-
 	<!-- </Textarea> -->
 </form>
