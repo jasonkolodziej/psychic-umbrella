@@ -78,7 +78,7 @@
 					lowlight
 				})
 			],
-			content: (value as Token).raw,
+			content: value,
 			onTransaction: () => {
 				// force re-render so `editor.isActive` works as expected
 				editor = editor;
@@ -113,11 +113,11 @@
 			<slot name="header"></slot>
 		</div>
 	{/if}
-	<Wrapper show={wrapped} class={innerWrapperClass}>
-		<!-- 			{...$$restProps} -->
-		<div {...$$restProps} bind:this={element} />
-		<!-- <svelte:element this="div" bind:this={element} /> -->
-	</Wrapper>
+	<!-- <Wrapper show={wrapped} class={innerWrapperClass}> -->
+	<!-- 			{...$$restProps} -->
+	<div bind:this={element} />
+	<!-- <svelte:element this="div" bind:this={element} /> -->
+	<!-- </Wrapper> -->
 	{#if $$slots.footer}
 		<div id="footerSlots" class={headerCls(false)}>
 			<slot name="footer"></slot>
@@ -136,3 +136,73 @@
   @prop export let headerClass: string = ''
     export let footerClass: string = '';
   -->
+
+<!-- <style lang="postcss">
+	@import 'tailwindcss/base';
+	@import 'tailwindcss/components';
+	@import 'tailwindcss/utilities';
+	@layer components {
+		.tiptap {
+			:first-child {
+				margin-top: 0;
+			}
+
+			/* add pre and code here */
+			pre {
+				font-family: 'JetBrainsMono', monospace;
+			}
+			/* Code styling */
+			.hljs-comment,
+			.hljs-quote {
+				color: #616161;
+			}
+
+			.hljs-variable,
+			.hljs-template-variable,
+			.hljs-attribute,
+			.hljs-tag,
+			.hljs-name,
+			.hljs-regexp,
+			.hljs-link,
+			.hljs-name,
+			.hljs-selector-id,
+			.hljs-selector-class {
+				color: #f98181;
+			}
+
+			.hljs-number,
+			.hljs-meta,
+			.hljs-built_in,
+			.hljs-builtin-name,
+			.hljs-literal,
+			.hljs-type,
+			.hljs-params {
+				color: #fbbc88;
+			}
+
+			.hljs-string,
+			.hljs-symbol,
+			.hljs-bullet {
+				color: #b9f18d;
+			}
+
+			.hljs-title,
+			.hljs-section {
+				color: #faf594;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag {
+				color: #70cff8;
+			}
+
+			.hljs-emphasis {
+				font-style: italic;
+			}
+
+			.hljs-strong {
+				font-weight: 700;
+			}
+		}
+	}
+</style> -->
