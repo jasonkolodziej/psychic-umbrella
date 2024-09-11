@@ -1,5 +1,5 @@
 <script>
-	// import '../../app.pcss';
+	import '../../app.pcss';
 	import Navbar from '$lib/components/blog/Navbar.svelte';
 	let drawerHidden = false;
 </script>
