@@ -18,8 +18,8 @@
 			emphasis?: boolean;
 			strong?: boolean;
 		};
-	export const options: MarkdownOptions = undefined;
-	export const renderers: Renderers = undefined;
+	export let options: MarkdownOptions;
+	export let renderers: Renderers;
 
 	let italic = token.emphasis ?? false;
 	let weight: PweightType = token.strong ? 'bold' : 'normal';
@@ -28,5 +28,7 @@
 </script>
 
 <P bind:italic bind:weight>
-	<slot />
+	<!-- ! Original don't delete -->
+	<!-- <slot /> -->
+	<MarkdownTokens tokens={token.tokens} {renderers} {options} />
 </P>
