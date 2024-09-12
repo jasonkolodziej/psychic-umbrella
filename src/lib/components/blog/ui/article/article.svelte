@@ -1,42 +1,15 @@
 <script lang="ts">
-	import {
-		ArticleWrapper
-		// ArticleAuthor, ArticleBody, ArticleHead,
-	} from 'flowbite-svelte-blocks';
+	import { ArticleAuthor, ArticleBody, ArticleHead, ArticleWrapper } from 'flowbite-svelte-blocks';
 	import { ArrowRightOutline, VideoCameraSolid } from 'flowbite-svelte-icons';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
 	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
-	import type { ComponentProps, SvelteComponent } from 'svelte';
-	import { Author, Body, Head } from './index';
 
-	type $$Props = HTMLAttributes<HTMLElement> & {
+	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
 		tag?: HeadingLevel;
-		head?: SvelteComponent<Head>;
-		body?: SvelteComponent<Body>;
-		author?: SvelteComponent<Author>;
-		// when: string;
 	};
 
 	let className: $$Props['class'] = undefined;
-	export let head: $$Props['head'] = {
-		when: '14 days ago',
-		icon: VideoCameraSolid,
-		iconLabel: 'Tutorial',
-		whenClass: 'text-sm'
-	} as ComponentProps<Head>;
-	export let body: $$Props['body'] = {
-		title: 'How to quickly deploy a static website',
-		bodyParagraph:
-			'Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers influence both web designers and developers.'
-	} as ComponentProps<Body>;
-	export let author: $$Props['author'] = {
-		title: 'Jese Leos',
-		imgSrc: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png',
-		imgDescription: 'Jese Leos avatar',
-		moreInfoHref: '/',
-		moreInfoLabel: 'Read more'
-	} as ComponentProps<Author>;
 	// export let tag: $$Props['tag'] = 'h3';
 	export { className as class };
 </script>
@@ -80,19 +53,5 @@
 			<ArrowRightOutline size="sm" class="ml-2" />
 		</a>
 	</ArticleAuthor> -->
-	{#if $$slots.head}
-		<slot name="head" />
-	{:else if head}
-		<Head {...head} />
-	{/if}
-	{#if $$slots.body}
-		<slot name="body" />
-	{:else if body}
-		<Body {...body} />
-	{/if}
-	{#if $$slots.author}
-		<slot name="author" />
-	{:else if author}
-		<Author {...author} />
-	{/if}
+	<slot />
 </ArticleWrapper>

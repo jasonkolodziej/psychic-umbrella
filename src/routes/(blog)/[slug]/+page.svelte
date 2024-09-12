@@ -1,6 +1,5 @@
 <script lang="ts">
-	// import { Section, BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
-	import Post from '$components/blog/ui/post/Post.svelte';
+	import { Section, BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
 	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
 	import blog from './blog-example.json';
@@ -53,9 +52,7 @@
 	$: console.log(JSON.stringify(comments, null, 2));
 </script>
 
-<Post {blog} />
-
-<!-- <Section name="blogTemplate" classSection="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
+<Section name="blogTemplate" classSection="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
 	<article
 		class="format format-sm sm:format-base lg:format-lg format-blue dark:format-invert mx-auto w-full max-w-2xl"
 	>
@@ -84,4 +81,4 @@
 			</Comment>
 		</Section>
 	</article>
-</Section> -->
+</Section>
