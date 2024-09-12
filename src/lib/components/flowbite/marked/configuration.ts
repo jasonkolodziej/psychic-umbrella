@@ -5,7 +5,7 @@ import {
 	type MarkdownOptions,
 	type Renderers
 } from '@magidoc/plugin-svelte-marked';
-// import defaultRenderers from '@magidoc/plugin-svelte-marked';
+import defaultRenderers from '@magidoc/plugin-svelte-marked';
 import {
 	marked,
 	type MarkedExtension,
