@@ -621,9 +621,8 @@ Underscores
 </a>
 ```
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=T0pTtj1-u9E" target="_blank">
-<img src="http://img.youtube.com/vi/T0pTtj1-u9E/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
-</a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T0pTtj1-u9E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ```markdown
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/T0pTtj1-u9E/0.jpg)](https://youtu.be/T0pTtj1-u9E)
