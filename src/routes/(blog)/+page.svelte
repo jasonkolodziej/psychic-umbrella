@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Renderer from '$components/flowbite/marked/Renderer.svelte';
-
-	// import Editor from '$components/carta-md/Editor.svelte';
+	import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
 
 	/**
@@ -35,6 +33,5 @@
 <main class="p-4">
 	<!-- <Playground /> -->
 	<!-- <Sections /> -->
-	<Renderer />
-	<!-- <Editor /> -->
+	<Editor />
 </main>
