@@ -2,7 +2,6 @@
 	import Renderer from '$components/flowbite/marked/Renderer.svelte';
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
-	import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
 	// import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
 
@@ -50,9 +49,8 @@
 <main class="p-4">
 	<!-- <Playground /> -->
 	<!-- <Sections /> -->
-	<!-- {#key src}
+	{#key src}
 		<Renderer source={src} />
-	{/key} -->
-	<!-- <WysiwygEditor /> -->
+	{/key}
 	<!-- <Editor /> -->
 </main>
