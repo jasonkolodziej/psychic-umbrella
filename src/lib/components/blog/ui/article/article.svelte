@@ -8,15 +8,13 @@
 	import { cn } from '$lib/carta/utils';
 	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
 	import type { ComponentProps, SvelteComponent } from 'svelte';
-	import Head from './article-head.svelte';
-	import Body from './article-body.svelte';
-	import Author from './article-author.svelte';
+	import { Author, Body, Head } from './index';
 
-	//TODO: review this https://flowbite-svelte.com/blocks/marketing/blog
-	type $$Props = ComponentProps<ArticleWrapper> & {
-		head?: ComponentProps<Head>;
-		body?: ComponentProps<Body>;
-		author?: ComponentProps<Author>;
+	type $$Props = HTMLAttributes<HTMLElement> & {
+		tag?: HeadingLevel;
+		head?: SvelteComponent<Head>;
+		body?: SvelteComponent<Body>;
+		author?: SvelteComponent<Author>;
 		// when: string;
 	};
 

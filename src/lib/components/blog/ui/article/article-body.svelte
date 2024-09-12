@@ -7,7 +7,7 @@
 	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
 	import Link from '$lib/carta/components/link/Link.svelte';
 
-	type $$Props = ComponentProps<ArticleBody> & {
+	type $$Props = SvelteComponent<ArticleBody> & {
 		// tag?: HeadingLevel;
 		title?: string;
 		titleHref?: string;
