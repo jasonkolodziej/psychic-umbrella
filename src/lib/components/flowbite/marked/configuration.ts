@@ -13,6 +13,7 @@ import {
 	type Tokens
 } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
+import markedFootnote from 'marked-footnote';
 //? my custom components
 import BackgroundColor from '$components/flowbite/marked/extensions/BackgroundColor.svelte';
 import {
@@ -41,46 +42,68 @@ import {
 //? Reference: https://marked.js.org/docs/using_pro#renderer
 //? Reference: https://magidoc.js.org/svelte-plugins/marked
 
-const customExtension = extensions.containerExtension((params: TokenExtractionParameters) => {
-	if (params.type === 'background-color') {
-		//? This will become the `token` parameter of our component
-		return {
-			type: 'background-color', //? This is the `renderer` name.
-			raw: params.raw,
-			color: params.options['color'] ?? 'red',
-			//? This empty array indicates the container plugin that you wish
-			//? to parse the content of of the container as markdown
-			//? It will be automatically populated if it is present.
-			//* If you do not wish to render the content as markdown, set this to null or undefined
-			tokens: []
-		};
-	}
+export const customExtension = extensions.containerExtension(
+	(params: TokenExtractionParameters) => {
+		if (params.type === 'background-color') {
+			//? This will become the `token` parameter of our component
+			console.log(params.type);
+			return {
+				type: 'background-color', //? This is the `renderer` name.
+				raw: params.raw,
+				color: params.options['color'] ?? 'red',
+				//? This empty array indicates the container plugin that you wish
+				//? to parse the content of of the container as markdown
+				//? It will be automatically populated if it is present.
+				//* If you do not wish to render the content as markdown, set this to null or undefined
+				tokens: []
+			};
+		}
 
-	return null;
-});
+		return null;
+	}
+);
 
 // Override function
-const postprocess = (html: string | Node) => {
+export const postprocess = (html: string | Node) => {
 	return DOMPurify.sanitize(html);
 };
 
+//TODO: removal of shiki code
 // export const highlighter = await createHighlighter({
 // 	themes: Object.values(bundledThemes),
 // 	langs: Object.values(bundledLanguages)
 // });
 
-// Step 1, register our custom extension
-export const customOptions: MarkedExtension = {
+//? The marked-footnote extension accepts the following configuration options:
+//? Reference: https://www.npmjs.com/package/marked-footnote
+const markedFootnoteOptions = {
+	//* The prefix ID for footnotes. Defaults to 'footnote-'.
+	prefixId: 'footnote-',
+	//* The description of footnotes, used by aria-labeledby attribute. Defaults to 'Footnotes'.
+	description: 'Footnotes',
+	//* If set to true, it will place footnote reference in square brackets, like this: [1]. Defaults to false.
+	refMarkers: false
+};
+
+//? Step 1, register our custom extension
+export const customOption: MarkedExtension = {
 	extensions: [customExtension as unknown as TokenizerAndRendererExtension],
 	hooks: {
 		postprocess // Used to sanitize the output
 	}
 };
 
+export const customOptions: MarkedExtension[] = [
+	customOption,
+	markedFootnote(markedFootnoteOptions)
+];
+
 //! Step 2, register our custom renderer
 // marked.use(customOptions);
 // Step 3, create a custom renderer
 export const mappedRenderers: Renderers = {
+	//? Custom container extension
+	'background-color': BackgroundColor,
 	//? Default renderers
 	img: Img,
 	heading: Heading,
@@ -101,9 +124,7 @@ export const mappedRenderers: Renderers = {
 	hr: Hr,
 	strong: Strong,
 	space: Space,
-	escape: Space,
-	//? Custom container extension
-	'background-color': BackgroundColor
+	escape: Space
 };
 
 //? Block level custom renderers

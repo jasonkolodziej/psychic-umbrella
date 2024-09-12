@@ -16,6 +16,7 @@
 
 	export let renderers: Renderers;
 	export let options: MarkdownOptions;
+	$: console.log('BackgroundColor', { token });
 </script>
 
 <div style={`background-color: ${token.color}`}>
