@@ -2,7 +2,6 @@
 	import Renderer from '$components/flowbite/marked/Renderer.svelte';
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
-	import Tiptap from '$components/tiptap/Tiptap.svelte';
 	// import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
 	// import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
@@ -51,7 +50,6 @@
 <main class={classRef}>
 	<!-- <Playground /> -->
 	<!-- <Sections /> -->
-	<!-- <Tiptap /> -->
 	{#key src}
 		<Renderer source={src} />
 	{/key}
