@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SectionBlog from '$components/blog/ui/section/section-blog.svelte';
+	import SectionBlog from '$components/using/flowbite/blog/ui/section/section-blog.svelte';
 	/**
 		** Pages can break out of the current layout hierarchy on a route-by-route basis. 
 		** Suppose we have an /item/[id]/embed route inside the (app) group from the previous example:

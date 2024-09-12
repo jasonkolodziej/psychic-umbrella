@@ -10,12 +10,12 @@ import {
 } from 'svelte';
 import { svelte } from '@cartamd/plugin-component/svelte';
 import type { Plugin } from 'carta-md';
-import type { HeadingLevel } from '$components/blog/ui/card';
+import type { HeadingLevel } from '$components/using/flowbite/blog/ui/card';
 //? Flowbite components
-import Heading from '$components/flowbite/typeography/Heading.svelte';
-import P from '$components/flowbite/typeography/P.svelte';
-import A from '$components/flowbite/typeography/A.svelte';
-import Blockquote from '$components/flowbite/typeography/Blockquote.svelte';
+import Heading from '$components/using/flowbite/typeography/Heading.svelte';
+import P from '$components/using/flowbite/typeography/P.svelte';
+import A from '$components/using/flowbite/typeography/A.svelte';
+import Blockquote from '$components/using/flowbite/typeography/Blockquote.svelte';
 
 // ? Carta-md plugin for elements "h1", "h2", "h3", "h4", "h5", "h6"
 // export const FlowbiteHeading: Plugin = component<ComponentType<Heading>>(

@@ -1,9 +1,9 @@
 <script lang="ts">
 	// import { Section, BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
-	import Post from '$components/blog/ui/post/Post.svelte';
+	import Post from '$components/using/flowbite/blog/ui/post/Post.svelte';
 	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
-	import blog from './blog-example.json';
+	import blog from '$lib/data/blog-example.json';
 	const comments = [
 		{
 			id: 'comment1',

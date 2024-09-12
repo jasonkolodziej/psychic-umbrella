@@ -3,15 +3,15 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
 	import { BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
-	import SectionBlogpost from '../section/section-blogpost.svelte';
-	import Section from '$components/blog/ui/section/section.svelte';
+	// import SectionBlogpost from '../section/section-blogpost.svelte';
+	import { Section, SectionBlogPost } from '$components/using/flowbite/blog/ui/section';
 	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
-	import example from '../../../../../routes/(blog)/[slug]/blog-example.json';
-	import comments from '../../../../../routes/(blog)/[slug]/comments-example.json';
+	import blogExample from '$lib/data/blog-example.json';
+	import comments from '$lib/data/comments-example.json';
 	import type { BlogPost } from '$lib/filtering/blog';
 
-	import '../../../../../app.pcss';
+	// import '../../../../../app.pcss';
 
 	type $$Props = HTMLAttributes<HTMLParagraphElement> & {
 		blog: BlogPost;
@@ -28,14 +28,14 @@
 	export let commentPlaceholder: $$Props['commentPlaceholder'] = 'Write a comment...';
 	export let commentButtonLabel: $$Props['commentButtonLabel'] = 'Post Comment';
 	export let classArticle: $$Props['classArticle'] = 'dark:text-white';
-	export let blog: $$Props['blog'] = example;
+	export let blog: $$Props['blog'] = blogExample;
 
 	export { className as class };
 
 	// export let href: string;
 </script>
 
-<SectionBlogpost>
+<SectionBlogPost>
 	<BlogTemplate bind:blog bind:classArticle {...$$restProps} />
 
 	<Section name="comment">
@@ -61,4 +61,4 @@
 			{/each}
 		</Comment>
 	</Section>
-</SectionBlogpost>
+</SectionBlogPost>

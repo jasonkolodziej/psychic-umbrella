@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Article from '$components/blog/ui/article/article.svelte';
-	import Post from '$components/blog/ui/post/Post.svelte';
-	import { SectionBlog } from '$components/blog/ui/section';
+	import Article from '$components/using/flowbite/blog/ui/article/article.svelte';
+	import Post from '$components/using/flowbite/blog/ui/post/Post.svelte';
+	import { SectionBlog } from '$components/using/flowbite/blog/ui/section';
 	import type { ComponentProps } from 'svelte';
-	import blog from '../[slug]/blog-example.json';
+	import blog from '$lib/data/blog-example.json';
 	import { VideoCameraSolid } from 'flowbite-svelte-icons';
 	/**
 		** Pages can break out of the current layout hierarchy on a route-by-route basis. 

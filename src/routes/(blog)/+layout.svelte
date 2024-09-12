@@ -1,6 +1,6 @@
 <script>
 	import '../../app.pcss';
-	import Navbar from '$lib/components/blog/Navbar.svelte';
+	import Navbar from '$components/using/flowbite/blog/Navbar.svelte';
 	let drawerHidden = false;
 </script>
 
