@@ -16,9 +16,9 @@
 	export let value: any = undefined;
 	export let wrappedClass: string =
 		'block w-full text-sm border-0 px-0 bg-inherit dark:bg-inherit focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50';
-	export let unWrappedClass: string = //
+	export let unWrappedClass: string =
 		'p-2.5 text-sm focus:ring-primary-500 border-gray-300 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50';
-	export let innerWrappedClass: string = 'p-0 bg-inherit'; // bg-white dark:bg-gray-800 py-2 px-4
+	export let innerWrappedClass: string = 'py-2 px-4 bg-white dark:bg-gray-800';
 	export let headerClass: string = '';
 	export let footerClass: string = '';
 
@@ -27,7 +27,7 @@
 	const lowlight = createLowlight(all);
 	//? Reference: https://tiptap.dev/docs/editor/getting-started/style-editor#editor
 	let editorClass: string =
-		'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto text-sm leading-none';
+		'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none';
 
 	let wrapped: boolean;
 	$: wrapped = $$slots.header || $$slots.footer;
@@ -85,12 +85,7 @@
 			},
 			editorProps: {
 				attributes: {
-					class: twMerge(
-						textareaClass,
-						editorClass,
-						$$slots.footer ? 'rounded-b-none' : 'rounded-b-lg',
-						$$slots.header ? 'rounded-t-none' : 'rounded-t-lg'
-					)
+					class: twMerge(textareaClass, editorClass)
 				}
 			}
 		});
@@ -118,11 +113,11 @@
 			<slot name="header"></slot>
 		</div>
 	{/if}
-	<Wrapper show={wrapped} class={innerWrapperClass}>
-		<!-- 			{...$$restProps} -->
-		<!-- <div bind:this={element} /> -->
-		<svelte:element this="div" bind:this={element} />
-	</Wrapper>
+	<!-- <Wrapper show={wrapped} class={innerWrapperClass}> -->
+	<!-- 			{...$$restProps} -->
+	<div bind:this={element} />
+	<!-- <svelte:element this="div" bind:this={element} /> -->
+	<!-- </Wrapper> -->
 	{#if $$slots.footer}
 		<div id="footerSlots" class={headerCls(false)}>
 			<slot name="footer"></slot>
