@@ -4,15 +4,20 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
 	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
+	import type { SvelteComponent } from 'svelte';
 
 	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
 		tag?: HeadingLevel;
 		when: string;
+		icon?: typeof SvelteComponent;
+		iconLabel?: string;
 		whenClass?: string;
 	};
 
 	let className: $$Props['class'] = undefined;
-	export let when: $$Props['when'] = '';
+	export let when: $$Props['when'] = '14 days ago';
+	export let icon: $$Props['icon'] = VideoCameraSolid;
+	export let iconLabel: $$Props['iconLabel'] = 'Tutorial';
 	let whenClass: $$Props['whenClass'] = 'text-sm';
 	// export let tag: $$Props['tag'] = 'h3';
 	export { className as class };
@@ -25,8 +30,14 @@
 			className
 		)}
 	>
-		<VideoCameraSolid size="xs" class="mr-1" />
-		Tutorial
+		{#if icon}
+			<svelte:component this={icon} size="xs" class="mr-1" />
+		{/if}
+		{#if iconLabel}
+			{iconLabel}
+		{/if}
+		<!-- <VideoCameraSolid size="xs" class="mr-1" /> -->
+		<!-- Tutorial -->
 	</span>
 	<span class={cn(whenClass)}>{when}</span>
 </ArticleHead>
