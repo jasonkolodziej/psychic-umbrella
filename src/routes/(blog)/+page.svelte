@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Renderer from '$components/flowbite/marked/Renderer.svelte';
+	import Renderer from '$components/using/flowbite/for/marked/Renderer.svelte';
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
 	import Tiptap from '$components/tiptap/Tiptap.svelte';

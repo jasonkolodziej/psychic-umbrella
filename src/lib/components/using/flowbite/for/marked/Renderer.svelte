@@ -6,7 +6,7 @@
 	import {
 		customOptions,
 		mappedRenderers as renderers
-	} from '$components/flowbite/marked/configuration';
+	} from '$components/using/flowbite/for/marked/configuration';
 
 	//? Step 2, register our custom extension
 	// marked.setOptions(customOptions);

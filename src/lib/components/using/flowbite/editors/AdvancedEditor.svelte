@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
 	import { getContext } from 'svelte';
-	import Wrapper from '$components/flowbite/utils/Wrapper.svelte';
+	import Wrapper from '$components/using/flowbite/utils/Wrapper.svelte';
 	import { onMount, onDestroy } from 'svelte';
 	import { Editor } from '@tiptap/core';
 	import StarterKit from '@tiptap/starter-kit';

@@ -2,7 +2,7 @@
 	// import '../../../../../../app.pcss';
 	import type { Tokens } from 'marked';
 	import { type Renderers, type MarkdownOptions } from '@magidoc/plugin-svelte-marked';
-	import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
+	import WysiwygEditor from '$components/using/flowbite/editors/WYSIWYGEditor.svelte';
 	// import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
 	// load all languages with "all" or common languages with "common"
 	// import { lowlight } from 'lowlight/lib/core';

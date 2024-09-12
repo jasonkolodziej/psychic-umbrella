@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Token, Tokens } from 'marked';
+	import type { Tokens } from 'marked';
 	import {
 		MarkdownTokens,
 		type MarkdownOptions,
@@ -12,13 +12,10 @@
 		TableBodyRow,
 		TableHead,
 		TableHeadCell,
-		Checkbox,
-		TableSearch
+		Checkbox
 	} from 'flowbite-svelte';
-	import type { ComponentProps, ComponentType } from 'svelte';
+	import type { ComponentProps } from 'svelte';
 	import { twJoin, twMerge } from 'tailwind-merge';
-	import { classNames } from '$lib/editable/util';
-	import A from '$components/flowbite/typeography/A.svelte';
 	export let token: Tokens.Table &
 		Tokens.Generic &
 		ComponentProps<Table> & {

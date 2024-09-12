@@ -15,7 +15,7 @@ import {
 import DOMPurify from 'isomorphic-dompurify';
 import markedFootnote from 'marked-footnote';
 //? my custom components
-import BackgroundColor from '$components/flowbite/marked/extensions/BackgroundColor.svelte';
+import BackgroundColor from '$components/using/flowbite/for/marked/extensions/BackgroundColor.svelte';
 import {
 	BlockQuote,
 	Br,

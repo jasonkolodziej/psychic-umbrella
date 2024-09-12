@@ -5,6 +5,16 @@
 		}
 	],
 	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"node_modules/**": true,
+			".svelte-kit/**": true,
+			".wrangler/**": true
+		},
 		"tailwindCSS.experimental.classRegex": ["class:\\s*?[\"'`]([^\"'`]*).*?,"]
 	},
 	"extensions": {
@@ -17,7 +27,10 @@
 			"github.copilot",
 			"piotrpalarz.vscode-gitignore-generator",
 			"antfu.vite",
-			"vunguyentuan.vscode-postcss"
+			"vunguyentuan.vscode-postcss",
+			"esbenp.prettier-vscode",
+			"shd101wyy.markdown-preview-enhanced",
+			"bierner.markdown-mermaid"
 		]
 	}
 }

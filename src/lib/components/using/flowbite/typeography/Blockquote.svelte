@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HeadingLevel } from '$components/blog/ui/card';
 	import { Blockquote } from 'flowbite-svelte';
-	import P from '$components/flowbite/typeography/P.svelte';
+	import P from '$components/using/flowbite/typeography/P.svelte';
 	import type { BlockquoteSlots, BlockquoteProps } from 'flowbite-svelte/Blockquote.svelte';
 	import type { ComponentProps } from 'svelte';
 	type $$Props = ComponentProps<Blockquote> & { value?: string };

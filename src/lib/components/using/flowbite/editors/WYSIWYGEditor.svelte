@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AdvancedEditor from '$components/tiptap/AdvancedEditor.svelte';
+	import AdvancedEditor from '$components/using/flowbite/editors/AdvancedEditor.svelte';
 	import { Textarea, Toolbar, ToolbarGroup, ToolbarButton, Button } from 'flowbite-svelte';
 	import {
 		PaperClipOutline,
