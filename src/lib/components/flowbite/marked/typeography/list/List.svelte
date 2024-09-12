@@ -27,7 +27,6 @@
 
 	let tag: ListType = token.ordered ? 'ol' : 'ul';
 	let className = token.nested ? 'ps-5 mt-2 space-y-1' : undefined;
-	$: console.log('List', token);
 </script>
 
 <!-- <svelte:element this={component} start={token.start || 1}>
