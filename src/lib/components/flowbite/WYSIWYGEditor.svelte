@@ -1,6 +1,5 @@
 <script lang="ts">
-	import AdvancedEditor from '$components/tiptap/AdvancedEditor.svelte';
-	import { Textarea, Toolbar, ToolbarGroup, ToolbarButton, Button } from 'flowbite-svelte';
+	import { Textarea, Toolbar, ToolbarGroup, ToolbarButton, Button, Span } from 'flowbite-svelte';
 	import {
 		PaperClipOutline,
 		MapPinAltSolid,
@@ -9,12 +8,15 @@
 		FaceGrinOutline,
 		PaperPlaneOutline
 	} from 'flowbite-svelte-icons';
-	import { type SvelteComponent, type ComponentProps } from 'svelte';
-	import { twMerge } from 'tailwind-merge';
+	import type { Tokens } from 'marked';
+	import { type SvelteComponent, type ComponentProps, onMount, onDestroy } from 'svelte';
+	import { twJoin, twMerge } from 'tailwind-merge';
+	import { Editor } from '@tiptap/core';
+	import StarterKit from '@tiptap/starter-kit';
 
 	type ToolbarButtons = Array<Array<ComponentProps<ToolbarButton> & { icon: SvelteComponent }>>;
 	type $$Props = {
-		value?: any;
+		value?: HTMLElement;
 		codeLang?: string;
 		placeholder?: string;
 		toolbarBtnIconClass?: string;
@@ -47,8 +49,7 @@
 
 <form>
 	<label for="editor" class="sr-only">{iconButtonLabel}</label>
-	<!-- <Textarea id="editor" rows="8" class="mb-4" bind:placeholder bind:value> -->
-	<AdvancedEditor id="editor" rows="8" class="mb-4" bind:value>
+	<Textarea id="editor" rows="8" class="mb-4" bind:placeholder bind:value>
 		<Toolbar slot="header" embedded>
 			{#each toolbarButtons as group, i}
 				{#if group}
@@ -65,7 +66,6 @@
 				<PaperPlaneOutline class="h-6 w-6 rotate-45" />
 			</ToolbarButton>
 		</Toolbar>
-		<Button color="dark" slot="footer">{iconButtonLabel}</Button>
-	</AdvancedEditor>
-	<!-- </Textarea> -->
+	</Textarea>
+	<Button>{iconButtonLabel}</Button>
 </form>
