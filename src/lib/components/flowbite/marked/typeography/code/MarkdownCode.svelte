@@ -5,9 +5,16 @@
 		type Renderers,
 		type MarkdownOptions
 	} from '@magidoc/plugin-svelte-marked';
+	import {
+		type BundledLanguage,
+		type BundledTheme,
+		codeToHtml,
+		createHighlighter,
+		type CodeToHastOptions
+	} from 'shiki/bundle/web';
 	import { get } from 'svelte/store';
 	import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
-	export const ssr = false;
+
 	export let token: Tokens.Code;
 	export const options: MarkdownOptions = undefined;
 	export const renderers: Renderers = undefined;
@@ -17,11 +24,10 @@
 	// 	toggle = !toggle;
 	// 	toggle ? (code = 'let bool = true;') : (code = 'let bool;');
 	// }
-	// $: console.log('Code token', token);
+	$: console.log('Code token', token);
 </script>
 
 <!-- <svelte:window on:click={toggleAnimation} /> -->
-
-<WysiwygEditor value={token.text} codeLang={token.lang} />
+<WysiwygEditor code={token} />
 
 <!-- <pre><code class={`lang-${token.lang}`}>{token.text}</code></pre> -->
