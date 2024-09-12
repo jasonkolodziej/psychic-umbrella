@@ -1,10 +1,4 @@
 <script lang="ts">
-	import Article from '$components/blog/ui/article/article.svelte';
-	import Post from '$components/blog/ui/post/Post.svelte';
-	import { SectionBlog } from '$components/blog/ui/section';
-	import type { ComponentProps } from 'svelte';
-	import blog from '../[slug]/blog-example.json';
-	import { VideoCameraSolid } from 'flowbite-svelte-icons';
 	/**
 		** Pages can break out of the current layout hierarchy on a route-by-route basis. 
 		** Suppose we have an /item/[id]/embed route inside the (app) group from the previous example:
@@ -27,38 +21,8 @@
 	** +page@(app).svelte - inherits from src/routes/(app)/+layout.svelte
 	** +page@.svelte - inherits from src/routes/+layout.svelte
     */
-	let articles: Array<ComponentProps<Article>> = [
-		{
-			head: { when: '14 days ago', icon: VideoCameraSolid, iconLabel: 'Tutorial' },
-			body: {
-				title: 'Review of the new iPhone 13',
-				bodyParagraph: "The new iPhone 13 is here, and it's amazing!"
-			},
-			author: {
-				title: 'Jese Leos',
-				imgSrc: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png',
-				imgDescription: 'Jese Leos avatar',
-				moreInfoHref: '/',
-				moreInfoLabel: 'Read more'
-			}
-		},
-		{
-			head: { when: '14 days ago', icon: VideoCameraSolid, iconLabel: 'Tutorial' },
-			body: {
-				title: 'Review of the new iPhone 13',
-				bodyParagraph: "The new iPhone 13 is here, and it's amazing!"
-			},
-			author: {
-				title: 'Jese Leos',
-				imgSrc: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png',
-				imgDescription: 'Jese Leos avatar',
-				moreInfoHref: '/',
-				moreInfoLabel: 'Read more'
-			}
-		}
-	];
 </script>
 
 <main class="p-4">
-	<SectionBlog title="Reviews" description="All the reviews so far..." bind:articles />
+	<Sections />
 </main>

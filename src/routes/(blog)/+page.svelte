@@ -1,10 +1,5 @@
 <script lang="ts">
-	import Renderer from '$components/flowbite/marked/Renderer.svelte';
-	import type { PageData } from './$types';
-	import { page } from '$app/stores';
-	import Tiptap from '$components/tiptap/Tiptap.svelte';
-	// import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
-	// import Editor from '$components/carta-md/Editor.svelte';
+	import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
 
 	/**
@@ -29,32 +24,14 @@
 	** +page@(app).svelte - inherits from src/routes/(app)/+layout.svelte
 	** +page@.svelte - inherits from src/routes/+layout.svelte
     */
-	export let data: PageData;
-	// $: console.log(data);
-	let src = data.data;
-	let classRef = 'w-full min-w-0 flex-auto lg:max-h-full lg:overflow-visible'; //"p-4"
-	//? this is for fetching the markdown file from a url
-	// const site =
-	// 	'https://gist.githubusercontent.com/allysonsilva/85fff14a22bbdf55485be947566cc09e/raw/fa8048a906ebed3c445d08b20c9173afd1b4a1e5/Full-Markdown.md';
 
-	// let src: string = undefined;
-
-	// onMount(() => {
-	// 	fetch(site)
-	// 		.then((response) => response.text())
-	// 		.then((text) => {
-	// 			src = text;
-	// 		});
-	// });
+	// import Editor from '$lib/components/carta/Editor.svelte';
+	// import Playground from 'mdsvex-playground';
+	// import Playground from '$lib/components/mdsvex/Playground.svelte';
 </script>
 
-<main class={classRef}>
+<main class="p-4">
 	<!-- <Playground /> -->
 	<!-- <Sections /> -->
-	<!-- <Tiptap /> -->
-	{#key src}
-		<Renderer source={src} />
-	{/key}
-	<!-- <WysiwygEditor /> -->
-	<!-- <Editor /> -->
+	<Editor />
 </main>

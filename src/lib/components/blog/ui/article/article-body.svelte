@@ -7,18 +7,18 @@
 	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
 	import Link from '$lib/carta/components/link/Link.svelte';
 
-	type $$Props = ComponentProps<ArticleBody> & {
+	type $$Props = SvelteComponent<ArticleBody> & {
 		// tag?: HeadingLevel;
 		title?: string;
 		titleHref?: string;
-		bodyParagraph?: string;
+		body?: string;
 	};
 
 	let className: $$Props['class'] = undefined;
 	// export let tag: $$Props['tag'] = 'h2';
 	export let title: $$Props['title'] = '';
 	export let titleHref: $$Props['titleHref'] = '/';
-	export let bodyParagraph: $$Props['bodyParagraph'] = '';
+	export let body: $$Props['body'] = '';
 	export { className as class };
 </script>
 
@@ -30,7 +30,7 @@
 	</svelte:fragment>
 	<svelte:fragment slot="paragraph">
 		<p class="mb-5 font-light text-gray-500 dark:text-gray-400">
-			{bodyParagraph}
+			{body}
 		</p>
 	</svelte:fragment>
 </ArticleBody>
