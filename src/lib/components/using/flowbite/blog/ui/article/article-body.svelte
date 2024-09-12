@@ -3,22 +3,16 @@
 	import { ArrowRightOutline, VideoCameraSolid } from 'flowbite-svelte-icons';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { ComponentProps, SvelteComponent } from 'svelte';
-	import { cn } from '$lib/carta/utils';
-	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
-	import Link from '$lib/carta/components/link/Link.svelte';
+	import type { ArticleBody as Body } from '$lib/filtering/blog';
+	import { P, A } from 'flowbite-svelte';
 
-	type $$Props = ComponentProps<ArticleBody> & {
-		// tag?: HeadingLevel;
-		title?: string;
-		titleHref?: string;
-		bodyParagraph?: string;
-	};
+	type $$Props = ComponentProps<ArticleBody> & Body;
 
 	let className: $$Props['class'] = undefined;
 	// export let tag: $$Props['tag'] = 'h2';
 	export let title: $$Props['title'] = '';
 	export let titleHref: $$Props['titleHref'] = '/';
-	export let bodyParagraph: $$Props['bodyParagraph'] = '';
+	export let lead: $$Props['lead'] = '';
 	export { className as class };
 </script>
 
@@ -26,11 +20,11 @@
 	<svelte:fragment slot="h2">
 		<!-- <Link href={titleHref} class="text-3xl font-semibold leading-none tracking-tight">
 			{title} -->
-		<a href={titleHref}>{title}</a>
+		<A href={titleHref}>{title}</A>
 	</svelte:fragment>
 	<svelte:fragment slot="paragraph">
-		<p class="mb-5 font-light text-gray-500 dark:text-gray-400">
-			{bodyParagraph}
-		</p>
+		<P class="mb-5 font-light text-gray-500 dark:text-gray-400">
+			{lead}
+		</P>
 	</svelte:fragment>
 </ArticleBody>

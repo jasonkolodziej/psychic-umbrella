@@ -4,7 +4,7 @@
 	import { cn } from '$lib/carta/utils';
 	import { BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
 	// import SectionBlogpost from '../section/section-blogpost.svelte';
-	import { Section, SectionBlogPost } from '$components/using/flowbite/blog/ui/section';
+	import { Section } from '$components/using/flowbite/blog/ui/section';
 	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
 	import blogExample from '$lib/data/blog-example.json';
@@ -35,7 +35,7 @@
 	// export let href: string;
 </script>
 
-<SectionBlogPost>
+<Section blogPost>
 	<BlogTemplate bind:blog bind:classArticle {...$$restProps} />
 
 	<Section name="comment">
@@ -61,4 +61,4 @@
 			{/each}
 		</Comment>
 	</Section>
-</SectionBlogPost>
+</Section>

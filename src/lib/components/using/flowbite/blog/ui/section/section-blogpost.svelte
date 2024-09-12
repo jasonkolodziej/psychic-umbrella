@@ -2,11 +2,10 @@
 	// import Link from '$lib/carta/components/link/Link.svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
-	import { Section, BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
-	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
-	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
-	import example from '$lib/data/blog-example.json';
-	import type { BlogPost } from '$lib/filtering/blog';
+	// import { Section, BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
+	import { Section } from '$components/using/flowbite/blog/ui/section';
+	// import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
+	// import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
 
 	type $$Props = HTMLAttributes<HTMLParagraphElement> & {};
 

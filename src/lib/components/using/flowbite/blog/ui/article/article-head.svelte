@@ -1,18 +1,16 @@
 <script lang="ts">
-	import { ArticleAuthor, ArticleBody, ArticleHead, ArticleWrapper } from 'flowbite-svelte-blocks';
-	import { ArrowRightOutline, VideoCameraSolid } from 'flowbite-svelte-icons';
+	import { ArticleHead } from 'flowbite-svelte-blocks';
+	import { VideoCameraSolid } from 'flowbite-svelte-icons';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
-	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
-	import type { SvelteComponent } from 'svelte';
+	import type { HeadingLevel } from '$components/using/flowbite/blog/ui/card/index';
+	import type { ArticleHead as Head } from '$lib/filtering/blog';
 
-	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
-		tag?: HeadingLevel;
-		when: string;
-		icon?: typeof SvelteComponent;
-		iconLabel?: string;
-		whenClass?: string;
-	};
+	type $$Props = HTMLAttributes<HTMLHeadingElement> &
+		Head & {
+			tag?: HeadingLevel;
+			whenClass?: string;
+		};
 
 	let className: $$Props['class'] = undefined;
 	export let when: $$Props['when'] = '14 days ago';

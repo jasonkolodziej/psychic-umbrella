@@ -1,24 +1,14 @@
 <script lang="ts">
-	import {
-		ArticleWrapper
-		// ArticleAuthor, ArticleBody, ArticleHead,
-	} from 'flowbite-svelte-blocks';
-	import { ArrowRightOutline, VideoCameraSolid } from 'flowbite-svelte-icons';
-	import type { HTMLAttributes } from 'svelte/elements';
-	import { cn } from '$lib/carta/utils';
-	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
-	import type { ComponentProps, SvelteComponent } from 'svelte';
+	import { ArticleWrapper } from 'flowbite-svelte-blocks';
+	import { VideoCameraSolid } from 'flowbite-svelte-icons';
+	import type { ComponentProps } from 'svelte';
 	import Head from './article-head.svelte';
 	import Body from './article-body.svelte';
 	import Author from './article-author.svelte';
+	import type { IArticle } from '$lib/filtering/blog';
 
 	//TODO: review this https://flowbite-svelte.com/blocks/marketing/blog
-	type $$Props = ComponentProps<ArticleWrapper> & {
-		head?: ComponentProps<Head>;
-		body?: ComponentProps<Body>;
-		author?: ComponentProps<Author>;
-		// when: string;
-	};
+	type $$Props = ComponentProps<ArticleWrapper> & IArticle;
 
 	let className: $$Props['class'] = undefined;
 	export let head: $$Props['head'] = {
@@ -29,8 +19,7 @@
 	} as ComponentProps<Head>;
 	export let body: $$Props['body'] = {
 		title: 'How to quickly deploy a static website',
-		bodyParagraph:
-			'Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers influence both web designers and developers.'
+		lead: 'Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers influence both web designers and developers.'
 	} as ComponentProps<Body>;
 	export let author: $$Props['author'] = {
 		title: 'Jese Leos',

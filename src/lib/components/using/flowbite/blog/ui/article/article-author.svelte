@@ -1,22 +1,19 @@
 <script lang="ts">
-	import { ArticleAuthor, ArticleBody, ArticleHead, ArticleWrapper } from 'flowbite-svelte-blocks';
-	import { ArrowRightOutline, VideoCameraSolid } from 'flowbite-svelte-icons';
+	import { ArticleAuthor } from 'flowbite-svelte-blocks';
+	import { ArrowRightOutline } from 'flowbite-svelte-icons';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
-	import type { HeadingLevel } from '$lib/components/blog/ui/card/index';
+	import type { HeadingLevel } from '$lib/components/using/flowbite/blog/ui/card/index';
 	import Link from '$lib/carta/components/link/Link.svelte';
+	import type { ArticleAuthor as Author } from '$lib/filtering/blog';
 
-	type $$Props = HTMLAttributes<HTMLHeadingElement> & {
-		tag?: HeadingLevel;
-		title: string;
-		titleClass?: string;
-		moreInfoLabel?: string;
-		moreInfoHref?: string;
-		moreInfoClass?: string;
-		imgClass?: string;
-		imgSrc?: string;
-		imgDescription?: string;
-	};
+	type $$Props = HTMLAttributes<HTMLHeadingElement> &
+		Author & {
+			tag?: HeadingLevel;
+			titleClass?: string;
+			moreInfoClass?: string;
+			imgClass?: string;
+		};
 
 	let className: $$Props['class'] = undefined;
 	export let title: $$Props['title'] = 'Some title';

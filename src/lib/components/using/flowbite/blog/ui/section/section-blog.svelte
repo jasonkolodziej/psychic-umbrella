@@ -8,7 +8,7 @@
 
 	type $$Props = HTMLAttributes<HTMLParagraphElement> & {
 		title: string;
-		description: string;
+		lead: string;
 		sectionClass?: string;
 		articles?: Array<ComponentProps<Article>>;
 	};
@@ -24,7 +24,7 @@
 	export let sectionClass: $$Props['sectionClass'] =
 		name === 'blog' ? 'pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900' : '';
 	export let title: $$Props['title'] = '';
-	export let description: $$Props['description'] = '';
+	export let lead: $$Props['lead'] = '';
 	export let articles: $$Props['articles'] = [];
 
 	export { className as class };
@@ -36,7 +36,7 @@
 		<svelte:fragment slot="h2">{title}</svelte:fragment>
 		<svelte:fragment slot="paragraph">
 			<p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-				{description}
+				{lead}
 			</p>
 		</svelte:fragment>
 	</BlogHead>
