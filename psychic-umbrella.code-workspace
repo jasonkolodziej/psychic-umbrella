@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"tailwindCSS.experimental.classRegex": ["class:\\s*?[\"'`]([^\"'`]*).*?,"]
+	},
+	"extensions": {
+		"recommendations": [
+			"bradlc.vscode-tailwindcss",
+			"svelte.svelte-vscode",
+			"ms-vscode.vscode-typescript-next",
+			"naumovs.color-highlight",
+			"aaron-bond.better-comments",
+			"github.copilot",
+			"piotrpalarz.vscode-gitignore-generator",
+			"antfu.vite",
+			"vunguyentuan.vscode-postcss"
+		]
+	}
+}
