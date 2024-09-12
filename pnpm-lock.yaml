@@ -59,9 +59,6 @@ importers:
       lowlight:
         specifier: ^3.1.0
         version: 3.1.0
-      marked-footnote:
-        specifier: ^1.2.4
-        version: 1.2.4(marked@14.1.2)
       nanoid:
         specifier: ^5.0.7
         version: 5.0.7
@@ -2032,11 +2029,6 @@ packages:
   markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
-
-  marked-footnote@1.2.4:
-    resolution: {integrity: sha512-DB2Kl+wFh6YwZd70qABMY6WUkG1UuyqoNTFoDfGyG79Pz24neYtLBkB+45a7o72V7gkfvbC3CGzIYFobxfMT1Q==}
-    peerDependencies:
-      marked: '>=7.0.0'
 
   marked@13.0.3:
     resolution: {integrity: sha512-rqRix3/TWzE9rIoFGIn8JmsVfhiuC8VIQ8IdX5TfzmeBucdY05/0UlzKaw0eVtpcN/OdVFpBk7CjKGo9iHJ/zA==}
@@ -5071,10 +5063,6 @@ snapshots:
       mdurl: 2.0.0
       punycode.js: 2.3.1
       uc.micro: 2.1.0
-
-  marked-footnote@1.2.4(marked@14.1.2):
-    dependencies:
-      marked: 14.1.2
 
   marked@13.0.3: {}
 

@@ -83,7 +83,6 @@
 		"github-slugger": "^2.0.0",
 		"isomorphic-dompurify": "^2.15.0",
 		"lowlight": "^3.1.0",
-		"marked-footnote": "^1.2.4",
 		"nanoid": "^5.0.7",
 		"next-auth": "^4.24.7",
 		"prism-svelte": "^0.5.0",

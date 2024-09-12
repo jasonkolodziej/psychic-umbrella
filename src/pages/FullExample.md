@@ -316,7 +316,6 @@ Duplicated footnote reference[^second].
 
 [^second]: Footnote text.
 
-
 ------
 
 # Code and Syntax Highlighting
@@ -616,17 +615,17 @@ Underscores
 # YouTube Videos
 
 ```html
-<a href="https://www.youtube.com/embed/T0pTtj1-u9E" target="_blank">
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE" target="_blank">
 <img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
 </a>
 ```
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=T0pTtj1-u9E" target="_blank">
-<img src="http://img.youtube.com/vi/T0pTtj1-u9E/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE" target="_blank">
+<img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
 </a>
 
 ```markdown
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/T0pTtj1-u9E/0.jpg)](https://youtu.be/T0pTtj1-u9E)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 ```
 
 [![IMAGE ALT TEXT HERE](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/YouTube_logo_2015.svg/1200px-YouTube_logo_2015.svg.png)](https://www.youtube.com/watch?v=ciawICBvQoE)

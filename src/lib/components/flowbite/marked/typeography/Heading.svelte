@@ -17,7 +17,7 @@
 
 	// export let token: Tokens.Heading
 	export let options: MarkdownOptions;
-	export let renderers: Renderers;
+	export const renderers: Renderers = undefined;
 	let headingClass: string = 'text-gray-900 dark:text-white';
 	let tag: HeadingLevel = ('h' + token.depth) as HeadingLevel;
 	// let size: string = token.size || 'text-2xl font-bold';

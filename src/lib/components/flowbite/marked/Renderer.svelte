@@ -9,8 +9,7 @@
 	} from '$components/flowbite/marked/configuration';
 
 	//? Step 2, register our custom extension
-	// marked.setOptions(customOptions);
-	marked.use(...customOptions);
+	marked.use(customOptions);
 	export let source: string = '';
 </script>
 
