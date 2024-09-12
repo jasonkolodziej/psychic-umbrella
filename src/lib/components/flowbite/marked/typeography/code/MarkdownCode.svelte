@@ -12,6 +12,10 @@
 	export const renderers: Renderers = undefined;
 </script>
 
+<!-- <svelte:element this="div" bind:this={element} /> -->
+
+<!-- <svelte:window on:click={toggleAnimation} /> -->
+
 <WysiwygEditor value={token.raw} />
 
 <!-- <pre><code class={`lang-${token.lang}`}>{token.text}</code></pre> -->

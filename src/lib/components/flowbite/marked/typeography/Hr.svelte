@@ -26,7 +26,7 @@
 				: hrClass === 'trimmed'
 					? 'w-48 h-1 mx-auto my-4 rounded md:my-20'
 					: 'my-8'; // default
-	// $: console.log('Hr', { token });
+	$: console.log('Hr', { token });
 </script>
 
 <Hr bind:hrClass>
