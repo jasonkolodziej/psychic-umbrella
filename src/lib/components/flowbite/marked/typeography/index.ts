@@ -1,7 +1,7 @@
 export { default as Heading } from './Heading.svelte';
 export { default as BlockQuote } from './BlockQuote.svelte';
-export { default as List } from './list/List.svelte';
-export { default as ListItem } from './list/ListItem.svelte';
+export { default as MarkdownList } from './list/MarkdownList.svelte';
+export { default as MarkdownListItem } from './list/MarkdownListItem.svelte';
 export { default as MarkdownCode } from './code/MarkdownCode.svelte';
 export { default as MarkdownCodeSpan } from './code/MarkdownCodeSpan.svelte';
 export { default as Br } from './Br.svelte';
