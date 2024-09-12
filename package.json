@@ -76,7 +76,6 @@
 		"flowbite": "^2.5.1",
 		"flowbite-svelte": "^0.46.15",
 		"flowbite-svelte-icons": "^1.6.1",
-		"github-slugger": "^2.0.0",
 		"isomorphic-dompurify": "^2.15.0",
 		"nanoid": "^5.0.7",
 		"next-auth": "^4.24.7",

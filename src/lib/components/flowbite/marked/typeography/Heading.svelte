@@ -1,7 +1,5 @@
 <script lang="ts">
-	// import { generatePathSegment } from '$lib/utils/url';
-
-	import type { Tokens } from 'marked';
+	import type { Token, Tokens } from 'marked';
 	import {
 		MarkdownTokens,
 		urlUtils,
@@ -13,21 +11,17 @@
 	import type { HeadingLevel } from '$components/blog/ui/card';
 
 	export let token: Tokens.Heading & ComponentProps<Heading> & { level: number };
-
-	// export let token: Tokens.Heading
 	export let options: MarkdownOptions;
 	export const renderers: Renderers = undefined;
+
 	let tag: HeadingLevel = ('h' + token.depth) as HeadingLevel;
 	let id: string | undefined;
 	$: id = urlUtils.generatePathSegment(token.text, options.slugger);
+
+	$: console.log({ token });
 </script>
 
 <Heading bind:tag {id}>
-	<!-- {token.text} -->
-	<slot />
+	{token.text}
 	<!-- <MarkdownTokens tokens={token.tokens} {renderers} {options} /> -->
 </Heading>
-
-<!-- <svelte:element this={`h${token.depth}`} {id}>
-  <slot />
-</svelte:element> -->

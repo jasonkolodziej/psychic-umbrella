@@ -13,8 +13,16 @@ import {
 	type Tokens
 } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
-//? my custom components
 import BackgroundColor from '$components/flowbite/marked/extensions/BackgroundColor.svelte';
+import Img from '$components/flowbite/marked/typeography/Img.svelte';
+import Heading from '$components/flowbite/marked/typeography/Heading.svelte';
+import List from '$components/flowbite/marked/typeography/List.svelte';
+import ListItem from '$components/flowbite/marked/typeography/ListItem.svelte';
+import BlockQuote from '$components/flowbite/marked/typeography/BlockQuote.svelte';
+import Paragraph from '$components/flowbite/marked/typeography/Paragraph.svelte';
+import Link from '$components/flowbite/marked/typeography/Link.svelte';
+import Hr from '$components/flowbite/marked/typeography/Hr.svelte';
+import Table from '$components/flowbite/marked/table/Table.svelte';
 
 //? Reference: https://marked.js.org/docs/using_pro#renderer
 //? Reference: https://magidoc.js.org/svelte-plugins/marked
@@ -56,13 +64,11 @@ export const customOptions: MarkedExtension = {
 export const mappedRenderers: Renderers = {
 	//? Default renderers
 	img: Img,
-	// heading: Heading,
-	heading: MarkdownHeading,
+	heading: Heading,
 	list: List,
 	listItem: ListItem,
 	blockquote: BlockQuote,
-	paragraph: MarkdownParagraph,
-	strong: MarkdownStrong,
+	paragraph: Paragraph,
 	link: Link,
 	hr: Hr,
 	table: Table,

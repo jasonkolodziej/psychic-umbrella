@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { Tokens } from 'marked';
+	import {
+		MarkdownTokens,
+		type MarkdownOptions,
+		type Renderers
+	} from '@magidoc/plugin-svelte-marked';
 	import { Blockquote } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
-	import {
-		MarkdownTokens,
-		type Renderers,
-		type MarkdownOptions
-	} from '@magidoc/plugin-svelte-marked';
 
 	export let token: Tokens.Blockquote &
 		ComponentProps<Blockquote> &
@@ -18,13 +18,10 @@
 	let bg = token.pretty ? true : false;
 	let border = token.pretty ? true : false;
 	let bqClass = token.pretty ? 'p-4 my-4' : undefined;
+
+	// $: console.log('BlockQuote', { token });
 </script>
 
-<!-- <blockquote>
-  <slot />
-</blockquote> -->
-
 <Blockquote bind:border bind:bg class={twMerge(bqClass)}>
-	<!-- <MarkdownTokens tokens={token.tokens} {renderers} {options} /> -->
-	<slot />
+	<MarkdownTokens tokens={token.tokens} {renderers} {options} />
 </Blockquote>

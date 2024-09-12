@@ -1,12 +1,6 @@
 <script lang="ts">
-	import type { Tokens } from 'marked';
-	import {
-		MarkdownTokens,
-		type Renderers,
-		type MarkdownOptions
-	} from '@magidoc/plugin-svelte-marked';
-
-	// export const token: Tokens.Hr = undefined
+	import type { Token, Tokens } from 'marked';
+	import type { MarkdownOptions, Renderers } from '@magidoc/plugin-svelte-marked';
 	import { Hr } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
 	import type { HeadingLevel } from '$components/blog/ui/card';
@@ -32,4 +26,3 @@
 <Hr bind:hrClass>
 	<!-- {token.text} -->
 </Hr>
-<!-- <hr /> -->

@@ -1,12 +1,10 @@
 <script lang="ts">
-	import type { Tokens } from 'marked';
+	import type { Token, Tokens } from 'marked';
 	import {
 		MarkdownTokens,
-		type Renderers,
-		type MarkdownOptions
+		type MarkdownOptions,
+		type Renderers
 	} from '@magidoc/plugin-svelte-marked';
-
-	// export const token: Tokens.Paragraph = undefined
 	import { P, type PweightType } from 'flowbite-svelte';
 	import type { ComponentProps } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
@@ -14,19 +12,27 @@
 	export let token: Tokens.Paragraph &
 		ComponentProps<P> &
 		Tokens.Generic & {
-			pretty?: boolean;
+			pretty: boolean;
 			emphasis?: boolean;
 			strong?: boolean;
 		};
-	export const options: MarkdownOptions = undefined;
-	export const renderers: Renderers = undefined;
 
-	let italic = token.emphasis ?? false;
+	export let options: MarkdownOptions;
+	export let renderers: Renderers;
+	token = {
+		...token,
+		emphasis: token.tokens.some((t: Token) => t.type === 'em'),
+		strong: token.tokens.some((t: Token) => t.type === 'strong')
+	};
+	let italic = token.emphasis ?? true;
 	let weight: PweightType = token.strong ? 'bold' : 'normal';
+	// let bg = token.pretty ? true : false;
+	// let border = token.pretty ? true : false;
+	// let bqClass = token.pretty ? 'p-4 my-4' : undefined;
 
-	// $: console.log('Paragraph', { token });
+	$: console.log('Paragraph', { token });
 </script>
 
 <P bind:italic bind:weight>
-	<slot />
+	<MarkdownTokens tokens={token.tokens} {renderers} {options} />
 </P>
