@@ -2,43 +2,48 @@
 	// import Link from '$lib/carta/components/link/Link.svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
-	import { BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
+	import { BlogTemplate } from 'flowbite-svelte-blocks';
 	// import SectionBlogpost from '../section/section-blogpost.svelte';
 	import { Section } from '$components/using/flowbite/blog/ui/section';
-	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
-	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
+	import Comments from '$components/using/flowbite/blog/ui/comment/Comments.svelte';
+	// import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
+	// import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
+	import { type Comment } from '$lib/filtering/blog';
 	import blogExample from '$lib/data/blog-example.json';
-	import comments from '$lib/data/comments-example.json';
+	import commentsExample from '$lib/data/comments-example.json';
 	import type { BlogPost } from '$lib/filtering/blog';
 
 	// import '../../../../../app.pcss';
 
-	type $$Props = HTMLAttributes<HTMLParagraphElement> & {
+	type $$Props = HTMLAttributes<HTMLElement> & {
 		blog: BlogPost;
+		comments?: Array<Comment>;
 		classArticle?: string;
-		commentTitle?: string;
-		commentLabel?: string;
-		commentPlaceholder?: string;
-		commentButtonLabel?: string;
+		// commentTitle?: string;
+		// commentLabel?: string;
+		// commentPlaceholder?: string;
+		// commentButtonLabel?: string;
 	};
 
 	let className: $$Props['class'] = undefined;
-	export let commentTitle: $$Props['commentTitle'] = undefined;
-	export let commentLabel: $$Props['commentLabel'] = 'Your comment';
-	export let commentPlaceholder: $$Props['commentPlaceholder'] = 'Write a comment...';
-	export let commentButtonLabel: $$Props['commentButtonLabel'] = 'Post Comment';
+	let blogPost = true;
 	export let classArticle: $$Props['classArticle'] = 'dark:text-white';
 	export let blog: $$Props['blog'] = blogExample;
+	export let comments: $$Props['comments'] = undefined;
+	comments = blog.comments ? comments : commentsExample;
 
 	export { className as class };
 
 	// export let href: string;
 </script>
 
-<Section blogPost>
+<Section bind:blogPost>
 	<BlogTemplate bind:blog bind:classArticle {...$$restProps} />
+	{#if comments}
+		<Comments bind:comments />
+	{/if}
 
-	<Section name="comment">
+	<!-- <Section name="comment">
 		<Comment title={commentTitle}>
 			<form class="mb-6">
 				<Label for="comment" class="sr-only">{commentLabel}</Label>
@@ -50,7 +55,6 @@
 				<CommentItem {comment} articleClass={i !== 0 ? 'border-t' : ''}>
 					<svelte:fragment slot="dropdownMenu">
 						<DotsHorizontalOutline class="dots-menu dark:text-white" />
-						<!-- TODO: add drop downs? -->
 						<Dropdown triggeredBy=".dots-menu">
 							<DropdownItem>Edit</DropdownItem>
 							<DropdownItem>Remove</DropdownItem>
@@ -60,5 +64,5 @@
 				</CommentItem>
 			{/each}
 		</Comment>
-	</Section>
+	</Section> -->
 </Section>

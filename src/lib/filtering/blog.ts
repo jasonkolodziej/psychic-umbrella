@@ -10,7 +10,7 @@ export interface Commenter {
 export interface Comment {
 	id: string;
 	commenter: Commenter;
-	date: DateConstructor;
+	date: string | Date | DateConstructor;
 	content: string;
 	replies?: Comment[];
 }
@@ -51,11 +51,12 @@ export interface BlogPost extends Blog {
 	// * blog author
 	author: Author;
 	// * blog date
-	date(): string | undefined;
-	isoDate: typeof Date;
+	date: string | Date | DateConstructor;
+	isoDate: string | Date | DateConstructor;
 	// * blog content
 	content: string;
 	get asArticle(): Article;
+	get comments(): Array<Comment> | undefined;
 }
 
 // * use

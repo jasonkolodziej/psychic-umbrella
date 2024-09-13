@@ -84,7 +84,7 @@
 					}
 				}
 			: undefined;
-	$: console.log((blog as BlogPost).asArticle);
+	// $: console.log((blog as BlogPost).asArticle);
 	let articles: IArticle[] = blog?.article ?? articlesExample;
 	articles.map((article) => {
 		article.author = ToArticleAuthor(article.author as Author);
