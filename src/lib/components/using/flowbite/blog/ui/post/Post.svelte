@@ -11,6 +11,8 @@
 	import { FloatingMenu } from '@tiptap/extension-floating-menu';
 	import { BubbleMenu } from '@tiptap/extension-bubble-menu';
 	import { TextStyle } from '@tiptap/extension-text-style';
+	import { Color } from '@tiptap/extension-color';
+	import { Image } from '@tiptap/extension-image';
 	// * Types
 	import { type Comment, type BlogPost } from '$lib/filtering/blog';
 	//! example data
@@ -18,6 +20,7 @@
 	import commentsExample from '$lib/data/comments-example.json';
 	import { onDestroy, onMount, SvelteComponent, type ComponentType } from 'svelte';
 	import { ButtonGroup, GradientButton, Button, DarkMode } from 'flowbite-svelte';
+	import { twMerge } from 'tailwind-merge';
 
 	type $$Props = HTMLAttributes<HTMLElement> & {
 		blog: BlogPost;
@@ -55,12 +58,55 @@
 	// const lowlight = createLowlight(all);
 	//? Reference: https://tiptap.dev/docs/editor/getting-started/style-editor#editor
 	let editorClass: string =
-		'prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl mx-auto focus:outline-none';
+		'prose prose-sm sm:prose-sm lg:prose-lg xl:prose-2xl mx-auto focus:outline-none';
+	// const addImage = useCallback(() => {
+	// 	const url = window.prompt('URL');
+
+	// 	if (url) {
+	// 		editor.chain().focus().setImage({ src: url }).run();
+	// 	}
+	// }, [editor]);
+
+	// if (!editor) {
+	// 	return null;
+	// }
 	onMount(() => {
 		editor = new Editor({
 			element: element,
+			editorProps: {
+				attributes: {
+					class: editorClass
+				}
+			},
 			extensions: [
-				StarterKit,
+				Image,
+				StarterKit.configure({
+					// options
+					heading: {
+						HTMLAttributes: {
+							class: 'text-base text-gray-900 dark:text-white'
+						},
+						levels: [1, 2, 3, 4, 5, 6]
+					},
+					paragraph: {
+						HTMLAttributes: {
+							class: 'text-base text-gray-900 dark:text-white'
+						}
+					},
+					listItem: {
+						HTMLAttributes: {
+							class: 'text-base text-gray-900 dark:text-white'
+						}
+					},
+					blockquote: {
+						HTMLAttributes: {
+							class: twMerge(
+								'border-s-4 border-gray-300 dark:border-gray-500',
+								'bg-gray-50 dark:bg-gray-800'
+							)
+						}
+					}
+				}),
 				BubbleMenu.configure({
 					element: bubbleMenu as HTMLElement,
 					tippyOptions: {
@@ -72,10 +118,9 @@
 					tippyOptions: {
 						duration: 100
 					}
-				})
-				// StarterKit.configure({
-				// 	// options
-				// })
+				}),
+				TextStyle,
+				Color
 				// CodeBlockLowlight.configure({
 				// 	lowlight
 				// })
@@ -161,15 +206,19 @@
 					size="xs"
 					outline={editor.isActive('italic') ? false : true}
 					color="cyanToBlue"
-					on:click={() => editor.chain().focus().toggleItalic().run()}
-					class={editor.isActive('italic') ? 'is-active' : ''}>Italic</GradientButton
+					on:click={() => editor.chain().focus().toggleItalic().run()}>Italic</GradientButton
+				>
+				<GradientButton
+					size="xs"
+					outline={editor.isActive('textStyle', { color: '#958DF1' }) ? false : true}
+					color="cyanToBlue"
+					on:click={() => editor.chain().focus().setColor('#958DF1').run()}>Purple</GradientButton
 				>
 				<GradientButton
 					size="xs"
 					outline={editor.isActive('strike') ? false : true}
 					color="greenToBlue"
-					on:click={() => editor.chain().focus().toggleStrike().run()}
-					class={editor.isActive('strike') ? 'is-active' : ''}>Strike</GradientButton
+					on:click={() => editor.chain().focus().toggleStrike().run()}>Strike</GradientButton
 				>
 			</ButtonGroup>
 		{/if}
