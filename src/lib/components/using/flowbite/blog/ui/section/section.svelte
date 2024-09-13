@@ -16,7 +16,7 @@
 		type ArticleHead,
 		type Picture,
 		ToArticleAuthor,
-		type IArticle
+		type Article as IArticle
 	} from '$lib/filtering/blog';
 	import { VideoCameraSolid } from 'flowbite-svelte-icons';
 
@@ -64,8 +64,28 @@
 	};
 	export let blogPost: $$Props['blogPost'] = false;
 	export let name: $$Props['name'] = blogPost === true ? 'blog' : undefined;
-	export let blog: $$Props['blog'] = name === 'blog' ? blogExample : undefined;
-	let articles: IArticle[] = blog?.articles ?? articlesExample;
+	export let blog: $$Props['blog'] =
+		name === 'blog'
+			? {
+					...blogExample,
+					asArticle: () => {
+						return {
+							head: {
+								icon: VideoCameraSolid,
+								when: new Date(blogExample.isoDate).getTime().toString(),
+								iconLabel: 'Video Camera'
+							} satisfies ArticleHead,
+							body: {
+								title: blogExample.title,
+								lead: blogExample.lead
+							} satisfies ArticleBody,
+							author: ToArticleAuthor(blogExample.author as Author) satisfies ArticleAuthor
+						};
+					}
+				}
+			: undefined;
+	$: console.log((blog as BlogPost).asArticle);
+	let articles: IArticle[] = blog?.article ?? articlesExample;
 	articles.map((article) => {
 		article.author = ToArticleAuthor(article.author as Author);
 	});

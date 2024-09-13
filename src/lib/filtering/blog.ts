@@ -1,77 +1,16 @@
+import type { XOR } from '$lib/utils/templates';
 import type { SvelteComponent } from 'svelte';
-
-// https://refine.dev/blog/typescript-mapped-types/#typescript-type-mapper-utility-vs-ts-mapped-type-the-difference
-export type Nullable<T> = T | null;
-export type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
-export type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
-export type Distinct<TypeSource, DistinctName> = TypeSource & { __TYPE__: DistinctName };
-export type FilterOut<Source, Keys> = {
-	[Property in keyof Source as Exclude<Property, Keys>]: Source[Property];
-};
-export type FilterIn<Source, Keys> = {
-	[Property in keyof Source as Extract<Property, Keys>]: Source[Property];
-};
-export interface Discussion {
-	// Author of the discussion
-	Author: string;
-	// Comments
-	Comment: Array<string> | string;
-	// Replies to the comment / discussion
-	Replies?: Array<Discussion>;
-}
-
-export interface PostData<T> {
-	// Author of the post
-	Author: string;
-	// Author Title
-	AuthorTitle?: string;
-	// Title of the post
-	Title: string;
-	// Summary of the post
-	Summary: string;
-	// Content of the post
-	Content?: Array<string> | string | Buffer;
-	// Related
-	RelatedContent?: T | Array<T>;
-	// Discussion of the post
-	Discussion?: Discussion;
-}
-
-export class Post<T> implements PostData<T> {
-	Title: string;
-	Author: string;
-	AuthorTitle?: string | undefined;
-	Summary: string;
-	Content?: string | Buffer | string[] | undefined;
-	RelatedContent?: T | T[] | undefined;
-	// TODO: add author and title and summary
-	// Initial timestamp of the post entry
-	CreatedAt: Date;
-	// Latest timestamp when data was altered on the post
-	UpdatedAt: Date;
-	// Data of the post
-	Discussion?: Discussion;
-
-	constructor(Author: string, Title?: string, Summary?: string) {
-		this.Author = Author;
-		this.Title = Title ?? '';
-		this.Summary = Summary ?? '';
-		this.CreatedAt = new Date();
-		this.UpdatedAt = new Date();
-	}
-}
-
 // * use
-export type Commenter = {
-	name: string;
-	profilePicture: string;
-};
+export interface Commenter {
+	name: Author['name'];
+	profilePicture: Author['profilePicture'];
+}
 
 // * use
 export interface Comment {
 	id: string;
 	commenter: Commenter;
-	date: string;
+	date: DateConstructor;
 	content: string;
 	replies?: Comment[];
 }
@@ -99,33 +38,43 @@ export type Author = Picture & {
 
 // * use
 export interface Blog {
+	// * blog id
 	id: string;
+	// * blog title
 	title: string;
+	// * blog lead (header) or summary
 	lead?: string | undefined;
-	articles?: Array<IArticle>;
-}
-export interface IArticle {
-	head?: ArticleHead;
-	body?: ArticleBody;
-	author?: ArticleAuthor;
+	// * blog article or the summarized card of the blog
+	article: Array<Article>;
 }
 export interface BlogPost extends Blog {
+	// * blog author
 	author: Author;
-	date?: string | undefined;
-	isoDate?: string | undefined;
+	// * blog date
+	date(): string | undefined;
+	isoDate: typeof Date;
+	// * blog content
 	content: string;
+	get asArticle(): Article;
 }
 
-export interface ArticleBody {
-	title: BlogPost['title'];
-	lead: BlogPost['lead'];
-	titleHref?: string;
-	// (blog: BlogPost, titleHref?: string): ArticleBody;
+// * use
+export interface Article {
+	// * article head (date aka.. when, icon, iconLabel)
+	head?: ArticleHead;
+	// * article body (title of blog, lead | summary of blog, titleHref | href to the blog)
+	body?: ArticleBody;
+	// * article author (title, `name` of the author, imgSrc | profilePicture, imgDescription | description of the author, moreInfoLabel, moreInfoHref)
+	author?: ArticleAuthor;
 }
-export const ToArticleBody = (blog: BlogPost, titleHref?: string): ArticleBody => {
-	return { title: blog.title, lead: blog.lead, titleHref: titleHref ?? undefined } as ArticleBody;
-};
-
+export interface ArticleHead {
+	// * friendly how long ago the article was published
+	when: string;
+	// * icon of the article
+	icon?: typeof SvelteComponent;
+	// * icon label
+	iconLabel?: string;
+}
 export interface ArticleAuthor {
 	title: Author['name'];
 	imgSrc: Author['profilePicture'];
@@ -140,8 +89,12 @@ export const ToArticleAuthor = (author: Author): ArticleAuthor => {
 		imgDescription: author.imgDescription ?? author.name + author.title
 	} satisfies ArticleAuthor;
 };
-export interface ArticleHead {
-	when: string;
-	icon?: typeof SvelteComponent;
-	iconLabel?: string;
+export interface ArticleBody {
+	title: BlogPost['title'];
+	lead: BlogPost['lead'];
+	titleHref?: string;
+	// (blog: BlogPost, titleHref?: string): ArticleBody;
 }
+export const ToArticleBody = (blog: BlogPost, titleHref?: string): ArticleBody => {
+	return { title: blog.title, lead: blog.lead, titleHref: titleHref ?? undefined } as ArticleBody;
+};

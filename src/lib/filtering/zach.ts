@@ -97,12 +97,12 @@ export class LegoSet implements LegoKit {
 
 	public AddPictures(pics: Picture | Picture[]) {
 		if (this.Pictures === undefined) {
-			this.Pictures = [];
+			this.Pictures = new Array<Picture>();
 		}
-		if (typeof pics === 'object' && 'Description' in pics) {
-			this.Pictures.push(pics);
+		if (Array.isArray(pics)) {
+			this.Pictures.push(...pics);
 		} else {
-			this.Pictures = pics;
+			this.Pictures.push(pics);
 		}
 	}
 
