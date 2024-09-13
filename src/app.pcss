@@ -80,6 +80,7 @@
 		pre {
 			/* font-family: 'JetBrainsMono', monospace; */
 			/* ? used to mold to top toolbar */
+			background: theme('colors.gray.900');
 			/* border-top-right-radius: inherit; */
 			/* border-top-left-radius: inherit; */
 			border-radius: inherit;
@@ -113,7 +114,8 @@
 		.hljs-name,
 		.hljs-selector-id,
 		.hljs-selector-class {
-			color: #f98181;
+			/* color: #f98181; */
+			color: theme('colors.red.400');
 		}
 
 		.hljs-number,
@@ -123,23 +125,27 @@
 		.hljs-literal,
 		.hljs-type,
 		.hljs-params {
-			color: #fbbc88;
+			/* color: #fbbc88; */
+			color: theme('colors.orange.300');
 		}
 
 		.hljs-string,
 		.hljs-symbol,
 		.hljs-bullet {
-			color: #b9f18d;
+			/* color: #b9f18d; */
+			color: theme('colors.green.300');
 		}
 
 		.hljs-title,
 		.hljs-section {
-			color: #faf594;
+			/* color: #faf594; */
+			color: theme('colors.yellow.200');
 		}
 
 		.hljs-keyword,
 		.hljs-selector-tag {
-			color: #70cff8;
+			/* color: #70cff8; */
+			color: theme('colors.blue.300');
 		}
 
 		.hljs-emphasis {
@@ -148,6 +154,66 @@
 
 		.hljs-strong {
 			font-weight: 700;
+		}
+	}
+	/* Tiptap Bubble menu */
+	.bubble-menu {
+		background-color: var(--white);
+		border: 1px solid var(--gray-1);
+		border-radius: 0.7rem;
+		box-shadow: var(--shadow);
+		display: flex;
+		padding: 0.2rem;
+
+		button {
+			background-color: unset;
+			&:hover {
+				/* background-color: var(--gray-3); */
+				background-color: theme('colors.gray.300');
+			}
+
+			&.is-active {
+				/* background-color: var(--purple); */
+				background-color: theme('colors.purple.400');
+
+				&:hover {
+					/* background-color: var(--purple-contrast); */
+					background-color: theme('colors.purple.500');
+				}
+			}
+		}
+	}
+
+	/* Tiptap Floating menu */
+	.floating-menu {
+		display: flex;
+		background-color: var(--gray-3);
+		/* background-color: inherit; */
+		padding: 0.1rem;
+		border-radius: 0.5rem;
+
+		button {
+			/* background-color: unset; */
+			background-color: inherit;
+			/* padding: 0.275rem 0.425rem; */
+			/* border-radius: 0.3rem; */
+
+			&:hover {
+				/* background-color: var(--gray-3); */
+				background-color: theme('colors.gray.300');
+			}
+
+			&.is-active {
+				background-color: theme('colors.white');
+				/* background-color: var('--white'); */
+				/* color: var(--purple); */
+				color: theme('colors.purple.400');
+
+				&:hover {
+					/* color: var(--purple-contrast); */
+					color: theme('colors.purple.500');
+				}
+			}
 		}
 	}
 }

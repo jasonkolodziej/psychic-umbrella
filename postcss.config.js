@@ -2,6 +2,7 @@ export default {
 	plugins: {
 		//? https://tailwindcss.com/docs/using-with-preprocessors#nesting
 		// 'postcss-import': {},
+		'postcss-apply': {},
 		// 'tailwindcss/nesting': {},
 		//Some plugins, like tailwindcss/nesting, need to run before Tailwind,
 		tailwindcss: {},

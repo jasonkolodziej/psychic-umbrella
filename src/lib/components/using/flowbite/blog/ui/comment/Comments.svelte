@@ -18,21 +18,21 @@
 		commentLabel?: string;
 		commentPlaceholder?: string;
 		commentButtonLabel?: string;
-		comments?: Array<Comment>;
+		comments: Array<Comment>;
 	};
 
-	export let commentTitle: $$Props['commentTitle'] = undefined;
+	export let commentTitle: $$Props['commentTitle'] = 'Comments';
 	export let commentLabel: $$Props['commentLabel'] = 'Your comment';
 	export let commentPlaceholder: $$Props['commentPlaceholder'] = 'Write a comment...';
 	export let commentButtonLabel: $$Props['commentButtonLabel'] = 'Post Comment';
 	export let classArticle: $$Props['classArticle'] = 'dark:text-white';
-	export let comments: $$Props['comments'] = undefined;
+	export let comments: $$Props['comments'] = [];
 	let className: $$Props['class'] = undefined;
 	export { className as class };
 	// export let href: string;
 </script>
 
-<Section name="comment">
+<Section name="comment" classDiv="px-0" sectionClass="not-format">
 	<Comment title={commentTitle}>
 		<form class="mb-6">
 			<Label for="comment" class="sr-only">{commentLabel}</Label>
