@@ -1,24 +1,25 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
 	import { getContext } from 'svelte';
-	import { onDestroy, onMount, SvelteComponent, type ComponentType } from 'svelte';
-	import { ButtonGroup, GradientButton, Button, Input, P } from 'flowbite-svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import { ButtonGroup, GradientButton, Dropdown, DropdownItem, Indicator } from 'flowbite-svelte';
 	//? Editor
 	import { Editor } from '@tiptap/core';
-	import StarterKit from '@tiptap/starter-kit';
 	import { FloatingMenu } from '@tiptap/extension-floating-menu';
 	import { BubbleMenu } from '@tiptap/extension-bubble-menu';
-	import { TextStyle } from '@tiptap/extension-text-style';
-	import { Underline } from '@tiptap/extension-underline';
-	import { Color } from '@tiptap/extension-color';
 	import { Image } from '@tiptap/extension-image';
-	import { cn } from '$lib/carta/utils';
 	import {
 		LetterBoldOutline,
 		LetterItalicOutline,
-		LetterUnderlineOutline
+		LetterUnderlineOutline,
+		ParagraphOutline,
+		ChevronDownOutline
 	} from 'flowbite-svelte-icons';
-	import { TextStrikethrough } from 'carbon-icons-svelte';
+	import { TextStrikethrough, TextScale } from 'carbon-icons-svelte';
+	import {
+		defaultFlowbiteStarterkitOpts,
+		extensionsWithNoOpts
+	} from '$components/tiptap/starterkitOpts';
 	export let content: any = undefined;
 	export let afterMount: () => void = () => {};
 	// determine if the user prefers dark mode
@@ -28,12 +29,6 @@
 	let colorInput: any;
 	let bubbleMenu: HTMLElement;
 	let buttonSize: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'xs';
-	let iconButtonSize =
-		buttonSize === 'xs' || buttonSize === 'sm'
-			? 'w-4 h-4 me-2'
-			: buttonSize === 'md' || buttonSize === 'lg'
-				? 'w-5 h-5 me-2'
-				: 'w-6 h-6 me-2';
 	// const bubbleMenu: ComponentType = ButtonGroup;
 	let floatingMenu: HTMLElement;
 	function usingDarkMode(
@@ -84,39 +79,7 @@
 			},
 			extensions: [
 				Image,
-				StarterKit.configure({
-					// options
-					heading: {
-						HTMLAttributes: {
-							class: 'text-base text-gray-900 dark:text-white'
-						},
-						levels: [1, 2, 3, 4, 5, 6]
-					},
-					paragraph: {
-						HTMLAttributes: {
-							class: 'text-base text-gray-900 dark:text-white'
-						}
-					},
-					listItem: {
-						HTMLAttributes: {
-							class: 'text-base text-gray-900 dark:text-white'
-						}
-					},
-					blockquote: {
-						HTMLAttributes: {
-							class: twMerge(
-								'border-s-4 border-gray-300 dark:border-gray-500',
-								'bg-gray-50 dark:bg-gray-800'
-							)
-						}
-					},
-					bold: {
-						HTMLAttributes: {
-							class: 'text-inherit'
-						}
-					}
-				}),
-				Underline,
+				...extensionsWithNoOpts,
 				BubbleMenu.configure({
 					element: bubbleMenu as HTMLElement,
 					tippyOptions: {
@@ -128,9 +91,7 @@
 					tippyOptions: {
 						duration: 100
 					}
-				}),
-				TextStyle,
-				Color
+				})
 				// CodeBlockLowlight.configure({
 				// 	lowlight
 				// })
@@ -141,6 +102,7 @@
 				editor = editor;
 			}
 		});
+
 		// isDark = localStorage.getItem('color-theme') === 'dark';
 		afterMount();
 	});
@@ -174,29 +136,32 @@
 				>
 					H1
 				</Button> -->
-			<GradientButton
-				size="xs"
-				outline={editor.isActive('heading', { level: 1 }) ? false : true}
-				color="pinkToOrange"
-				on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-			>
-				H1
+			<GradientButton size="xs" outline color="pinkToOrange">
+				<TextScale />
+				<ChevronDownOutline size="xs" />
 			</GradientButton>
-			<GradientButton
-				size="xs"
-				on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-				outline={editor.isActive('heading', { level: 2 }) ? false : true}
-				color="pinkToOrange"
-			>
-				H2
-			</GradientButton>
+			<Dropdown>
+				<!-- bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl -->
+				{#each defaultFlowbiteStarterkitOpts.heading.levels as level}
+					<DropdownItem
+						active={editor.isActive('heading', { level: level })}
+						on:click={() => editor.chain().focus().toggleHeading({ level: level }).run()}
+					>
+						{#if editor.isActive('heading', { level: level })}
+							<Indicator size="xs" color="blue" />
+						{/if}
+						Heading {level}
+						<!-- H{level} -->
+					</DropdownItem>
+				{/each}
+			</Dropdown>
 			<GradientButton
 				size="xs"
 				on:click={() => editor.chain().focus().setParagraph().run()}
 				outline={editor.isActive('paragraph') ? false : true}
 				color="pinkToOrange"
 			>
-				P
+				<ParagraphOutline size="sm" />
 			</GradientButton>
 		</ButtonGroup>
 	{/if}

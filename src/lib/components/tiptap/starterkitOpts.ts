@@ -1,14 +1,20 @@
-import type { EditorOptions } from '@tiptap/core';
+import type { EditorOptions, Extension, Extensions } from '@tiptap/core';
 import { StarterKit, type StarterKitOptions } from '@tiptap/starter-kit';
 import { type FloatingMenuOptions, FloatingMenu } from '@tiptap/extension-floating-menu';
 import { type BubbleMenuOptions, BubbleMenu } from '@tiptap/extension-bubble-menu';
+import { Image } from '@tiptap/extension-image';
+import TextStyle from '@tiptap/extension-text-style';
+import Color from '@tiptap/extension-color';
+import { Underline } from '@tiptap/extension-underline';
 import { twMerge } from 'tailwind-merge';
+
 //? Reference: https://tiptap.dev/docs/editor/getting-started/style-editor#editor
 export const editorClass: string =
 	'prose prose-sm sm:prose-sm lg:prose-lg xl:prose-2xl mx-auto focus:outline-none';
 
 //? @tiptap/extension-starter-kit
 export const defaultFlowbiteStarterkitOpts: Partial<StarterKitOptions> = {
+	// options
 	heading: {
 		HTMLAttributes: {
 			class: 'text-base text-gray-900 dark:text-white'
@@ -32,8 +38,21 @@ export const defaultFlowbiteStarterkitOpts: Partial<StarterKitOptions> = {
 				'bg-gray-50 dark:bg-gray-800'
 			)
 		}
+	},
+	bold: {
+		HTMLAttributes: {
+			class: 'text-inherit'
+		}
 	}
 };
+
+export const extensionsWithNoOpts: Extensions = [
+	StarterKit.configure(defaultFlowbiteStarterkitOpts),
+	TextStyle,
+	Color,
+	Underline
+];
+
 // ? "@tiptap/extension-floating-menu"
 export const floatingMenuOpts = (
 	element: HTMLElement,
@@ -74,7 +93,11 @@ export const editorOptions = (
 			}
 		},
 		extensions: [
-			StarterKit.configure(defaultFlowbiteStarterkitOpts)
+			Image,
+			StarterKit.configure(defaultFlowbiteStarterkitOpts),
+			TextStyle,
+			Color,
+			Underline
 			// BubbleMenu.configure(bubbleMenuOpts)
 		],
 		...editorOptions
