@@ -2,7 +2,14 @@
 	import { twMerge } from 'tailwind-merge';
 	import { getContext } from 'svelte';
 	import { onDestroy, onMount } from 'svelte';
-	import { ButtonGroup, GradientButton, Dropdown, DropdownItem, Indicator } from 'flowbite-svelte';
+	import {
+		ButtonGroup,
+		GradientButton,
+		Dropdown,
+		DropdownItem,
+		Indicator,
+		P
+	} from 'flowbite-svelte';
 	//? Editor
 	import { Editor } from '@tiptap/core';
 	import { FloatingMenu } from '@tiptap/extension-floating-menu';
@@ -147,10 +154,10 @@
 						active={editor.isActive('heading', { level: level })}
 						on:click={() => editor.chain().focus().toggleHeading({ level: level }).run()}
 					>
-						{#if editor.isActive('heading', { level: level })}
-							<Indicator size="xs" color="blue" />
-						{/if}
-						Heading {level}
+						<P
+							weight={editor.isActive('heading', { level: level }) ? 'extrabold' : 'normal'}
+							size="xs">Heading {level}</P
+						>
 						<!-- H{level} -->
 					</DropdownItem>
 				{/each}
