@@ -47,12 +47,18 @@ importers:
       '@tiptap/extension-text-style':
         specifier: ^2.6.6
         version: 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))
+      '@tiptap/extension-underline':
+        specifier: ^2.6.6
+        version: 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))
       '@tiptap/pm':
         specifier: ^2.6.6
         version: 2.6.6
       '@tiptap/starter-kit':
         specifier: ^2.6.6
         version: 2.6.6
+      carbon-icons-svelte:
+        specifier: ^12.11.0
+        version: 12.11.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1112,6 +1118,11 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.6.6
 
+  '@tiptap/extension-underline@2.6.6':
+    resolution: {integrity: sha512-3A4HqsDM/AFb2VaeWACpGexjgI257kz0yU4jNV8uyydDR2KhqeinuEnoSoOmx9T3pL006TWfPg4vaQYPO3qvrQ==}
+    peerDependencies:
+      '@tiptap/core': ^2.6.6
+
   '@tiptap/pm@2.6.6':
     resolution: {integrity: sha512-56FGLPn3fwwUlIbLs+BO21bYfyqP9fKyZQbQyY0zWwA/AG2kOwoXaRn7FOVbjP6CylyWpFJnpRRmgn694QKHEg==}
 
@@ -1399,6 +1410,9 @@ packages:
 
   capnp-ts@0.7.0:
     resolution: {integrity: sha512-XKxXAC3HVPv7r674zP0VC3RTXz+/JKhfyw94ljvF80yynK6VkTnqE3jMuN8b3dUVmmc43TjyxjW4KTsmB3c86g==}
+
+  carbon-icons-svelte@12.11.0:
+    resolution: {integrity: sha512-t1NT10i62/c0i5dymKHCcEQTM3TGlqVxRBHw8/LmOgq/jhIaAYNz6iXarSq3M6QuroV0om/KILEhaFo/APcKQA==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -4000,6 +4014,10 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.6.6(@tiptap/pm@2.6.6)
 
+  '@tiptap/extension-underline@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))':
+    dependencies:
+      '@tiptap/core': 2.6.6(@tiptap/pm@2.6.6)
+
   '@tiptap/pm@2.6.6':
     dependencies:
       prosemirror-changeset: 2.2.1
@@ -4349,6 +4367,8 @@ snapshots:
       tslib: 2.7.0
     transitivePeerDependencies:
       - supports-color
+
+  carbon-icons-svelte@12.11.0: {}
 
   ccount@2.0.1: {}
 
