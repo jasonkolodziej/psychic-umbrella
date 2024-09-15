@@ -178,6 +178,10 @@
 	{#if editor}
 		<!-- ? Example: 					class={editor.isActive('bold') ? 'is-active' : ''} -->
 		<ButtonGroup class="space-x-px">
+			<GradientButton size="xs" outline color="purpleToBlue">
+				<TextScale />
+				<ChevronDownOutline size="xs" />
+			</GradientButton>
 			<GradientButton
 				size="xs"
 				outline={editor.isActive('bold') ? false : true}
