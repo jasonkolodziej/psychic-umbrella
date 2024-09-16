@@ -60,5 +60,5 @@
 </script>
 
 <main class="p-4">
-	<SectionBlog title="Reviews" description="All the reviews so far..." bind:articles />
+	<SectionBlog title="Reviews" lead="All the reviews so far..." bind:articles />
 </main>

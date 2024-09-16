@@ -4,7 +4,7 @@
 	import blog from '$lib/data/blog-example.json';
 	import comments from '$lib/data/comments-example.json';
 
-	$: console.log(JSON.stringify(comments, null, 2));
+	// $: console.log(JSON.stringify(comments, null, 2));
 </script>
 
 <Post {blog} />
