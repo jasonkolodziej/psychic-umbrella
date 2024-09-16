@@ -9,6 +9,12 @@ import { Subscript } from '@tiptap/extension-subscript';
 import { Highlight } from '@tiptap/extension-highlight';
 import Color from '@tiptap/extension-color';
 import { Underline } from '@tiptap/extension-underline';
+import { Table } from '@tiptap/extension-table';
+import { TableCell } from '@tiptap/extension-table-cell';
+import { TableHeader } from '@tiptap/extension-table-header';
+import { TableRow } from '@tiptap/extension-table-row';
+import { TaskList } from '@tiptap/extension-task-list';
+import { TaskItem } from '@tiptap/extension-task-item';
 import { twMerge } from 'tailwind-merge';
 
 //? Reference: https://tiptap.dev/docs/editor/getting-started/style-editor#editor
@@ -42,6 +48,18 @@ export const defaultFlowbiteStarterkitOpts: Partial<StarterKitOptions> = {
 			)
 		}
 	},
+	orderedList: {
+		//? Decides whether to keep the marks from a previous line after
+		//? toggling the list either using inputRule or using the button
+		keepMarks: true,
+		//? Decides whether to keep the attributes from a previous line
+		//? after toggling the list either using inputRule or using the button
+		keepAttributes: true
+	},
+	bulletList: {
+		keepMarks: true,
+		keepAttributes: true
+	},
 	bold: {
 		HTMLAttributes: {
 			class: 'text-inherit'
@@ -52,11 +70,50 @@ export const defaultFlowbiteStarterkitOpts: Partial<StarterKitOptions> = {
 export const extensionsWithNoOpts: Extensions = [
 	StarterKit.configure(defaultFlowbiteStarterkitOpts),
 	TextStyle,
+	// * @tiptap/extension-subscript
 	Subscript,
+	// * @tiptap/extension-superscript
 	Superscript,
+	// * @tiptap/extension-color
 	Color,
+	// * @tiptap/extension-underline
 	Underline,
+	// * @tiptap/extension-highlight
 	Highlight.configure({ multicolor: true }),
+	//* @tiptap/extension-table
+	Table.configure({
+		resizable: true
+		// HTMLAttributes: {
+		// 	class: 'table-auto'
+		// }
+	}),
+	//* @tiptap/extension-table-row
+	TableRow,
+	//* @tiptap/extension-table-header
+	TableHeader,
+	//* @tiptap/extension-table-cell
+	TableCell,
+	// * @tiptap/extension-task-list
+	TaskList.configure({
+		HTMLAttributes: {
+			class: 'list-disc list-inside'
+		}
+	}),
+	//*  @tiptap/extension-task-item
+	TaskItem.configure({
+		nested: true,
+		// listItem: class='flex items-center gap-3'
+		// label: class="text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center"
+		// input: class="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+		HTMLAttributes: {
+			class: twMerge(
+				'flex items-center gap-3',
+				'text-sm rtl:text-right font-medium text-gray-900 dark:text-gray-300 flex items-center',
+				'w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600'
+			)
+		}
+	}),
+	// * @tiptap/extension-image
 	Image.configure({
 		inline: true,
 		HTMLAttributes: {
@@ -105,7 +162,6 @@ export const editorOptions = (
 			}
 		},
 		extensions: [
-			Image,
 			...extensionsWithNoOpts
 			// BubbleMenu.configure(bubbleMenuOpts)
 		],

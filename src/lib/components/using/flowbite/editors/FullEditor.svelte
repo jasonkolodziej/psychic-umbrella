@@ -8,6 +8,7 @@
 		Button,
 		Dropdown,
 		DropdownItem,
+		Modal,
 		Indicator,
 		P,
 		Tooltip
@@ -16,47 +17,54 @@
 	import { Editor } from '@tiptap/core';
 	import { FloatingMenu } from '@tiptap/extension-floating-menu';
 	import { BubbleMenu } from '@tiptap/extension-bubble-menu';
-	import { Image } from '@tiptap/extension-image';
 	import {
 		LetterBoldOutline,
 		LetterItalicOutline,
 		LetterUnderlineOutline,
 		ParagraphOutline,
-		ChevronDownOutline
+		ChevronDownOutline,
+		OrderedListOutline,
+		ListOutline,
+		TableRowOutline,
+		QuoteOutline,
+		ImageOutline
 	} from 'flowbite-svelte-icons';
 	import {
 		TextStrikethrough,
 		TextScale,
 		TextSubscript,
-		TextSuperscript
+		TextSuperscript,
+		ListChecked,
+		// ? Row Icons
+		RowExpand,
+		RowCollapse,
+		RowDelete,
+		RowInsert,
+		ColumnDelete,
+		ColumnInsert,
+		Column,
+		Add,
+		Delete
 	} from 'carbon-icons-svelte';
 	import {
 		defaultFlowbiteStarterkitOpts,
 		extensionsWithNoOpts
 	} from '$components/tiptap/starterkitOpts';
+	import FileUpload from '$components/using/flowbite/fileUpload/FileUpload.svelte';
+	import BubbleToolbar from './toolbars/BubbleToolbar.svelte';
+	import FloatingToolbar from './toolbars/FloatingToolbar.svelte';
 	export let content: any = undefined;
 	export let afterMount: () => void = () => {};
 	// determine if the user prefers dark mode
 	let isDark: boolean;
 	//? Editor
+	let editor: Editor;
+	let tableActive: boolean;
 	let element: HTMLElement;
-	let colorInput: any;
 	let bubbleMenu: HTMLElement;
 	let buttonSize: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'xs';
 	// const bubbleMenu: ComponentType = ButtonGroup;
 	let floatingMenu: HTMLElement;
-	function usingDarkMode(
-		whenEditorReturns: boolean,
-		editorParams: { name: string; attributes?: {} },
-		whenDark?: any,
-		whenLight?: any
-	) {
-		if (editor) {
-			const active = editor.isActive(editorParams);
-			return active === whenEditorReturns && isDark ? whenDark : whenLight;
-		}
-	}
-	let editor: Editor;
 	// const lowlight = createLowlight(all);
 	//? Reference: https://tiptap.dev/docs/editor/getting-started/style-editor#editor
 	let editorClass: string =
@@ -113,6 +121,8 @@
 			onTransaction: () => {
 				// force re-render so `editor.isActive` works as expected
 				editor = editor;
+				tableActive = editor.isActive('table');
+				console.log('tableActive', tableActive);
 			}
 		});
 
@@ -137,128 +147,9 @@
 	title="Choose your color"
 /> -->
 
-<!-- ? Example: class="floating-menu" -->
-<svelte:element this="div" bind:this={floatingMenu}>
-	{#if editor}
-		<!-- ? Example: class={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''} -->
-		<ButtonGroup>
-			<!-- <Button
-					size="xs"
-					color={editor.isActive('heading', { level: 1 }) ? (isDark ? 'light' : 'dark') : 'light'}
-					on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-				>
-					H1
-				</Button> -->
-			<GradientButton size="xs" outline color="pinkToOrange">
-				<TextScale />
-				<ChevronDownOutline size="xs" />
-			</GradientButton>
-			<Dropdown>
-				<!-- bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl -->
-				{#each defaultFlowbiteStarterkitOpts.heading.levels as level}
-					<DropdownItem
-						active={editor.isActive('heading', { level: level })}
-						on:click={() => editor.chain().focus().toggleHeading({ level: level }).run()}
-					>
-						<P
-							weight={editor.isActive('heading', { level: level }) ? 'extrabold' : 'normal'}
-							size="xs">Heading {level}</P
-						>
-						<!-- H{level} -->
-					</DropdownItem>
-				{/each}
-			</Dropdown>
-			<GradientButton
-				size="xs"
-				on:click={() => editor.chain().focus().setParagraph().run()}
-				outline={editor.isActive('paragraph') ? false : true}
-				color="pinkToOrange"
-			>
-				<ParagraphOutline size="sm" />
-			</GradientButton>
-		</ButtonGroup>
-	{/if}
-</svelte:element>
-<!-- ? Example: class="bubble-menu" -->
-<svelte:element this="div" bind:this={bubbleMenu}>
-	{#if editor}
-		<!-- ? Example: 					class={editor.isActive('bold') ? 'is-active' : ''} -->
-		<ButtonGroup class="space-x-px">
-			<GradientButton
-				size="xs"
-				outline={editor.isActive('bold') ? false : true}
-				color="purpleToBlue"
-				on:click={(e) => editor.chain().focus().toggleBold().run()}
-			>
-				<LetterBoldOutline size="sm" />
-			</GradientButton>
-			<GradientButton
-				size="xs"
-				outline={editor.isActive('italic') ? false : true}
-				color="purpleToBlue"
-				on:click={() => editor.chain().focus().toggleItalic().run()}
-			>
-				<LetterItalicOutline size="sm" />
-			</GradientButton>
-			<GradientButton
-				size="xs"
-				outline={editor.isActive('strike') ? false : true}
-				color="cyanToBlue"
-				on:click={() => editor.chain().focus().toggleStrike().run()}
-			>
-				<TextStrikethrough />
-			</GradientButton>
-			<GradientButton
-				size="xs"
-				outline={editor.isActive('underline') ? false : true}
-				color="cyanToBlue"
-				on:click={() => editor.chain().focus().toggleUnderline().run()}
-			>
-				<LetterUnderlineOutline size="sm" />
-			</GradientButton>
-			<GradientButton
-				size="xs"
-				outline={editor.isActive('subscript') ? false : true}
-				color="greenToBlue"
-				on:click={() => editor.chain().focus().toggleSubscript().run()}
-			>
-				<TextSubscript />
-			</GradientButton>
-			<GradientButton
-				size="xs"
-				outline={editor.isActive('superscript') ? false : true}
-				color="greenToBlue"
-				on:click={() => editor.chain().focus().toggleSuperscript().run()}
-			>
-				<TextSuperscript />
-			</GradientButton>
-			<!-- * Set text highlight color -->
-			<Button size="xs" color="light">
-				<input
-					on:input={(event) =>
-						editor.chain().focus().setHighlight({ color: event.target.value }).run()}
-					value={editor.getAttributes('highlight').color}
-					type="color"
-					class={twMerge(
-						// 'inline-flex w-full items-center justify-center !rounded-md !border-0 bg-white px-3 py-2 text-xs !text-gray-900 transition-all duration-75 ease-in first:rounded-s-lg last:rounded-e-lg focus-within:z-10 focus-within:ring-2 hover:bg-transparent hover:!text-inherit group-hover:!bg-opacity-0 group-hover:!text-inherit dark:bg-gray-900 dark:!text-white [&:not(:first-child)]:-ms-px',
-						'h-4 w-5 cursor-pointer justify-center !rounded-md !border-0 bg-inherit px-0 py-0 text-xs hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 group-hover:!bg-opacity-0 [&:not(:first-child)]:-ms-px'
-					)}
-				/>
-			</Button>
-			<!-- * Set Text Color -->
+<FloatingToolbar bind:editor bind:floatingMenu bind:isDark />
 
-			<Button size="xs" color={isDark ? 'light' : 'dark'}>
-				<input
-					on:input={(event) => editor.chain().focus().setColor(event.target.value).run()}
-					value={editor.getAttributes('textStyle').color}
-					type="color"
-					class={twMerge(
-						// 'inline-flex w-full items-center justify-center !rounded-md !border-0 bg-white px-3 py-2 text-xs !text-gray-900 transition-all duration-75 ease-in first:rounded-s-lg last:rounded-e-lg focus-within:z-10 focus-within:ring-2 hover:bg-transparent hover:!text-inherit group-hover:!bg-opacity-0 group-hover:!text-inherit dark:bg-gray-900 dark:!text-white [&:not(:first-child)]:-ms-px',
-						'h-4 w-5 cursor-pointer justify-center !rounded-md !border-0 bg-inherit px-0 py-0 text-xs hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 group-hover:!bg-opacity-0 [&:not(:first-child)]:-ms-px'
-					)}
-				/>
-			</Button>
-		</ButtonGroup>
-	{/if}
-</svelte:element>
+<BubbleToolbar bind:editor bind:bubbleMenu bind:isDark bind:tableActive />
+
+<!-- * Editor Element -->
 <svelte:element this="div" bind:this={element} />

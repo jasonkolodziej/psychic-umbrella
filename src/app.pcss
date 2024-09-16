@@ -155,6 +155,69 @@
 		.hljs-strong {
 			font-weight: 700;
 		}
+
+		/* Table-specific styling */
+		table {
+			border-collapse: collapse;
+			margin: 0;
+			overflow: hidden;
+			table-layout: fixed;
+			width: 100%;
+
+			td,
+			th {
+				border: 1px solid theme('colors.gray.300');
+				box-sizing: border-box;
+				min-width: 1em;
+				padding: 6px 8px;
+				position: relative;
+				vertical-align: top;
+
+				> * {
+					margin-bottom: 0;
+				}
+			}
+
+			th {
+				/* background-color: var(--gray-1); */
+				background-color: theme('colors.gray.200');
+				font-weight: bold;
+				text-align: left;
+			}
+
+			.selectedCell:after {
+				/* background: var(--gray-2); */
+				background: theme('colors.gray.200');
+				content: '';
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				pointer-events: none;
+				position: absolute;
+				z-index: 2;
+			}
+
+			.column-resize-handle {
+				background-color: var(--purple);
+				bottom: -2px;
+				pointer-events: none;
+				position: absolute;
+				right: -2px;
+				top: 0;
+				width: 4px;
+			}
+		}
+
+		.tableWrapper {
+			margin: 1.5rem 0;
+			overflow-x: auto;
+		}
+
+		&.resize-cursor {
+			cursor: ew-resize;
+			cursor: col-resize;
+		}
 	}
 	/* Tiptap Bubble menu */
 	.bubble-menu {
@@ -187,31 +250,31 @@
 	/* Tiptap Floating menu */
 	.floating-menu {
 		display: flex;
-		background-color: var(--gray-3);
-		/* background-color: inherit; */
+		/* background-color: var(--gray-3);
+		 */
+		background-color: theme('colors.gray.300');
 		padding: 0.1rem;
 		border-radius: 0.5rem;
 
 		button {
-			/* background-color: unset; */
-			background-color: inherit;
-			/* padding: 0.275rem 0.425rem; */
-			/* border-radius: 0.3rem; */
+			background-color: unset;
+			padding: 0.275rem 0.425rem;
+			border-radius: 0.3rem;
 
 			&:hover {
 				/* background-color: var(--gray-3); */
-				background-color: theme('colors.gray.300');
+				background-color: theme('colors.gray.400');
 			}
 
 			&.is-active {
+				/* background-color: var(--white); */
 				background-color: theme('colors.white');
-				/* background-color: var('--white'); */
 				/* color: var(--purple); */
-				color: theme('colors.purple.400');
+				color: theme('colors.purple.500');
 
 				&:hover {
 					/* color: var(--purple-contrast); */
-					color: theme('colors.purple.500');
+					color: theme('colors.purple.700');
 				}
 			}
 		}
