@@ -5,42 +5,50 @@
 	export let dropzone = true;
 	export let label: string = multiple ? 'Upload files' : 'Upload file';
 	let files: FileList; // FileList type
-	// let filesArray: Array<File> = [];
-	// let value: string;
-	let value: string | [] = dropzone ? [] : '';
-
+	let filesArray: Array<File> = [];
+	let value: string;
 	const dropHandle = (event: DragEvent) => {
-		value = [];
-		// files = [];
+		console.log('dropHandleEvent');
+		// value = [];
+		filesArray = [];
 		event.preventDefault();
 		if (event.dataTransfer.items) {
 			[...event.dataTransfer.items].forEach((item, i) => {
 				if (item.kind === 'file') {
 					const file = item.getAsFile();
-					value.push(file.name);
-					value = value;
+					console.log('dropHandle file', file);
+					filesArray.push(file);
+					// value.push(file.name);
+					// value = value;
 				}
 			});
 		} else {
 			[...event.dataTransfer.files].forEach((file, i) => {
-				value = file.name;
+				console.log('dropHandle file', file);
+				filesArray.push(file);
+				// value = file.name;
 			});
 		}
 	};
 
 	const handleChange = (event: Event) => {
+		console.log('handleChangeEvent');
 		const files = event.target.files;
+		console.log('handleChange', files);
 		if (files.length > 0) {
-			value.push(files[0].name);
-			value = value;
+			filesArray = Array.from(files);
+			// value.push(files[0].name);
+			// value = value;
 		}
 	};
 
-	const showFiles = (files: FileList) => {
-		if (files.length === 1) return files[0];
+	const showFiles = (files: FileList): string => {
+		console.log('showFiles', files);
+		if (files.length === 1) return files[0].name;
 		let concat = '';
-		files.map((file: File) => {
-			concat += file;
+		filesArray = Array.from(files);
+		filesArray.map((file: File) => {
+			concat += file.name;
 			concat += ',';
 			concat += ' ';
 		});
@@ -56,6 +64,7 @@
 		<Label>{label}</Label>
 	</Dropzone> -->
 	<Dropzone
+		multiple
 		id="dropzone"
 		on:drop={dropHandle}
 		on:dragover={(event) => {
@@ -78,7 +87,8 @@
 				d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
 			/></svg
 		>
-		{#if value.length === 0}
+		<!-- {#if value.length === 0} -->
+		{#if filesArray.length === 0}
 			<p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
 				<span class="font-semibold">Click to upload</span> or drag and drop
 			</p>

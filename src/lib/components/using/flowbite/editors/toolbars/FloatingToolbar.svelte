@@ -103,7 +103,7 @@
 			</GradientButton>
 			<Tooltip>Tasklist</Tooltip>
 			<!-- ? Image uploader -->
-			<GradientButton size="xs" on:click={() => (showUploader = true)} color="pinkToOrange">
+			<GradientButton size="xs" on:click={() => (showUploader = true)} outline color="pinkToOrange">
 				<ImageOutline size="sm" />
 			</GradientButton>
 			<Tooltip>Add Image(s)</Tooltip>
@@ -122,13 +122,6 @@
 	{/if}
 
 	{#if showUploader}
-		<Modal
-			bind:open={showUploader}
-			on:close={() => (showUploader = false)}
-			title="Upload Image(s)"
-			size="lg"
-		>
-			<FileUpload />
-		</Modal>
+		<FileUpload dropzone />
 	{/if}
 </svelte:element>
