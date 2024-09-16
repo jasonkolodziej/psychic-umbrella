@@ -92,7 +92,6 @@
 				}
 			},
 			extensions: [
-				Image,
 				...extensionsWithNoOpts,
 				BubbleMenu.configure({
 					element: bubbleMenu as HTMLElement,

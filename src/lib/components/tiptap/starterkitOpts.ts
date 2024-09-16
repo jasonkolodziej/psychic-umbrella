@@ -56,7 +56,13 @@ export const extensionsWithNoOpts: Extensions = [
 	Superscript,
 	Color,
 	Underline,
-	Highlight.configure({ multicolor: true })
+	Highlight.configure({ multicolor: true }),
+	Image.configure({
+		inline: true,
+		HTMLAttributes: {
+			class: 'max-w-lg rounded-lg'
+		}
+	})
 ];
 
 // ? "@tiptap/extension-floating-menu"
