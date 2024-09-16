@@ -5,6 +5,7 @@
 	import {
 		ButtonGroup,
 		GradientButton,
+		Button,
 		Dropdown,
 		DropdownItem,
 		Indicator,
@@ -30,7 +31,7 @@
 	export let content: any = undefined;
 	export let afterMount: () => void = () => {};
 	// determine if the user prefers dark mode
-	let isDark = getContext('color-theme') === 'dark';
+	let isDark: boolean;
 	//? Editor
 	let element: HTMLElement;
 	let colorInput: any;
@@ -110,7 +111,7 @@
 			}
 		});
 
-		// isDark = localStorage.getItem('color-theme') === 'dark';
+		isDark = localStorage.getItem('color-theme') === 'dark';
 		afterMount();
 	});
 	// let isDark = localStorage.getItem('color-theme') === 'dark';
@@ -178,10 +179,6 @@
 	{#if editor}
 		<!-- ? Example: 					class={editor.isActive('bold') ? 'is-active' : ''} -->
 		<ButtonGroup class="space-x-px">
-			<GradientButton size="xs" outline color="purpleToBlue">
-				<TextScale />
-				<ChevronDownOutline size="xs" />
-			</GradientButton>
 			<GradientButton
 				size="xs"
 				outline={editor.isActive('bold') ? false : true}
@@ -209,13 +206,14 @@
 			<GradientButton
 				size="xs"
 				outline={editor.isActive('underline') ? false : true}
-				color="greenToBlue"
+				color="tealToLime"
 				on:click={() => editor.chain().focus().toggleUnderline().run()}
 			>
 				<LetterUnderlineOutline size="sm" />
 			</GradientButton>
 			<!-- * Set Text Color -->
-			<GradientButton size="xs" outline color="cyanToBlue">
+
+			<Button size="xs" color={isDark ? 'light' : 'dark'}>
 				<input
 					on:input={(event) => editor.chain().focus().setColor(event.target.value).run()}
 					value={editor.getAttributes('textStyle').color}
@@ -225,7 +223,7 @@
 						'h-4 w-5 cursor-pointer justify-center !rounded-md !border-0 bg-inherit px-0 py-0 text-xs hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 group-hover:!bg-opacity-0 [&:not(:first-child)]:-ms-px'
 					)}
 				/>
-			</GradientButton>
+			</Button>
 		</ButtonGroup>
 	{/if}
 </svelte:element>
