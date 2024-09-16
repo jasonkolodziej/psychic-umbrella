@@ -9,7 +9,8 @@
 		Dropdown,
 		DropdownItem,
 		Indicator,
-		P
+		P,
+		Tooltip
 	} from 'flowbite-svelte';
 	//? Editor
 	import { Editor } from '@tiptap/core';
@@ -23,7 +24,12 @@
 		ParagraphOutline,
 		ChevronDownOutline
 	} from 'flowbite-svelte-icons';
-	import { TextStrikethrough, TextScale } from 'carbon-icons-svelte';
+	import {
+		TextStrikethrough,
+		TextScale,
+		TextSubscript,
+		TextSuperscript
+	} from 'carbon-icons-svelte';
 	import {
 		defaultFlowbiteStarterkitOpts,
 		extensionsWithNoOpts
@@ -190,7 +196,7 @@
 			<GradientButton
 				size="xs"
 				outline={editor.isActive('italic') ? false : true}
-				color="cyanToBlue"
+				color="purpleToBlue"
 				on:click={() => editor.chain().focus().toggleItalic().run()}
 			>
 				<LetterItalicOutline size="sm" />
@@ -198,7 +204,7 @@
 			<GradientButton
 				size="xs"
 				outline={editor.isActive('strike') ? false : true}
-				color="greenToBlue"
+				color="cyanToBlue"
 				on:click={() => editor.chain().focus().toggleStrike().run()}
 			>
 				<TextStrikethrough />
@@ -206,11 +212,40 @@
 			<GradientButton
 				size="xs"
 				outline={editor.isActive('underline') ? false : true}
-				color="tealToLime"
+				color="cyanToBlue"
 				on:click={() => editor.chain().focus().toggleUnderline().run()}
 			>
 				<LetterUnderlineOutline size="sm" />
 			</GradientButton>
+			<GradientButton
+				size="xs"
+				outline={editor.isActive('subscript') ? false : true}
+				color="greenToBlue"
+				on:click={() => editor.chain().focus().toggleSubscript().run()}
+			>
+				<TextSubscript />
+			</GradientButton>
+			<GradientButton
+				size="xs"
+				outline={editor.isActive('superscript') ? false : true}
+				color="greenToBlue"
+				on:click={() => editor.chain().focus().toggleSuperscript().run()}
+			>
+				<TextSuperscript />
+			</GradientButton>
+			<!-- * Set text highlight color -->
+			<Button size="xs" color="light">
+				<input
+					on:input={(event) =>
+						editor.chain().focus().setHighlight({ color: event.target.value }).run()}
+					value={editor.getAttributes('textStyle').color}
+					type="color"
+					class={twMerge(
+						// 'inline-flex w-full items-center justify-center !rounded-md !border-0 bg-white px-3 py-2 text-xs !text-gray-900 transition-all duration-75 ease-in first:rounded-s-lg last:rounded-e-lg focus-within:z-10 focus-within:ring-2 hover:bg-transparent hover:!text-inherit group-hover:!bg-opacity-0 group-hover:!text-inherit dark:bg-gray-900 dark:!text-white [&:not(:first-child)]:-ms-px',
+						'h-4 w-5 cursor-pointer justify-center !rounded-md !border-0 bg-inherit px-0 py-0 text-xs hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 group-hover:!bg-opacity-0 [&:not(:first-child)]:-ms-px'
+					)}
+				/>
+			</Button>
 			<!-- * Set Text Color -->
 
 			<Button size="xs" color={isDark ? 'light' : 'dark'}>

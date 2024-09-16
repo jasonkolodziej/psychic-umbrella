@@ -3,7 +3,10 @@ import { StarterKit, type StarterKitOptions } from '@tiptap/starter-kit';
 import { type FloatingMenuOptions, FloatingMenu } from '@tiptap/extension-floating-menu';
 import { type BubbleMenuOptions, BubbleMenu } from '@tiptap/extension-bubble-menu';
 import { Image } from '@tiptap/extension-image';
-import TextStyle from '@tiptap/extension-text-style';
+import { TextStyle } from '@tiptap/extension-text-style';
+import { Superscript } from '@tiptap/extension-superscript';
+import { Subscript } from '@tiptap/extension-subscript';
+import { Highlight } from '@tiptap/extension-highlight';
 import Color from '@tiptap/extension-color';
 import { Underline } from '@tiptap/extension-underline';
 import { twMerge } from 'tailwind-merge';
@@ -49,8 +52,11 @@ export const defaultFlowbiteStarterkitOpts: Partial<StarterKitOptions> = {
 export const extensionsWithNoOpts: Extensions = [
 	StarterKit.configure(defaultFlowbiteStarterkitOpts),
 	TextStyle,
+	Subscript,
+	Superscript,
 	Color,
-	Underline
+	Underline,
+	Highlight.configure({ multicolor: true })
 ];
 
 // ? "@tiptap/extension-floating-menu"
@@ -94,10 +100,7 @@ export const editorOptions = (
 		},
 		extensions: [
 			Image,
-			StarterKit.configure(defaultFlowbiteStarterkitOpts),
-			TextStyle,
-			Color,
-			Underline
+			...extensionsWithNoOpts
 			// BubbleMenu.configure(bubbleMenuOpts)
 		],
 		...editorOptions
