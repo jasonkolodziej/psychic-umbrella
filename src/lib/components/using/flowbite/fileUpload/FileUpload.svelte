@@ -1,3 +1,4 @@
+<!-- ? Reference: https://flowbite-svelte.com/docs/forms/file-input -->
 <script lang="ts">
 	import { Fileupload, Label, Listgroup, ListgroupItem, Dropzone } from 'flowbite-svelte';
 	export let multiple = false;

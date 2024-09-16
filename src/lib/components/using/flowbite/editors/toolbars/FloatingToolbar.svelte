@@ -5,18 +5,13 @@
 	import {
 		ButtonGroup,
 		GradientButton,
-		Button,
 		Dropdown,
 		DropdownItem,
 		Modal,
-		Indicator,
 		P,
 		Tooltip
 	} from 'flowbite-svelte';
 	import {
-		LetterBoldOutline,
-		LetterItalicOutline,
-		LetterUnderlineOutline,
 		ParagraphOutline,
 		ChevronDownOutline,
 		OrderedListOutline,
@@ -25,30 +20,8 @@
 		QuoteOutline,
 		ImageOutline
 	} from 'flowbite-svelte-icons';
-	import {
-		TextStrikethrough,
-		TextScale,
-		TextSubscript,
-		TextSuperscript,
-		ListChecked,
-		// ? Row Icons
-		RowExpand,
-		RowCollapse,
-		RowDelete,
-		RowInsert,
-		ColumnDelete,
-		ColumnInsert,
-		Column,
-		Add,
-		Delete,
-		DirectionMerge,
-		Split,
-		IbmToolchain,
-		ArrowUp,
-		ArrowDown,
-		Row
-	} from 'carbon-icons-svelte';
-	import { twMerge } from 'tailwind-merge';
+	import { TextScale, ListChecked } from 'carbon-icons-svelte';
+	import FileUpload from '$components/using/flowbite/fileUpload/FileUpload.svelte';
 	// determine if the user prefers dark mode
 	export let isDark: boolean;
 	// export let tableActive: boolean;
@@ -128,10 +101,12 @@
 			>
 				<ListChecked />
 			</GradientButton>
+			<Tooltip>Tasklist</Tooltip>
 			<!-- ? Image uploader -->
 			<GradientButton size="xs" on:click={() => (showUploader = true)} color="pinkToOrange">
 				<ImageOutline size="sm" />
 			</GradientButton>
+			<Tooltip>Add Image(s)</Tooltip>
 			<!-- ? Table -->
 			<GradientButton
 				size="xs"
@@ -144,5 +119,16 @@
 			</GradientButton>
 			<Tooltip>Add Table</Tooltip>
 		</ButtonGroup>
+	{/if}
+
+	{#if showUploader}
+		<Modal
+			bind:open={showUploader}
+			on:close={() => (showUploader = false)}
+			title="Upload Image(s)"
+			size="lg"
+		>
+			<FileUpload />
+		</Modal>
 	{/if}
 </svelte:element>

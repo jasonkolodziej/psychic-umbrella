@@ -9,49 +9,29 @@
 		Button,
 		Dropdown,
 		DropdownItem,
-		Modal,
-		Indicator,
-		P,
 		Tooltip
 	} from 'flowbite-svelte';
 	import {
 		LetterBoldOutline,
 		LetterItalicOutline,
 		LetterUnderlineOutline,
-		ParagraphOutline,
 		ChevronDownOutline,
-		OrderedListOutline,
-		ListOutline,
 		TableRowOutline,
-		QuoteOutline,
-		ImageOutline,
 		ArrowRightOutline,
 		ArrowLeftOutline,
 		CirclePlusOutline,
-		CircleMinusOutline,
-		PlusOutline
+		CircleMinusOutline
 	} from 'flowbite-svelte-icons';
 	import {
 		TextStrikethrough,
 		TextScale,
 		TextSubscript,
 		TextSuperscript,
-		ListChecked,
-		// ? Row Icons
-		RowExpand,
-		RowCollapse,
-		RowDelete,
-		RowInsert,
-		ColumnDelete,
-		ColumnInsert,
 		Column,
-		Add,
 		Delete,
 		DirectionMerge,
 		Split,
 		IbmToolchain,
-		ArrowUp,
-		ArrowDown,
 		TextHighlight,
 		TextColor,
 		Row
