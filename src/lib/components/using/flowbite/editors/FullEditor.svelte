@@ -238,7 +238,7 @@
 				<input
 					on:input={(event) =>
 						editor.chain().focus().setHighlight({ color: event.target.value }).run()}
-					value={editor.getAttributes('textStyle').color}
+					value={editor.getAttributes('highlight').color}
 					type="color"
 					class={twMerge(
 						// 'inline-flex w-full items-center justify-center !rounded-md !border-0 bg-white px-3 py-2 text-xs !text-gray-900 transition-all duration-75 ease-in first:rounded-s-lg last:rounded-e-lg focus-within:z-10 focus-within:ring-2 hover:bg-transparent hover:!text-inherit group-hover:!bg-opacity-0 group-hover:!text-inherit dark:bg-gray-900 dark:!text-white [&:not(:first-child)]:-ms-px',
