@@ -1,11 +1,11 @@
-import {
+import type {
 	DurableObjectNamespace,
 	PagesFunction,
 	ExecutionContext,
 	DurableObjectState
 } from '@cloudflare/workers-types';
 // import { DurableObject } from 'cloudflare:workers';
-interface Env {
+export interface Env {
 	// Cloudflare
 	BLOGS: DurableObjectNamespace;
 }
@@ -30,23 +30,14 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 	return stub.fetch(context.request);
 };
 
-// export class Blogs extends DurableObject {
-// 	constructor(ctx: ExecutionContext, env: Env) {
-// 		this.ctx = ctx;
-// 	}
+export default {
+	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+		let id = env.BLOGS.idFromName(new URL(request.url).pathname);
 
-// 	async fetch(request) {
-// 		let url = new URL(request.url);
+		let stub = env.BLOGS.get(id);
 
-// 		// retrieve data
-// 		let value = (await this.ctx.storage.get('value')) || 0;
+		let response = await stub.fetch(request);
 
-// 		// increment counter and get a new value
-// 		value += 1;
-
-// 		// store data
-// 		await this.ctx.storage.put('value', value);
-
-// 		return new Response(value);
-// 	}
-// }
+		return response;
+	}
+} satisfies ExportedHandler<Env>;
