@@ -2,7 +2,9 @@ import type {
 	DurableObjectNamespace,
 	PagesFunction,
 	ExecutionContext,
-	DurableObjectState
+	DurableObjectState,
+	Request,
+	Response
 } from '@cloudflare/workers-types';
 // import { DurableObject } from 'cloudflare:workers';
 export interface Env {

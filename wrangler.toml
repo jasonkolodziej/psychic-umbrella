@@ -51,7 +51,7 @@ NODE_VERSION = "20.9.0"
 [[durable_objects.bindings]]
 name = "BLOGS"
 class_name = "Blogs"
-script_name = "src/lib/functions/blogs.ts"
+script_name = "functions/blogs.ts"
 # script_name = 'my-durable-object'
 
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
