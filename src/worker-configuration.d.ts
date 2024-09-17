@@ -2,5 +2,5 @@
 
 interface Env {
 	NODE_VERSION: "20.9.0";
-	BLOGS: DurableObjectNamespace /* Blogs from functions/blogs.ts */;
+	BLOGS_BUCKET: R2Bucket;
 }
