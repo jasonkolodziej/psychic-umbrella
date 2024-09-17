@@ -2,6 +2,32 @@
 import { redirect, type Handle } from '@sveltejs/kit';
 // import { handle as authenticationHandle } from './auth';
 import { sequence } from '@sveltejs/kit/hooks';
+// import { dev } from '$app/environment';
+// import { getPlatformProxy } from 'wrangler';
+
+/*
+  When developing, this hook will add proxy objects to the `platform` object which
+  will emulate any bindings defined in `wrangler.toml`.
+*/
+
+// let platform: App.Platform;
+
+// if (dev) {
+// 	//? https://developers.cloudflare.com/workers/wrangler/api/#usage-1
+// 	// const { env } = await getPlatformProxy();
+// 	// const { getPlatformProxy } = await import('wrangler');
+// 	platform = await getPlatformProxy();
+// }
+// export const platformProxyHandle = async ({ event, resolve }) => {
+// 	if (platform) {
+// 		event.platform = {
+// 			...event.platform,
+// 			...platform
+// 		};
+// 	}
+
+// 	return resolve(event);
+// };
 
 const oldHandle = async ({ event, resolve }) => {
 	// event.locals.user = await getCurrentUser(event.cookies.get('sessionid'));
