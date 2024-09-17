@@ -74,7 +74,8 @@ script_name = "functions/blogs.ts"
 
 ######## PREVIEW environment config ########
 
-# [env.preview.vars]
+[env.preview.vars]
+NODE_VERSION = "20.9.0"
 # API_KEY = "xyz789"
 
 # [[env.preview.kv_namespaces]]
