@@ -122,7 +122,7 @@
 			</Button>
 			<Tooltip>Text Highlight</Tooltip>
 			<!-- * Set Text Color -->
-			<Button size="xs" color={isDark ? 'light' : 'dark'}>
+			<Button size="xs" color="light">
 				<TextColor />
 				<input
 					on:input={(event) => editor.chain().focus().setColor(event.target.value).run()}
