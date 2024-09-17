@@ -1,9 +1,13 @@
 <script lang="ts">
 	// import { Section, BlogTemplate, Comment, CommentItem } from 'flowbite-svelte-blocks';
 	import Post from '$components/using/flowbite/blog/ui/post/Post.svelte';
-	import blog from '$lib/data/blog-example.json';
-	import comments from '$lib/data/comments-example.json';
+	// import blog from '$lib/data/blog-example.json';
+	// import comments from '$lib/data/comments-example.json';
+	import type { PageData } from './$types';
 
+	export let data: PageData;
+	let { blog, comments } = data;
+	$: console.log(data);
 	// $: console.log(JSON.stringify(comments, null, 2));
 </script>
 

@@ -1,13 +1,13 @@
 import { DurableObjectNamespace, PagesFunction } from '@cloudflare/workers-types';
 interface Env {
 	// Cloudflare
-	COUNTER: DurableObjectNamespace;
+	blog: DurableObjectNamespace;
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-	const id = context.env.COUNTER.newUniqueId();
+	const id = context.env.blog.newUniqueId();
 	// const counter = context.env.COUNTER.idFromName("A");
-	const stub = context.env.COUNTER.get(id);
+	const stub = context.env.blog.get(id);
 
 	// Pass the request down to the durable object
 	return stub.fetch(context.request);
