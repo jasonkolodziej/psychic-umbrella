@@ -13,10 +13,10 @@ compatibility_flags = ["nodejs_compat"]
 # [placement]
 # mode = "smart"
 
-[[migrations]]
-#? Docs: https://developers.cloudflare.com/durable-objects/reference/durable-objects-migrations/
-tag = "v1" # Should be unique for each entry
-new_classes = ["Blogs"]
+# [[migrations]]
+# #? Docs: https://developers.cloudflare.com/durable-objects/reference/durable-objects-migrations/
+# tag = "v1" # Should be unique for each entry
+# new_classes = ["Blogs"]
 
 # [[migrations]]
 # tag = "v2"
@@ -95,6 +95,7 @@ NODE_VERSION = "20.9.0"
 [[env.preview.durable_objects.bindings]]
 name = "BLOGS"
 class_name = "Blogs"
+script_name = "functions/blogs.ts"
 
 ######## PRODUCTION environment config ########
 
