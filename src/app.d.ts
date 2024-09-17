@@ -7,6 +7,14 @@ import type { Identity } from '@cloudflare/pages-plugin-cloudflare-access';
 declare global {
 	namespace App {
 		interface Platform {
+			//? https://developers.cloudflare.com/pages/framework-guides/deploy-a-svelte-site/
+			// env: {
+			// 	BLOGS: DurableObjectNamespace;
+			// };
+			// context: {
+			// 	waitUntil(promise: Promise<any>): void;
+			// };
+			// caches: CacheStorage & { default: Cache };
 			env: Env;
 			cf: CfProperties;
 			ctx: ExecutionContext;

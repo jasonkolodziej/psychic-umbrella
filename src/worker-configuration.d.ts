@@ -2,5 +2,5 @@
 
 interface Env {
 	NODE_VERSION: "20.9.0";
-	BLOGS: DurableObjectNamespace /* Blogs from src/lib/functions/blogs.ts */;
+	BLOGS: DurableObjectNamespace /* Blogs from functions/blogs.ts */;
 }

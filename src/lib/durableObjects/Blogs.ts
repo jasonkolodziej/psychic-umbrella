@@ -3,14 +3,6 @@ export interface Env {
 	BLOGS: DurableObjectNamespace;
 }
 
-export class Blogs {
-	constructor(state: DurableObjectState, env: Env) {}
-
-	async fetch(request: Request) {
-		return new Response('Hello World');
-	}
-}
-
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		let id = env.BLOGS.idFromName(new URL(request.url).pathname);

@@ -1,0 +1,7 @@
+name = "cf-functions"
+main = "src/index.ts"
+compatibility_date = "2024-02-23"
+
+[[durable_objects.bindings]]
+name = "BLOGS"
+class_name = "Blogs"
