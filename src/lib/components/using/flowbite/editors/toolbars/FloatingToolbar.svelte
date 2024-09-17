@@ -22,12 +22,18 @@
 	} from 'flowbite-svelte-icons';
 	import { TextScale, ListChecked } from 'carbon-icons-svelte';
 	import FileUpload from '$components/using/flowbite/fileUpload/FileUpload.svelte';
+	import type { UploadedFile } from '$lib/media/fileUtils';
+	import { urlUtils } from '@magidoc/plugin-svelte-marked';
 	// determine if the user prefers dark mode
 	export let isDark: boolean;
 	// export let tableActive: boolean;
 	export let editor: Editor;
 	export let floatingMenu: HTMLElement;
 	let showUploader: boolean = false;
+	const uploadedCallback = (file: Partial<UploadedFile>) => {
+		console.log('uploadedCallback', file);
+		editor.chain().focus().setImage({ src: file.fileObjectUrl!, alt: file.file?.name }).run();
+	};
 </script>
 
 <!-- ? Example: class="floating-menu" -->
@@ -122,6 +128,14 @@
 	{/if}
 
 	{#if showUploader}
-		<FileUpload dropzone />
+		<!-- <FileUpload
+			dropzone
+			on:uploaded={({ detail }) => {
+				console.log('on:uploaded', detail);
+				editor.chain().focus().setImage({ src: detail.file }).run();
+				detail.revokeObjectUrl;
+			}}
+		/> -->
+		<FileUpload dropzone {uploadedCallback} />
 	{/if}
 </svelte:element>

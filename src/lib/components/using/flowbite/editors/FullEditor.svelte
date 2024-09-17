@@ -1,56 +1,10 @@
 <script lang="ts">
-	import { twMerge } from 'tailwind-merge';
-	import { getContext } from 'svelte';
 	import { onDestroy, onMount } from 'svelte';
-	import {
-		ButtonGroup,
-		GradientButton,
-		Button,
-		Dropdown,
-		DropdownItem,
-		Modal,
-		Indicator,
-		P,
-		Tooltip
-	} from 'flowbite-svelte';
 	//? Editor
 	import { Editor } from '@tiptap/core';
 	import { FloatingMenu } from '@tiptap/extension-floating-menu';
 	import { BubbleMenu } from '@tiptap/extension-bubble-menu';
-	import {
-		LetterBoldOutline,
-		LetterItalicOutline,
-		LetterUnderlineOutline,
-		ParagraphOutline,
-		ChevronDownOutline,
-		OrderedListOutline,
-		ListOutline,
-		TableRowOutline,
-		QuoteOutline,
-		ImageOutline
-	} from 'flowbite-svelte-icons';
-	import {
-		TextStrikethrough,
-		TextScale,
-		TextSubscript,
-		TextSuperscript,
-		ListChecked,
-		// ? Row Icons
-		RowExpand,
-		RowCollapse,
-		RowDelete,
-		RowInsert,
-		ColumnDelete,
-		ColumnInsert,
-		Column,
-		Add,
-		Delete
-	} from 'carbon-icons-svelte';
-	import {
-		defaultFlowbiteStarterkitOpts,
-		extensionsWithNoOpts
-	} from '$components/tiptap/starterkitOpts';
-	import FileUpload from '$components/using/flowbite/fileUpload/FileUpload.svelte';
+	import { extensionsWithNoOpts } from '$components/tiptap/starterkitOpts';
 	import BubbleToolbar from './toolbars/BubbleToolbar.svelte';
 	import FloatingToolbar from './toolbars/FloatingToolbar.svelte';
 	export let content: any = undefined;

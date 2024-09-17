@@ -16,9 +16,10 @@ export const POST: RequestHandler = async ({
 		`RequestHandler.${request.method}(${route.id}) dataReq?:${isDataRequest} subreq?:${isSubRequest}`,
 		params
 	);
-	console.log(request);
+	// console.log(request);
 	const file = await getFileFromFormData(request);
-	return json({ file }, { status: 200 });
+	console.log(file);
+	return json({ ...file }, { status: 200 });
 };
 
 //? see: https://github.com/JustinyAhin/okupter-repos/blob/5e9403e30a49ce5e314f311cffb057d922d2c737/apps/sveltekit-file-upload/src/routes/api/upload/%2Bserver.ts
