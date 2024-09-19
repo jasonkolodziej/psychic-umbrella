@@ -1,6 +1,6 @@
-import type { Without, XOR } from '$lib/utils/templates';
+import type { DateStr, Without, XOR } from '$lib/utils/templates';
 import type { SvelteComponent } from 'svelte';
-import { v7 as uuidv7 } from 'uuid'; // * use
+// import { v6 as uuidv6 } from 'uuid'; // * use
 export interface Commenter {
 	name: Author['name'];
 	profilePicture: Author['profilePicture'];
@@ -8,9 +8,9 @@ export interface Commenter {
 
 // * use
 export interface Comment {
-	id: string | typeof uuidv7;
+	id: string; // typeof uuidv6;
 	commenter: Commenter;
-	date: string | Date | DateConstructor;
+	date: string | DateStr;
 	content: string;
 	replies?: Comment[];
 }
@@ -37,7 +37,7 @@ export type Picture = {
 // 	get profilePicture(): Picture['profilePicture'] | Picture['imgSrc'];
 // };
 // ? maybe
-export type Author = Picture & { name: string; title?: string; href?: string };
+export type Author = { name: string; title?: string; href?: string } & Picture;
 
 // * use
 // export interface Blog {
@@ -54,7 +54,7 @@ export type Author = Picture & { name: string; title?: string; href?: string };
 //? Maybe
 export type BlogArticleIdentifier = {
 	// * blog id
-	id: string | typeof uuidv7;
+	id: string; // typeof uuidv6;
 	// * blog title
 	title: string;
 	// * blog lead (header) or summary
@@ -72,14 +72,14 @@ export type BlogArticleIdentifier = {
 // 	get comments(): Array<Comment> | undefined;
 // }
 
-export type BlogPost = BlogArticleIdentifier &
-	Author & {
-		date: string | Date | DateConstructor;
-		isoDate: string | Date | DateConstructor;
-		content: string;
-		comments?: Array<Comment>;
-		article?: Article;
-	};
+export type BlogPost = BlogArticleIdentifier & {
+	author: Author;
+	date: string | DateStr;
+	isoDate: string | DateStr;
+	content: string;
+	comments?: Array<Comment>;
+	article?: Article;
+};
 
 // * use
 export type Article = {

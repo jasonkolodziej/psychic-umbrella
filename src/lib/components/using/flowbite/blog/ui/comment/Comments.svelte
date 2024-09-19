@@ -2,13 +2,14 @@
 	// import Link from '$lib/carta/components/link/Link.svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/carta/utils';
-	import { Comment, CommentItem } from 'flowbite-svelte-blocks';
+	import { Comment as FComment, CommentItem } from 'flowbite-svelte-blocks';
 	import { Section } from '$components/using/flowbite/blog/ui/section';
 	// import Post from '$components/using/flowbite/blog/ui/post/Post.svelte';
 	import { Button, Textarea, Label, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { DotsHorizontalOutline } from 'flowbite-svelte-icons';
+	import type { Comment } from '$lib/filtering/blog';
 	// import blogExample from '$lib/data/blog-example.json';
-	import commentsExample from '$lib/data/comments-example.json';
+	// import commentsExample from '$lib/data/comments-example.json';
 	// import type { BlogPost } from '$lib/filtering/blog';
 
 	type $$Props = HTMLAttributes<HTMLElement> & {
@@ -33,7 +34,7 @@
 </script>
 
 <Section name="comment" classDiv="px-0" sectionClass="not-format">
-	<Comment title={commentTitle}>
+	<FComment title={commentTitle}>
 		<form class="mb-6">
 			<Label for="comment" class="sr-only">{commentLabel}</Label>
 			<Textarea id="comment" rows="6" class="mb-4" placeholder={commentPlaceholder} required
@@ -53,5 +54,5 @@
 				</svelte:fragment>
 			</CommentItem>
 		{/each}
-	</Comment>
+	</FComment>
 </Section>

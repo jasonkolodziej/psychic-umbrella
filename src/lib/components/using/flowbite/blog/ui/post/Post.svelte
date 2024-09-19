@@ -29,7 +29,7 @@
 	export let blog: $$Props['blog'] = blogExample;
 	export let comments: $$Props['comments'] = undefined;
 	export let commentTitle: $$Props['commentTitle'] = 'Discussion';
-	comments = blog.comments ? comments : commentsExample;
+	comments = blog.comments ?? comments; //: commentsExample;
 	commentTitle = comments?.length ? commentTitle + ` (${comments.length})` : commentTitle;
 
 	//? Exports
@@ -40,15 +40,18 @@
 </script>
 
 <Section bind:blogPost>
-	<!-- <BlogTemplate bind:blog bind:classArticle {...$$restProps} /> -->
+	<BlogTemplate bind:blog bind:classArticle {...$$restProps}>
+		<FullEditor
+			slot="default"
+			content={blog.content}
+			afterMount={() => {
+				// console.log('editor mounted');
+				blog = { ...blog, content: '' };
+			}}
+		/>
+	</BlogTemplate>
 	<!-- <BlogTemplate bind:classArticle bind:blog {...$$restProps} /> -->
-	<FullEditor
-		content={blog.content}
-		afterMount={() => {
-			// console.log('editor mounted');
-			blog = { ...blog, content: '' };
-		}}
-	/>
+
 	{#if comments}
 		<Comments bind:commentTitle bind:comments />
 	{/if}

@@ -4,6 +4,8 @@
 	import { page } from '$app/stores';
 	import Tiptap from '$components/tiptap/Tiptap.svelte';
 	import Post from '$components/using/flowbite/blog/ui/post/Post.svelte';
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 	// import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
 	// import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
@@ -48,6 +50,7 @@
 	// 			src = text;
 	// 		});
 	// });
+	onMount(() => goto('/about'));
 </script>
 
 <main class={classRef}>
@@ -55,5 +58,5 @@
 		<Renderer source={src} />
 	{/key} -->
 
-	<Post {blog} />
+	<!-- <Post {blog} /> -->
 </main>

@@ -1,3 +1,4 @@
+// TODO: remove not using anymore
 export interface Env {
 	// Cloudflare
 	BLOGS: DurableObjectNamespace;

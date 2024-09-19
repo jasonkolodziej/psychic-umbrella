@@ -69,7 +69,7 @@
 	{#if blog.lead}
 		<p class="lead">{blog.lead}</p>
 	{/if}
-	{@html blog.content}
+	<!-- {@html blog.content} -->
 	<slot></slot>
 </article>
 
