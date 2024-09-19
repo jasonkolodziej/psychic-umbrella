@@ -165,6 +165,11 @@ export const editorOptions = (
 			...extensionsWithNoOpts
 			// BubbleMenu.configure(bubbleMenuOpts)
 		],
+		// triggered on every change https://tiptap.dev/docs/guides/output-json-html
+		onUpdate: ({ editor }) => {
+			const json = editor.getJSON();
+			// send the content to an API here
+		},
 		...editorOptions
 	};
 };

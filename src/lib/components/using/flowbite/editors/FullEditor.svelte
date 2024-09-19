@@ -1,14 +1,29 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	//? Editor
-	import { Editor } from '@tiptap/core';
+	import { Editor, type JSONContent } from '@tiptap/core';
 	import { FloatingMenu } from '@tiptap/extension-floating-menu';
 	import { BubbleMenu } from '@tiptap/extension-bubble-menu';
 	import { extensionsWithNoOpts } from '$components/tiptap/starterkitOpts';
 	import BubbleToolbar from './toolbars/BubbleToolbar.svelte';
 	import FloatingToolbar from './toolbars/FloatingToolbar.svelte';
+	const dispatch = createEventDispatcher<{
+		loaded: null;
+		// clicked: number,
+		update: JSONContent;
+	}>();
+	// we just have to dispatch an event somewhere and the parent component
+	// will already know that this Component dispatches a 'loaded' CustomEvent
+	//* dispatch('loaded');
+	//* onMount(() => {
+	// dispatch an event
+	// dispatch('loaded')
+	// this will show an Error since we specified the `detail` for the `loaded`-event as `never`
+	// dispatch('loaded', true)
+	//* })
 	export let content: any = undefined;
-	export let afterMount: () => void = () => {};
+	// export let afterMount: () => void = () => {};
 	// determine if the user prefers dark mode
 	let isDark: boolean;
 	//? Editor
@@ -76,12 +91,19 @@
 				// force re-render so `editor.isActive` works as expected
 				editor = editor;
 				tableActive = editor.isActive('table');
-				console.log('tableActive', tableActive);
+				// console.log('tableActive', tableActive);
+			},
+			// triggered on every change https://tiptap.dev/docs/guides/output-json-html
+			onUpdate: ({ editor }) => {
+				const json = editor.getJSON();
+				// send the content to an API here
+				dispatch('update', json);
 			}
 		});
 
 		isDark = localStorage.getItem('color-theme') === 'dark';
-		afterMount();
+		dispatch('loaded');
+		// afterMount();
 	});
 	// let isDark = localStorage.getItem('color-theme') === 'dark';
 	onDestroy(() => {

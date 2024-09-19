@@ -8,25 +8,34 @@
 
 	// * Types
 	import { type Comment, type BlogPost } from '$lib/filtering/blog';
+	import type { JSONContent } from '@tiptap/core';
 	//! example data
-	import blogExample from '$lib/data/blog-example.json';
-	import commentsExample from '$lib/data/comments-example.json';
-	import { onDestroy, onMount, SvelteComponent, type ComponentType } from 'svelte';
-	import { ButtonGroup, GradientButton, Button, DarkMode } from 'flowbite-svelte';
-	import { twMerge } from 'tailwind-merge';
+	// import blogExample from '$lib/data/blog-example.json';
+	// import commentsExample from '$lib/data/comments-example.json';
+	// import { onDestroy, onMount, SvelteComponent, type ComponentType } from 'svelte';
+	// import { ButtonGroup, GradientButton, Button, DarkMode } from 'flowbite-svelte';
+	// import { twMerge } from 'tailwind-merge';
 	import FullEditor from '$components/using/flowbite/editors/FullEditor.svelte';
+	import { createEventDispatcher, type ComponentEvents } from 'svelte';
 
+	const dispatch = createEventDispatcher<{
+		// loaded: null;
+		// clicked: number,
+		updated: JSONContent;
+	}>();
 	type $$Props = HTMLAttributes<HTMLElement> & {
 		blog: BlogPost;
 		comments?: Array<Comment>;
 		commentTitle?: string;
 		classArticle?: string;
 	};
+	type UpdateEventType = ComponentEvents<FullEditor>['update'];
+	type LoadedEventType = ComponentEvents<FullEditor>['loaded'];
 
 	let blogPost = true;
 
 	export let classArticle: $$Props['classArticle'] = 'dark:text-white';
-	export let blog: $$Props['blog'] = blogExample;
+	export let blog: $$Props['blog'] = undefined; //: blogExample;
 	export let comments: $$Props['comments'] = undefined;
 	export let commentTitle: $$Props['commentTitle'] = 'Discussion';
 	comments = blog.comments ?? comments; //: commentsExample;
@@ -36,18 +45,28 @@
 	let className: $$Props['class'] = undefined;
 	export { className as class };
 
+	const handleUpdate = ({ detail }: UpdateEventType) => {
+		dispatch('updated', detail);
+	};
+	const handleLoaded = ({ detail }: LoadedEventType) => {
+		// dispatch('loaded', detail);
+		blog = { ...blog, content: '' };
+		// console.log('editor loaded');
+	};
 	// export let href: string;
 </script>
 
 <Section bind:blogPost>
+	<!-- afterMount={() => {
+		// console.log('editor mounted');
+		blog = { ...blog, content: '' };
+	}} -->
 	<BlogTemplate bind:blog bind:classArticle {...$$restProps}>
 		<FullEditor
 			slot="default"
 			content={blog.content}
-			afterMount={() => {
-				// console.log('editor mounted');
-				blog = { ...blog, content: '' };
-			}}
+			on:loaded={handleLoaded}
+			on:update={handleUpdate}
 		/>
 	</BlogTemplate>
 	<!-- <BlogTemplate bind:classArticle bind:blog {...$$restProps} /> -->
