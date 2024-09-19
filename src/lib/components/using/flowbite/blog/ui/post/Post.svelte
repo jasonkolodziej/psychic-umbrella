@@ -24,7 +24,7 @@
 		updated: JSONContent;
 	}>();
 	type $$Props = HTMLAttributes<HTMLElement> & {
-		blog: BlogPost;
+		blog: Partial<BlogPost>;
 		comments?: Array<Comment>;
 		commentTitle?: string;
 		classArticle?: string;
@@ -35,9 +35,13 @@
 	let blogPost = true;
 
 	export let classArticle: $$Props['classArticle'] = 'dark:text-white';
-	export let blog: $$Props['blog'] = undefined; //: blogExample;
+	export let blog: $$Props['blog'] = {}; //: blogExample;
 	export let comments: $$Props['comments'] = undefined;
 	export let commentTitle: $$Props['commentTitle'] = 'Discussion';
+	blog =
+		blog.id && blog.title && blog.content && blog.author
+			? blog
+			: { ...blog, title: 'New Title', content: 'This is space for new content', author: {} }; //: blogExample;
 	comments = blog.comments ?? comments; //: commentsExample;
 	commentTitle = comments?.length ? commentTitle + ` (${comments.length})` : commentTitle;
 
