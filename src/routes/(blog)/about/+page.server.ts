@@ -15,8 +15,8 @@ export const load: PageServerLoad = async ({ isDataRequest, request, platform, p
 		id: uuidV6(),
 		date: Intl.DateTimeFormat().format(Date.now()),
 		isoDate: new Date().toISOString(),
-		content: 'start here',
-		title: 'Title',
+		title: 'New Title',
+		content: 'This is space for new content',
 		author: {
 			name: 'Name',
 			title: 'my title',
