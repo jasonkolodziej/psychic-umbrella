@@ -84,9 +84,10 @@ bucket_name = "blogs"
 
 ######## PREVIEW environment config ########
 
-# [env.preview.vars]
-# NODE_VERSION = "20.9.0"
+[env.preview.vars]
+NODE_VERSION = "20.9.0"
 # API_KEY = "xyz789"
+REBRICKABLE_API_KEY="ec64bbd129bf522c48607a7ed1c54760"
 
 # [[env.preview.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
@@ -103,9 +104,10 @@ bucket_name = "blogs"
 
 ######## PRODUCTION environment config ########
 
-# [env.production.vars]
+[env.production.vars]
+NODE_VERSION = "20.9.0"
 # API_KEY = "abc123"
-
+REBRICKABLE_API_KEY="ec64bbd129bf522c48607a7ed1c54760"
 # [[env.production.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "<PRODUCTION_NAMESPACE_ID>"
