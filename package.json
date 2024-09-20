@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"openapi-ts": "openapi-ts -i https://rebrickable.com/api/v3/swagger/?format=openapi -o src/lib/rebrickable/client -c @hey-api/client-fetch",
 		"preview": "pnpm run build && wrangler pages dev",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -24,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20240909.0",
+		"@hey-api/openapi-ts": "^0.53.2",
 		"@magidoc/plugin-svelte-marked": "^6.0.1",
 		"@playwright/test": "^1.47.1",
 		"@rollup/plugin-json": "^6.1.0",
@@ -71,6 +73,7 @@
 		"@auth/d1-adapter": "^1.5.0",
 		"@auth/sveltekit": "^1.5.0",
 		"@cloudflare/pages-plugin-cloudflare-access": "^1.0.5",
+		"@hey-api/client-fetch": "^0.3.1",
 		"@jridgewell/sourcemap-codec": "^1.5.0",
 		"@popperjs/core": "^2.11.8",
 		"@tiptap/core": "^2.7.1",
