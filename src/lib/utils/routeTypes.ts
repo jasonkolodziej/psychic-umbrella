@@ -1,5 +1,7 @@
+import type { SvelteComponent } from 'svelte';
+
 export interface RouteType {
 	name: string;
 	href?: string;
-	dropdown?: RouteType[];
+	dropdown?: Array<RouteType & { icon?: typeof SvelteComponent }>;
 }

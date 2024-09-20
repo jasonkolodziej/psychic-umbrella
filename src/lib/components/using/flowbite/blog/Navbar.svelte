@@ -13,16 +13,24 @@
 		Navbar,
 		Search
 	} from 'flowbite-svelte';
-	import { ChevronDownOutline } from 'flowbite-svelte-icons';
+	import { ChevronDownOutline, StarOutline } from 'flowbite-svelte-icons';
 	// import '../../app.pcss';
 	import Users from '$lib/data/users.json';
 	import type { RouteType } from '$lib/utils/routeTypes';
 	// titles: ['Lego News', 'Lego Sets', 'Lego Reviews', 'Recommended Sets', 'About Me']
 	const routes: RouteType[] = [
 		{ name: 'Lego News', href: '/news' },
-		{ name: 'Lego Sets', href: '/sets' },
-		{ name: 'Lego Reviews', href: '/reviews' },
-		{ name: 'Recommended Sets', href: '/sets' },
+		{
+			name: 'Legos',
+			// href: '/legos',
+			dropdown: [
+				{ name: 'Sets', href: '/sets' },
+				{ name: 'Reviews', href: '/reviews', icon: StarOutline },
+				{ name: 'Recommended', href: '/sets' }
+			]
+		},
+		// { name: 'Lego Reviews', href: '/reviews' },
+		// { name: 'Recommended Sets', href: '/sets' },
 		{ name: 'About Me', href: '/about' }
 	];
 
@@ -53,16 +61,23 @@
 					{#each list as { name, href, dropdown }, i}
 						{#if dropdown}
 							<NavLi class="cursor-pointer">
-								Dropdown
-								<ChevronDownOutline class="ms-0 inline" />
+								{name}
+								<!-- class="ms-0 inline" -->
+								<ChevronDownOutline class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white" />
 							</NavLi>
 							<Dropdown class="z-20 w-44">
-								<DropdownItem href="#top">Item 1</DropdownItem>
-								<DropdownItem href="#top">Item 2</DropdownItem>
-								<DropdownItem href="#top">Item 3</DropdownItem>
+								{#each dropdown as drop}
+									<DropdownItem href={href ? href + drop.href : drop.href}>
+										{#if drop.icon}
+											<svelte:component this={drop.icon} class="me-2.5 h-4 w-4" />
+										{/if}
+										{drop.name}
+									</DropdownItem>
+								{/each}
 							</Dropdown>
+						{:else}
+							<NavLi {href}>{name}</NavLi>
 						{/if}
-						<NavLi {href}>{name}</NavLi>
 					{/each}
 					<!-- <NavLi href="/">Home</NavLi>
 					<NavLi href="#top">Messages</NavLi>
