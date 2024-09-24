@@ -50,6 +50,9 @@ importers:
       '@tiptap/extension-image':
         specifier: ^2.7.1
         version: 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))
+      '@tiptap/extension-mention':
+        specifier: ^2.7.2
+        version: 2.7.2(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))(@tiptap/pm@2.7.1)(@tiptap/suggestion@2.7.2(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))(@tiptap/pm@2.7.1))
       '@tiptap/extension-subscript':
         specifier: ^2.7.1
         version: 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))
@@ -86,6 +89,9 @@ importers:
       '@tiptap/starter-kit':
         specifier: ^2.7.1
         version: 2.7.1
+      '@tiptap/suggestion':
+        specifier: ^2.7.2
+        version: 2.7.2(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))(@tiptap/pm@2.7.1)
       '@types/uuid':
         specifier: ^10.0.0
         version: 10.0.0
@@ -104,6 +110,9 @@ importers:
       flowbite-svelte-icons:
         specifier: ^1.6.1
         version: 1.6.1(svelte@4.2.19)(tailwind-merge@2.5.2)(tailwindcss@3.4.12)
+      fuse.js:
+        specifier: ^7.0.0
+        version: 7.0.0
       github-slugger:
         specifier: ^2.0.0
         version: 2.0.0
@@ -176,6 +185,9 @@ importers:
       tailwind-merge:
         specifier: ^2.5.2
         version: 2.5.2
+      tippy.js:
+        specifier: ^6.3.7
+        version: 6.3.7
       tiptap-markdown:
         specifier: ^0.8.10
         version: 0.8.10(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))
@@ -1171,6 +1183,13 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
+  '@tiptap/extension-mention@2.7.2':
+    resolution: {integrity: sha512-9014x2KIqBk+zVJgGc8n20pdvaovsK2+JRnRvgPBi3BqU42C/IJLDZjkOO8Pl07ba6CC0JpqEpVEhtaEyuQOpA==}
+    peerDependencies:
+      '@tiptap/core': ^2.7.0
+      '@tiptap/pm': ^2.7.0
+      '@tiptap/suggestion': ^2.7.0
+
   '@tiptap/extension-ordered-list@2.7.1':
     resolution: {integrity: sha512-OZ2DH2UE8zs5d2XbZzuKCdMkvaLkofAi6y/uf/m6SnaAt47feGXUPXj0i19rEVH1WabebS25vE9fVYXgYj3Arg==}
     peerDependencies:
@@ -1248,6 +1267,12 @@ packages:
 
   '@tiptap/starter-kit@2.7.1':
     resolution: {integrity: sha512-m6i0o9c2Atsiol768FAfXFgrTniejSBI3vRc0gwn6GU4zzgaJrrMOGUTODbozwctOquCpVs36uIQxwDynqySVw==}
+
+  '@tiptap/suggestion@2.7.2':
+    resolution: {integrity: sha512-ZJMNuorzQQiKyzoisyeHgPH3kywv0cvQnyz5guZWiAtFWCUbFyB9MSLNuoijubwHWfnZMe4XiW5EqVt1dBmxBw==}
+    peerDependencies:
+      '@tiptap/core': ^2.7.0
+      '@tiptap/pm': ^2.7.0
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
@@ -1950,6 +1975,10 @@ packages:
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
+
+  fuse.js@7.0.0:
+    resolution: {integrity: sha512-14F4hBIxqKvD4Zz/XjDc3y94mNZN6pRv3U13Udo0lNLCWRBUsrMv2xwcF/y/Z5sV6+FQW+/ow68cHpm4sunt8Q==}
+    engines: {node: '>=10'}
 
   get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
@@ -4299,6 +4328,12 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.7.1(@tiptap/pm@2.7.1)
 
+  '@tiptap/extension-mention@2.7.2(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))(@tiptap/pm@2.7.1)(@tiptap/suggestion@2.7.2(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))(@tiptap/pm@2.7.1))':
+    dependencies:
+      '@tiptap/core': 2.7.1(@tiptap/pm@2.7.1)
+      '@tiptap/pm': 2.7.1
+      '@tiptap/suggestion': 2.7.2(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))(@tiptap/pm@2.7.1)
+
   '@tiptap/extension-ordered-list@2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))':
     dependencies:
       '@tiptap/core': 2.7.1(@tiptap/pm@2.7.1)
@@ -4399,6 +4434,11 @@ snapshots:
       '@tiptap/extension-paragraph': 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))
       '@tiptap/extension-strike': 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))
       '@tiptap/extension-text': 2.7.1(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))
+      '@tiptap/pm': 2.7.1
+
+  '@tiptap/suggestion@2.7.2(@tiptap/core@2.7.1(@tiptap/pm@2.7.1))(@tiptap/pm@2.7.1)':
+    dependencies:
+      '@tiptap/core': 2.7.1(@tiptap/pm@2.7.1)
       '@tiptap/pm': 2.7.1
 
   '@types/cookie@0.6.0': {}
@@ -5179,6 +5219,8 @@ snapshots:
     optional: true
 
   function-bind@1.1.2: {}
+
+  fuse.js@7.0.0: {}
 
   get-caller-file@2.0.5: {}
 
