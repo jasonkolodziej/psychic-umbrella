@@ -5,6 +5,18 @@
 	import type { ComponentProps } from 'svelte';
 	import blog from '$lib/data/blog-example.json';
 	import { VideoCameraSolid } from 'flowbite-svelte-icons';
+	import {
+		Table,
+		TableBody,
+		TableBodyCell,
+		TableBodyRow,
+		TableHead,
+		TableHeadCell,
+		TableSearch
+	} from 'flowbite-svelte';
+	import type { PageData } from '../$types';
+	import type { LegoSetOverview } from '$lib/filtering/zach';
+
 	/**
 		** Pages can break out of the current layout hierarchy on a route-by-route basis. 
 		** Suppose we have an /item/[id]/embed route inside the (app) group from the previous example:
@@ -57,8 +69,47 @@
 			}
 		}
 	];
+	export let data: PageData;
+	let searchTerm = '';
+	// let items = [
+	// 	{ id: 1, maker: 'Toyota', type: 'ABC', make: 2017 },
+	// 	{ id: 2, maker: 'Ford', type: 'CDE', make: 2018 },
+	// 	{ id: 3, maker: 'Volvo', type: 'FGH', make: 2019 },
+	// 	{ id: 4, maker: 'Saab', type: 'IJK', make: 2020 }
+	// ];
+	let items: Array<LegoSetOverview> = data.sets;
+	let keysRedacted = data.redactKeys ?? ['set_url', 'set_img_url'];
+	const keysOfLegoSets = Object.keys(items[0]);
+	let filteredKeys = keysOfLegoSets.filter((key) =>
+		keysRedacted.indexOf(key) !== -1 ? false : true
+	);
+	let headers = filteredKeys.map((key) => key.replaceAll('_', ' '));
+	console.log('keysOfLegoSets', keysOfLegoSets);
+	$: filteredItems = items.filter(
+		(item) => item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+	);
 </script>
 
 <main class="p-4">
 	<SectionBlog title="Sets" lead="All the sets so far..." bind:articles />
+	<TableSearch placeholder="Search by maker name" hoverable={true} bind:inputValue={searchTerm}>
+		<TableHead>
+			{#each headers as head}
+				<TableHeadCell>{head}</TableHeadCell>
+			{/each}
+			<!-- <TableHeadCell>ID</TableHeadCell>
+			<TableHeadCell>Maker</TableHeadCell>
+			<TableHeadCell>Type</TableHeadCell>
+			<TableHeadCell>Make</TableHeadCell> -->
+		</TableHead>
+		<TableBody tableBodyClass="divide-y">
+			{#each filteredItems as item, i}
+				<TableBodyRow>
+					{#each filteredKeys as key}
+						<TableBodyCell>{item[key]}</TableBodyCell>
+					{/each}
+				</TableBodyRow>
+			{/each}
+		</TableBody>
+	</TableSearch>
 </main>

@@ -126,6 +126,17 @@ export interface LegoKit {
 	Rating?: Review;
 }
 
+export type LegoSetOverview = {
+	set_num: string; // '76902-1';
+	name: string; // 'McLaren Elva';
+	year: number; // 2021,
+	theme_id: number; // 601,
+	num_parts: number; // 266,
+	set_img_url: URL; // 'https://cdn.rebrickable.com/media/sets/76902-1/87822.jpg',
+	set_url: URL; // 'https://rebrickable.com/sets/76902-1/mclaren-elva/',
+	last_modified_dt: DateConstructor; // '2021-05-14T14:03:09.089614Z'
+};
+
 export class LegoSet implements LegoKit {
 	SKU: string | number;
 	Name: string;

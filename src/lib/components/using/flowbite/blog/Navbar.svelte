@@ -40,7 +40,7 @@
 	export let list: RouteType[] = [];
 
 	// TODO: add dynamic routing
-	$: list = routes;
+	// $: list = routes;
 </script>
 
 <Navbar {fluid} class="text-black" color="default" let:NavContainer>

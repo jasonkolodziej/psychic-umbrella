@@ -24,9 +24,9 @@ export const load: PageServerLoad = async ({ isDataRequest, request, platform })
 
 	let response = await legoSetsList();
 	let { data } = response;
-	console.log('data', data);
-	response = await legoSetsRead({ path: { set_num: '76902-1' } });
-	data = response.data;
-	console.log('data', data);
-	return { blog: { title: 'Blog', posts: [] } };
+	// console.log('data', data);
+	// response = await legoSetsRead({ path: { set_num: '76902-1' } });
+	// data = response.data;
+	// console.log('data', data);
+	return { blog: { title: 'Blog', posts: [] }, sets: data.results };
 };
