@@ -21,7 +21,7 @@ export interface PricingFilters {
 // 1b> Play experience (after build)
 // 1c> Value for money (tie out)
 
-export type RatingScore = 1 | 2 | 3 | 4 | 5;
+export type RatingScore = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export interface Review {
 	// Based on the sub sections of the review
 	overallRating?: RatingScore | number | null;
