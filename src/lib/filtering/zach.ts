@@ -24,13 +24,22 @@ export interface PricingFilters {
 export type RatingScore = 1 | 2 | 3 | 4 | 5;
 export interface Review {
 	// Based on the sub sections of the review
-	overallRating: RatingScore | null;
+	overallRating?: RatingScore | number | null;
+	// Total number of reviews
+	totalReviews?: number;
+	// Description of the overall rating
+	overallRatingDescription?: string;
+	// Criteria for the review
+	criteria: Array<ReviewCriteria>;
+}
+
+export interface ReviewCriteria {
 	// Difficulty during build
-	BuildExperience: RatingScore | null;
+	Build_Experience: RatingScore | null;
 	// After build
-	PlayExperience: RatingScore | null;
+	Play_Experience: RatingScore | null;
 	// Value for money, used as a tie breaker for the overall rating
-	ValueForMoney: RatingScore | null;
+	Value_For_Money: RatingScore | null;
 }
 
 const legoColors = {

@@ -4,7 +4,10 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { ComponentProps, SvelteComponent } from 'svelte';
 	import type { ArticleBody as Body } from '$lib/filtering/blog';
-	import { P, A } from 'flowbite-svelte';
+	import Rating from '$components/using/flowbite/blog/ui/rating/Rating.svelte';
+	import { A, P } from 'flowbite-svelte';
+	import Score from '../rating/Score.svelte';
+	import type { ReviewCriteria } from '$lib/filtering/zach';
 
 	type $$Props = ComponentProps<ArticleBody> & Body;
 
@@ -14,6 +17,9 @@
 	export let titleHref: $$Props['titleHref'] = '/';
 	export let lead: $$Props['lead'] = '';
 	export { className as class };
+	let criteria: Array<ReviewCriteria> = [
+		{ Value_For_Money: 3, Build_Experience: 3, Play_Experience: 2 }
+	];
 </script>
 
 <ArticleBody>
@@ -23,8 +29,11 @@
 		<A href={titleHref}>{title}</A>
 	</svelte:fragment>
 	<svelte:fragment slot="paragraph">
-		<P class="mb-5 font-light text-gray-500 dark:text-gray-400">
-			{lead}
-		</P>
+		<div class="mb-5">
+			<P class="font-light text-gray-500 dark:text-gray-400">
+				{lead}
+			</P>
+			<Score {criteria} />
+		</div>
 	</svelte:fragment>
 </ArticleBody>

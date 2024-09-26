@@ -115,6 +115,7 @@
 						{#if key === 'theme'}
 							<TableBodyCell>{item[key]['name']}</TableBodyCell>
 						{:else if key === 'name'}
+							<!-- ? specifically for name -->
 							<TableBodyCell>
 								<A href={item['set_url']}>{item[key]}</A>
 								<Popover class="w-96 text-sm font-light" defaultClass="">
