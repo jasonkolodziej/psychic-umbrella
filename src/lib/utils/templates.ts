@@ -37,3 +37,5 @@ export function toDateStr(date: Date | Moment | string): DateStr {
 	}
 	throw new Error(`Shouldn't get here (invalid toDateStr provided): ${date}`);
 }
+
+// export type MaybePromise<T> = T | Promise<T>;

@@ -2,6 +2,7 @@
 // x>50 - 200$
 // x>200$
 
+import type { FuseResult } from 'fuse.js';
 import type { Picture } from './blog';
 
 export interface PricingFilters {
@@ -131,10 +132,21 @@ export type LegoSetOverview = {
 	name: string; // 'McLaren Elva';
 	year: number; // 2021,
 	theme_id: number; // 601,
+	//* added for ease of use
+	theme?: LegoTheme | FuseResult<LegoTheme>;
 	num_parts: number; // 266,
 	set_img_url: URL; // 'https://cdn.rebrickable.com/media/sets/76902-1/87822.jpg',
 	set_url: URL; // 'https://rebrickable.com/sets/76902-1/mclaren-elva/',
 	last_modified_dt: DateConstructor; // '2021-05-14T14:03:09.089614Z'
+};
+
+export type LegoTheme = {
+	id: number; // 601,
+	name: string; // 'Speed Champions',
+	parent_id: number; // 1,
+	parent_name?: string; // 'Modern day',
+	// 'https://cdn.rebrickable.com/media/themes/601-Speed-Champions.jpg',
+	image_url?: URL;
 };
 
 export class LegoSet implements LegoKit {

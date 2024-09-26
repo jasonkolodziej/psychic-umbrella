@@ -4,18 +4,22 @@
 	import { SectionBlog } from '$components/using/flowbite/blog/ui/section';
 	import type { ComponentProps } from 'svelte';
 	import blog from '$lib/data/blog-example.json';
-	import { VideoCameraSolid } from 'flowbite-svelte-icons';
+	import { ChevronRightOutline, VideoCameraSolid } from 'flowbite-svelte-icons';
+	import Fuse from 'fuse.js';
 	import {
+		Popover,
 		Table,
 		TableBody,
 		TableBodyCell,
 		TableBodyRow,
 		TableHead,
 		TableHeadCell,
-		TableSearch
+		TableSearch,
+		A,
+		Img
 	} from 'flowbite-svelte';
 	import type { PageData } from '../$types';
-	import type { LegoSetOverview } from '$lib/filtering/zach';
+	import type { LegoSetOverview, LegoTheme } from '$lib/filtering/zach';
 
 	/**
 		** Pages can break out of the current layout hierarchy on a route-by-route basis. 
@@ -71,23 +75,25 @@
 	];
 	export let data: PageData;
 	let searchTerm = '';
-	// let items = [
-	// 	{ id: 1, maker: 'Toyota', type: 'ABC', make: 2017 },
-	// 	{ id: 2, maker: 'Ford', type: 'CDE', make: 2018 },
-	// 	{ id: 3, maker: 'Volvo', type: 'FGH', make: 2019 },
-	// 	{ id: 4, maker: 'Saab', type: 'IJK', make: 2020 }
-	// ];
+
 	let items: Array<LegoSetOverview> = data.sets;
 	let keysRedacted = data.redactKeys ?? ['set_url', 'set_img_url'];
 	const keysOfLegoSets = Object.keys(items[0]);
 	let filteredKeys = keysOfLegoSets.filter((key) =>
 		keysRedacted.indexOf(key) !== -1 ? false : true
 	);
+	// console.debug('filteredKeys', filteredKeys);
+	//? Create a new instance of Fuse
+	const fuse = new Fuse(items, { keys: filteredKeys });
+	//? Make keys for table headers human readable
 	let headers = filteredKeys.map((key) => key.replaceAll('_', ' '));
-	console.log('keysOfLegoSets', keysOfLegoSets);
-	$: filteredItems = items.filter(
-		(item) => item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
-	);
+	// console.debug('headers used', headers);
+
+	// $: filteredItems = items.filter(
+	// 	(item) => item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+	// );
+	$: filteredItems =
+		searchTerm === '' ? items : fuse.search(searchTerm).map((result) => result.item);
 </script>
 
 <main class="p-4">
@@ -97,16 +103,27 @@
 			{#each headers as head}
 				<TableHeadCell>{head}</TableHeadCell>
 			{/each}
-			<!-- <TableHeadCell>ID</TableHeadCell>
-			<TableHeadCell>Maker</TableHeadCell>
-			<TableHeadCell>Type</TableHeadCell>
-			<TableHeadCell>Make</TableHeadCell> -->
 		</TableHead>
 		<TableBody tableBodyClass="divide-y">
 			{#each filteredItems as item, i}
 				<TableBodyRow>
 					{#each filteredKeys as key}
-						<TableBodyCell>{item[key]}</TableBodyCell>
+						{#if key === 'theme'}
+							<TableBodyCell>{item[key]['name']}</TableBodyCell>
+						{:else if key === 'name'}
+							<TableBodyCell>
+								<A href={item['set_url']}>{item[key]}</A>
+								<Popover class="w-96 text-sm font-light" defaultClass="">
+									<!-- class="grid grid-cols-1" -->
+									<div class="grid grid-flow-col justify-items-center p-2 md:grid-flow-row">
+										<!-- class="col-span-1 h-full rounded-e-lg" -->
+										<Img src={item['set_img_url']} class="rounded-lg" alt={item[key]} />
+									</div>
+								</Popover>
+							</TableBodyCell>
+						{:else}
+							<TableBodyCell>{item[key]}</TableBodyCell>
+						{/if}
 					{/each}
 				</TableBodyRow>
 			{/each}
