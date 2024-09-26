@@ -98,7 +98,11 @@
 
 <main class="p-4">
 	<SectionBlog title="Sets" lead="All the sets so far..." bind:articles />
-	<TableSearch placeholder="Search by maker name" hoverable={true} bind:inputValue={searchTerm}>
+	<TableSearch
+		placeholder="Search by Set number, Theme, or Name"
+		hoverable={true}
+		bind:inputValue={searchTerm}
+	>
 		<TableHead>
 			{#each headers as head}
 				<TableHeadCell>{head}</TableHeadCell>
