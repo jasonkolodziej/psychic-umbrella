@@ -7,8 +7,15 @@
 		TableHead,
 		TableHeadCell,
 		Checkbox,
+		Toolbar,
+		ToolbarButton,
+		ToolbarGroup,
 		ButtonGroup,
 		PaginationItem,
+		Dropdown,
+		DropdownItem,
+		DropdownDivider,
+		DropdownHeader,
 		Button
 	} from 'flowbite-svelte';
 	import {
@@ -16,6 +23,7 @@
 		TrashBinSolid,
 		InfoCircleSolid,
 		ExclamationCircleSolid,
+		DotsVerticalOutline,
 		ArrowLeftOutline,
 		ArrowRightOutline
 	} from 'flowbite-svelte-icons';
@@ -28,34 +36,27 @@
 </script>
 
 <Table hoverable={true}>
-	<TableHead>
-		<TableHeadCell class="!p-4">
+	<!-- <TableHead> -->
+	<!-- <slot name="header"> -->
+	<Toolbar embedded class="!p-4">
+		<ToolbarGroup>
 			<Checkbox />
-		</TableHeadCell>
-		<TableHeadCell class="!p-4">
-			<!-- <div class="flex flex-wrap items-center gap-2"> -->
+		</ToolbarGroup>
+		<ToolbarGroup>
+			<ToolbarButton><TrashBinSolid color="gray" class="h-6 w-6" /></ToolbarButton>
+			<ToolbarButton><ArchiveSolid color="gray" class="h-6 w-6" /></ToolbarButton>
+			<ToolbarButton><ExclamationCircleSolid color="gray" class="h-6 w-6" /></ToolbarButton>
+			<ToolbarButton><DotsVerticalOutline class="dots-menu dark:text-white" /></ToolbarButton>
+		</ToolbarGroup>
+		<ToolbarGroup>
+			<!-- <ToolbarButton> -->
+			<Button color="blue">Post comment</Button>
+			<!-- </ToolbarButton> -->
+		</ToolbarGroup>
+	</Toolbar>
+	<!-- </slot> -->
+	<!-- </TableHead> -->
 
-			<Button class="!p-4"><TrashBinSolid color="gray" class="h-6 w-6" /></Button>
-			<!-- <Button class="!p-4"><ArchiveSolid color="gray" class="h-6 w-6" /></Button>
-			<Button class="!p-4"><ExclamationCircleSolid color="gray" class="h-6 w-6" /></Button> -->
-			<!-- </div> -->
-		</TableHeadCell>
-		<TableHeadCell class="!p-4">
-			<div
-				class="inline-block h-[250px] min-h-[1em] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10"
-			/>
-		</TableHeadCell>
-		<TableHeadCell class="!p-4" />
-		<!-- <TableHeadCell>
-			<PaginationItem table class="flex items-center" on:click={previous}>
-				<ArrowLeftOutline class="me-2 h-3.5 w-3.5" />
-				Previous
-			</PaginationItem>
-		</TableHeadCell> -->
-		<!-- <TableHeadCell>Color</TableHeadCell>
-      <TableHeadCell>Category</TableHeadCell>
-      <TableHeadCell>Price</TableHeadCell> -->
-	</TableHead>
 	<TableBody tableBodyClass="divide-y">
 		<TableBodyRow>
 			<TableBodyCell class="!p-4">
@@ -67,3 +68,10 @@
 		</TableBodyRow>
 	</TableBody>
 </Table>
+
+<Dropdown triggeredBy=".dots-menu">
+	<DropdownItem>Dashboard</DropdownItem>
+	<DropdownItem>Settings</DropdownItem>
+	<DropdownItem>Earnings</DropdownItem>
+	<DropdownItem slot="footer">Sign out</DropdownItem>
+</Dropdown>
