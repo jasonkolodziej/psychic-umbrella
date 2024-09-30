@@ -6,6 +6,7 @@
 	import Post from '$components/using/flowbite/blog/ui/post/Post.svelte';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import Inbox from '$lib/utils/crud/Inbox.svelte';
 	// import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
 	// import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
@@ -54,6 +55,7 @@
 </script>
 
 <main class={classRef}>
+	<!-- <Inbox></Inbox> -->
 	<!-- {#key src}
 		<Renderer source={src} />
 	{/key} -->
