@@ -5,7 +5,8 @@
 	import Head from './article-head.svelte';
 	import Body from './article-body.svelte';
 	import Author from './article-author.svelte';
-	import type { IArticle } from '$lib/filtering/blog';
+	import type { Article as IArticle } from '$lib/filtering/blog';
+	import Score from '$components/using/flowbite/blog/ui/rating/Score.svelte';
 
 	//TODO: review this https://flowbite-svelte.com/blocks/marketing/blog
 	type $$Props = ComponentProps<ArticleWrapper> & IArticle;
@@ -28,6 +29,16 @@
 		moreInfoHref: '/',
 		moreInfoLabel: 'Read more'
 	} as ComponentProps<Author>;
+	export let review: $$Props['review'] = {
+		overallRating: 4.5,
+		// totalReviews: 100,
+		criteria: [{ Value_For_Money: 4, Build_Experience: 3, Play_Experience: 4 }]
+	};
+	review = {
+		overallRating: 4.5,
+		// totalReviews: 100,
+		criteria: [{ Value_For_Money: 4, Build_Experience: 3, Play_Experience: 4 }]
+	};
 	// export let tag: $$Props['tag'] = 'h3';
 	export { className as class };
 </script>
@@ -79,7 +90,7 @@
 	{#if $$slots.body}
 		<slot name="body" />
 	{:else if body}
-		<Body {...body} />
+		<Body {...body} ratingScore={review}></Body>
 	{/if}
 	{#if $$slots.author}
 		<slot name="author" />

@@ -14,31 +14,33 @@ export interface PricingFilters {
 	OverTwoHundred: boolean;
 }
 
-// Overall reviews
-// Sections
+//* Overall reviews
+//* Sections
 // 1> Overall Rating 1-5
 // 1a> Build experience (difficulty during build)
 // 1b> Play experience (after build)
 // 1c> Value for money (tie out)
 
 export type RatingScore = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+export type AverageRatingScore = RatingScore | number;
 export interface Review {
-	// Based on the sub sections of the review
-	overallRating?: RatingScore | number | null;
-	// Total number of reviews
+	//* Based on the sub sections of the review
+	overallRating?: AverageRatingScore;
+	//* Total number of reviews for the set
 	totalReviews?: number;
-	// Description of the overall rating
+	//* Description of the overall rating
 	overallRatingDescription?: string;
-	// Criteria for the review
+	//* List of criteria for the review
+	//? the length of the array determines the total number of reviews
 	criteria: Array<ReviewCriteria>;
 }
 
 export interface ReviewCriteria {
-	// Difficulty during build
+	//* Difficulty during build
 	Build_Experience: RatingScore | null;
-	// After build
+	//* After build
 	Play_Experience: RatingScore | null;
-	// Value for money, used as a tie breaker for the overall rating
+	//* Value for money, used as a tie breaker for the overall rating
 	Value_For_Money: RatingScore | null;
 }
 
@@ -136,6 +138,7 @@ export interface LegoKit {
 	Rating?: Review;
 }
 
+// * Object of the Lego Set for Rebrickable API
 export type LegoSetOverview = {
 	set_num: string; // '76902-1';
 	name: string; // 'McLaren Elva';
@@ -149,6 +152,7 @@ export type LegoSetOverview = {
 	last_modified_dt: DateConstructor; // '2021-05-14T14:03:09.089614Z'
 };
 
+// * Object of the Lego Theme for Rebrickable API
 export type LegoTheme = {
 	id: number; // 601,
 	name: string; // 'Speed Champions',

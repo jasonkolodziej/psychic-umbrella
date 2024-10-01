@@ -1,9 +1,13 @@
 import type { Moment } from 'moment';
 import moment from 'moment';
 
-// https://refine.dev/blog/typescript-mapped-types/#typescript-type-mapper-utility-vs-ts-mapped-type-the-difference
+//? https://refine.dev/blog/typescript-mapped-types/#typescript-type-mapper-utility-vs-ts-mapped-type-the-difference
 export type Nullable<T> = T | null;
-export type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+//? https://stackoverflow.com/questions/44425344/typescript-interface-with-xor-barstring-xor-cannumber
+// UnionType=T, ExcludedMembers=U
+export type Without<T, U> = {
+	[Property in Exclude<keyof T, keyof U>]?: never;
+};
 export type XOR<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
 export type Distinct<TypeSource, DistinctName> = TypeSource & { __TYPE__: DistinctName };
 export type FilterOut<Source, Keys> = {

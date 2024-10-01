@@ -4,22 +4,19 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { ComponentProps, SvelteComponent } from 'svelte';
 	import type { ArticleBody as Body } from '$lib/filtering/blog';
-	import Rating from '$components/using/flowbite/blog/ui/rating/Rating.svelte';
 	import { A, P } from 'flowbite-svelte';
+	import type { Review, ReviewCriteria } from '$lib/filtering/zach';
 	import Score from '../rating/Score.svelte';
-	import type { ReviewCriteria } from '$lib/filtering/zach';
 
-	type $$Props = ComponentProps<ArticleBody> & Body;
+	type $$Props = ComponentProps<ArticleBody> & Body & { ratingScore?: Review };
 
 	let className: $$Props['class'] = undefined;
 	// export let tag: $$Props['tag'] = 'h2';
 	export let title: $$Props['title'] = '';
 	export let titleHref: $$Props['titleHref'] = '/';
 	export let lead: $$Props['lead'] = '';
+	export let ratingScore: $$Props['ratingScore'] = undefined;
 	export { className as class };
-	let criteria: Array<ReviewCriteria> = [
-		{ Value_For_Money: 3, Build_Experience: 3, Play_Experience: 2 }
-	];
 </script>
 
 <ArticleBody>
@@ -33,7 +30,9 @@
 			<P class="font-light text-gray-500 dark:text-gray-400">
 				{lead}
 			</P>
-			<Score {criteria} />
+			{#if ratingScore}
+				<Score {...ratingScore} />
+			{/if}
 		</div>
 	</svelte:fragment>
 </ArticleBody>

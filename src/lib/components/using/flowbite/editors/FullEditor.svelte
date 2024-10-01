@@ -29,6 +29,7 @@
 	//? Editor
 	let editor: Editor;
 	let tableActive: boolean;
+	let imgActive: boolean;
 	let element: HTMLElement;
 	let bubbleMenu: HTMLElement;
 	let buttonSize: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'xs';
@@ -91,6 +92,7 @@
 				// force re-render so `editor.isActive` works as expected
 				editor = editor;
 				tableActive = editor.isActive('table');
+				imgActive = editor.isActive('image');
 				// console.log('tableActive', tableActive);
 			},
 			// triggered on every change https://tiptap.dev/docs/guides/output-json-html
@@ -125,7 +127,7 @@
 
 <FloatingToolbar bind:editor bind:floatingMenu bind:isDark />
 
-<BubbleToolbar bind:editor bind:bubbleMenu bind:isDark bind:tableActive />
+<BubbleToolbar bind:editor bind:bubbleMenu bind:isDark bind:tableActive bind:imgActive />
 
 <!-- * Editor Element -->
 <svelte:element this="div" bind:this={element} />

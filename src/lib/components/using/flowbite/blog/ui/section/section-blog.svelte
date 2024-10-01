@@ -4,7 +4,7 @@
 	import { cn } from '$lib/carta/utils';
 	import { BlogBodyWrapper, BlogHead, Section } from 'flowbite-svelte-blocks';
 	import type { ComponentProps, SvelteComponent } from 'svelte';
-	import Article from '../article/article.svelte';
+	import Article from '$components/using/flowbite/blog/ui/article/article.svelte';
 
 	type $$Props = HTMLAttributes<HTMLParagraphElement> & {
 		title: string;

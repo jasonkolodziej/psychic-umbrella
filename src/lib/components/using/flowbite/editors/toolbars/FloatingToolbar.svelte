@@ -33,6 +33,7 @@
 	const uploadedCallback = (file: Partial<UploadedFile>) => {
 		console.log('uploadedCallback', file);
 		editor.chain().focus().setImage({ src: file.fileObjectUrl!, alt: file.file?.name }).run();
+		showUploader = false;
 	};
 </script>
 

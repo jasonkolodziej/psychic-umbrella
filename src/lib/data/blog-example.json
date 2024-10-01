@@ -2,6 +2,10 @@
 	"id": "blog-1",
 	"title": "Best practices for successful prototypes",
 	"lead": "Flowbite is an open-source library of UI components built with the utility-first classes from Tailwind CSS. It also includes interactive elements such as dropdowns, modals, datepickers.",
+	"rating": {
+		"overallRating": 4.5,
+		"criteria": [{ "Value_For_Money": 4 }]
+	},
 	"author": {
 		"name": "Jese Leos",
 		"title": "Graphic Designer, educator & CEO Flowbite",

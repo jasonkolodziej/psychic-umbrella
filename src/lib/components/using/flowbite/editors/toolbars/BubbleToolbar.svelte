@@ -20,7 +20,11 @@
 		ArrowRightOutline,
 		ArrowLeftOutline,
 		CirclePlusOutline,
-		CircleMinusOutline
+		CircleMinusOutline,
+		BarsFromLeftOutline,
+		AlignCenterOutline,
+		BarsOutline,
+		AngleRightOutline
 	} from 'flowbite-svelte-icons';
 	import {
 		TextStrikethrough,
@@ -40,6 +44,7 @@
 	// determine if the user prefers dark mode
 	export let isDark: boolean;
 	export let tableActive: boolean = false;
+	export let imgActive: boolean = false;
 	let openRowTools: boolean;
 	let openColumnTools: boolean;
 	export let editor: Editor;
@@ -51,6 +56,7 @@
 	<!-- ? Example: class="bubble-menu" -->
 	<!-- ? Example: class={editor.isActive('bold') ? 'is-active' : ''} -->
 	{#if editor}
+		<!-- * Text tools -->
 		<ButtonGroup class="space-x-px">
 			<GradientButton
 				size="xs"
@@ -136,6 +142,41 @@
 			</Button>
 			<Tooltip>Text Color</Tooltip>
 		</ButtonGroup>
+
+		<!--* Image tools-->
+		{#if imgActive}
+			<ButtonGroup>
+				<GradientButton
+					bind:outline
+					color="pinkToOrange"
+					on:click={() => editor.chain().focus().updateAttributes('image', { align: 'left' }).run()}
+				>
+					<BarsFromLeftOutline size="sm" />
+				</GradientButton>
+				<Tooltip>Align Left</Tooltip>
+				<GradientButton
+					bind:outline
+					color="pinkToOrange"
+					on:click={() =>
+						editor.chain().focus().updateAttributes('image', { align: 'center' }).run()}
+				>
+					<AlignCenterOutline size="sm" />
+				</GradientButton>
+				<Tooltip>Align Center</Tooltip>
+				<GradientButton
+					bind:outline
+					color="pinkToOrange"
+					on:click={() =>
+						editor.chain().focus().updateAttributes('image', { align: 'right' }).run()}
+				>
+					<BarsOutline size="sm" />
+					<AngleRightOutline size="sm" />
+				</GradientButton>
+				<Tooltip>Align Right</Tooltip>
+			</ButtonGroup>
+		{/if}
+
+		<!-- * Table tools -->
 		{#if tableActive}
 			<ButtonGroup>
 				<GradientButton
@@ -147,6 +188,7 @@
 					<TableRowOutline size="sm" />
 				</GradientButton>
 				<Tooltip>Delete Table</Tooltip>
+
 				<!-- * Row tools -->
 				<GradientButton size="xs" bind:outline color="pinkToOrange">
 					<Row />

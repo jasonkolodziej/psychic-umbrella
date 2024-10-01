@@ -75,8 +75,56 @@ export const defaultFlowbiteStarterkitOpts: Partial<StarterKitOptions> = {
 	}
 };
 // //? https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#global-attributes
+//? https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#commands
+const CustomImage = Image.extend({
+	addAttributes() {
+		return {
+			...this.parent?.(),
+			align: {
+				default: null,
+				// Customize the HTML parsing (for example, to load the initial content)
+				parseHTML: (element) => element.getAttribute('data-align'),
+				// … and customize the HTML rendering.
+				renderHTML: (attributes) => {
+					return {
+						'data-align': attributes.align,
+						class: twMerge(
+							'h-auto max-w-full rounded-lg',
+							attributes.align === 'center'
+								? 'mx-auto'
+								: attributes.align === 'right'
+									? 'ms-auto'
+									: ''
+						)
+					};
+				}
+			}
+		};
+	},
+	addCommands() {
+		return {
+			...this.parent?.(),
+			toggleImageAlign:
+				// (attributes) =>
 
-// const customTaskItem =
+
+					(alignment: 'left' | 'center' | 'right') =>
+					({ chain, commands }) => {
+						// Doesn’t work:
+						// return editor.chain() …
+
+						// Does work:
+						// return chain().insertContent('foo!').insertContent('bar!').run();
+						return chain().addAttributes({ align: alignment }).run();
+					}
+			// paragraph:
+			// 	() =>
+			// 	({ commands }) => {
+			// 		return commands.setNode('paragraph');
+			// 	}
+		};
+	}
+});
 
 export const extensionsWithNoOpts: Extensions = [
 	StarterKit.configure(defaultFlowbiteStarterkitOpts),
@@ -129,11 +177,11 @@ export const extensionsWithNoOpts: Extensions = [
 		HTMLAttributes: { class: 'flex items-center gap-4' }
 	}),
 	// * @tiptap/extension-image
-	Image.configure({
-		inline: false,
-		HTMLAttributes: {
-			class: 'max-w-lg rounded-lg'
-		}
+	CustomImage.configure({
+		inline: false
+		// HTMLAttributes: {
+		// 	class: 'max-w-lg rounded-lg'
+		// }
 	})
 ];
 

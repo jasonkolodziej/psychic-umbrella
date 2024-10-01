@@ -1,78 +1,60 @@
 import type { DateStr, Without, XOR } from '$lib/utils/templates';
 import type { SvelteComponent } from 'svelte';
+import type { Review } from './zach';
 // import { v6 as uuidv6 } from 'uuid'; // * use
-export interface Commenter {
-	name: Author['name'];
-	profilePicture: Author['profilePicture'];
-}
 
-// * use
-export interface Comment {
-	id: string; // typeof uuidv6;
-	commenter: Commenter;
-	date: string | DateStr;
-	content: string;
-	replies?: Comment[];
-}
 // * Testing
-
 export type Picture = {
 	imgDescription?: string;
 	// (urlOrData: URL | Buffer | string, imgDescription?: string): Picture;
 } & XOR<{ imgSrc: string }, { profilePicture: string }>;
 
-// * use
-// export interface Author {
-// 	name: string;
-// 	title?: string;
-// 	profilePicture: Picture['profilePicture'] | Picture['imgSrc'];
-// 	// profilePicture: ProfilePicture | ProfilePicture['profilePicture'];
-// 	href?: string;
-// }
-//? use
-// export type Author = Picture & {
-// 	name: string;
-// 	title?: string;
-// 	href?: string;
-// 	get profilePicture(): Picture['profilePicture'] | Picture['imgSrc'];
-// };
-// ? maybe
+/**
+ * ? Author
+ * * contains the general information of the author for
+ * * the blog post, article, or comment
+ */
 export type Author = { name: string; title?: string; href?: string } & Picture;
 
-// * use
-// export interface Blog {
-// 	// * blog id
-// 	id: string | typeof uuidv7;
-// 	// * blog title
-// 	title: string;
-// 	// * blog lead (header) or summary
-// 	lead?: string | undefined;
-// 	// * blog article or the summarized card of the blog
-// 	article: Article;
-// }
+/**
+ * ? Commenter
+ * * contains the general information of a commenter on a blog post
+ */
+export type Commenter = Exclude<Author, 'title' | 'href'>;
 
-//? Maybe
-export type BlogArticleIdentifier = {
-	// * blog id
-	id: string; // typeof uuidv6;
+/**
+ * ? Comment
+ * * contains the information of a comment on a blog post
+ */
+export type Comment = {
+	//* comment id, typeof uuidv6;
+	id: string;
+	// * commenter information
+	commenter: Commenter;
+	// * date of the comment
+	date: string | DateStr;
+	// * content of the comment
+	content: string;
+	// * replies to the comment
+	replies?: Comment[];
+};
+
+/**
+ * ? BlogArticleMetadata
+ * * contains the metadata of the blog Object and the Article Object
+ */
+export type BlogArticleMetadata = {
+	// * blog id, typeof uuidv6;
+	id: string;
 	// * blog title
 	title: string;
 	// * blog lead (header) or summary
 	lead?: string | undefined;
+	// * rating
+	rating?: Review;
 };
-// export interface BlogPost extends Blog {
-// 	// * blog author
-// 	author: Author;
-// 	// * blog date
-// 	date: string | Date | DateConstructor;
-// 	isoDate: string | Date | DateConstructor;
-// 	// * blog content
-// 	content: string;
-// 	get asArticle(): Article;
-// 	get comments(): Array<Comment> | undefined;
-// }
 
-export type BlogPost = BlogArticleIdentifier & {
+export type BlogPost = BlogArticleMetadata & {
 	author: Author;
 	date: string | DateStr;
 	isoDate: string | DateStr;
@@ -89,6 +71,8 @@ export type Article = {
 	body?: ArticleBody;
 	// * article author (title, `name` of the author, imgSrc | profilePicture, imgDescription | description of the author, moreInfoLabel, moreInfoHref)
 	author?: ArticleAuthor;
+	// * article review
+	review?: Review;
 };
 export type ArticleHead = {
 	// * friendly how long ago the article was published
@@ -98,18 +82,14 @@ export type ArticleHead = {
 	// * icon label
 	iconLabel?: string;
 };
-// Use
-// export interface ArticleAuthor {
-// 	title: Author['name'];
-// 	imgSrc: Author['profilePicture'];
-// 	imgDescription?: string | Author['imgDescription'] | Picture['imgDescription'];
-// 	moreInfoLabel?: string;
-// 	moreInfoHref?: string;
-// }
 
 export type ArticleAuthor = Author & {
 	moreInfoLabel?: string;
 	moreInfoHref?: string;
+};
+export type ArticleBody = Without<{ id: string }, BlogArticleMetadata> & {
+	titleHref?: string;
+	// (blog: BlogPost, titleHref?: string): ArticleBody;
 };
 
 export const ToArticleAuthor = (author: Author): ArticleAuthor => {
@@ -120,10 +100,7 @@ export const ToArticleAuthor = (author: Author): ArticleAuthor => {
 		imgDescription: author.imgDescription ?? author.name // + author.title
 	} satisfies ArticleAuthor;
 };
-export type ArticleBody = Without<{ id: string }, BlogArticleIdentifier> & {
-	titleHref?: string;
-	// (blog: BlogPost, titleHref?: string): ArticleBody;
-};
+
 export const ToArticleHead = (blog: BlogPost): ArticleHead => {
 	// const iso = new Date(blog.isoDate as string).getTime();
 	// const now = Date.
