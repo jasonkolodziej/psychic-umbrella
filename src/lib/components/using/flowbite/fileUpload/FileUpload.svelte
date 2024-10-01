@@ -2,10 +2,7 @@
 <script lang="ts">
 	import { uploadFile, type UploadedFile } from '$lib/media/fileUtils';
 	// import { Editor } from '@tiptap/core';
-	// import { createEventDispatcher } from 'svelte';
-	// To use on events
-	// const dispatch = createEventDispatcher();
-
+	import { createEventDispatcher } from 'svelte';
 	import {
 		Fileupload,
 		Label,
@@ -17,10 +14,18 @@
 		Progressbar
 	} from 'flowbite-svelte';
 	import { CloudArrowUpOutline } from 'flowbite-svelte-icons';
+	// To use on events
+	const dispatch = createEventDispatcher<{
+		uploaded: Partial<UploadedFile>;
+		drop: null;
+		change: null;
+		// clicked: number,
+		// update: JSONContent;
+	}>();
+	// export let uploadedCallback: (file: Partial<UploadedFile>) => void;
 	export let multiple = false;
 	export let dropzone = true;
 	export let label: string = multiple ? 'Upload files' : 'Upload file';
-	export let uploadedCallback: (file: Partial<UploadedFile>) => void;
 	// export let editor: Editor;
 	let files: FileList; // FileList type
 	let pendingFiles: Array<File | Promise<Partial<UploadedFile>>> = [];
@@ -70,8 +75,8 @@
 						// editor.chain().focus().setImage({ src: uploadedFile.fileObjectUrl }).run();
 						// we just have to dispatch an event somewhere and the parent component
 						// will already know that this Component dispatches a 'loaded' CustomEvent
-						// dispatch('uploaded', { detail: uploadedFile });
-						uploadedCallback(uploadedFile);
+						dispatch('uploaded', uploadedFile);
+						// uploadedCallback(uploadedFile);
 					}
 				});
 			}
@@ -90,7 +95,8 @@
 						if (uploadedFile.fileObjectUrl) {
 							console.log('uploadedFile using fileObjectUrl', uploadedFile);
 							// editor.chain().focus().setImage({ src: uploadedFile.fileObjectUrl }).run();
-							uploadedCallback(uploadedFile);
+							// uploadedCallback(uploadedFile);
+							dispatch('uploaded', uploadedFile);
 							// dispatch('uploaded', { detail: uploadedFile });
 						}
 					});

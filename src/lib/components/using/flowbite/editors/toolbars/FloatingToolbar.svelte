@@ -24,12 +24,22 @@
 	import FileUpload from '$components/using/flowbite/fileUpload/FileUpload.svelte';
 	import type { UploadedFile } from '$lib/media/fileUtils';
 	import { urlUtils } from '@magidoc/plugin-svelte-marked';
+	import type { ComponentEvents } from 'svelte';
 	// determine if the user prefers dark mode
 	export let isDark: boolean;
 	// export let tableActive: boolean;
 	export let editor: Editor;
 	export let floatingMenu: HTMLElement;
 	let showUploader: boolean = false;
+	//? Event method handler for uploaded files
+	type UploadedEventType = ComponentEvents<FileUpload>['uploaded'];
+	const handleUploaded = ({ detail }: UploadedEventType) => {
+		// dispatch('loaded', detail);
+		console.log('handleUploaded (alt callback, using events)', detail);
+		editor.chain().focus().setImage({ src: detail.fileObjectUrl!, alt: detail.file?.name }).run();
+		showUploader = false;
+	};
+	//? Alternative method to handle uploaded files using callback
 	const uploadedCallback = (file: Partial<UploadedFile>) => {
 		console.log('uploadedCallback', file);
 		editor.chain().focus().setImage({ src: file.fileObjectUrl!, alt: file.file?.name }).run();
@@ -137,6 +147,7 @@
 				detail.revokeObjectUrl;
 			}}
 		/> -->
-		<FileUpload dropzone {uploadedCallback} />
+		<!-- <FileUpload dropzone {uploadedCallback} /> -->
+		<FileUpload dropzone on:uploaded={handleUploaded} />
 	{/if}
 </svelte:element>

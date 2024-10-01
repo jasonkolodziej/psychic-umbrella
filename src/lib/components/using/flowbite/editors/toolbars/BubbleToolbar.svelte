@@ -102,7 +102,7 @@
 			>
 				<TextSubscript />
 			</GradientButton>
-			<Tooltip>Toggle Text Subscript</Tooltip>
+			<Tooltip>Toggle Subscript</Tooltip>
 			<GradientButton
 				size="xs"
 				outline={editor.isActive('superscript') ? false : true}
@@ -111,7 +111,7 @@
 			>
 				<TextSuperscript />
 			</GradientButton>
-			<Tooltip>Toggle Text Superscript</Tooltip>
+			<Tooltip>Toggle Superscript</Tooltip>
 			<!-- * Set text highlight color -->
 			<Button size="xs" color="light">
 				<TextHighlight />
