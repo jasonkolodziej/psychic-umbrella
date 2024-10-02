@@ -22,6 +22,7 @@
 	import { Button, ButtonGroup } from 'flowbite-svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { twJoin, twMerge } from 'tailwind-merge';
+	import { get } from 'svelte/store';
 	const dispatch = createEventDispatcher<{
 		loaded: null;
 		// clicked: number,
@@ -67,23 +68,21 @@
 	let verticalResizeClass: string;
 	let lastCursorY = -1;
 	let mediaClass: string;
-	// const mediaActionActiveState = ref<Record<string, boolean>>({})
+
 	//? https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/src/06-state-management/02-context-inline/Usage..svelte
-	let mediaActionActiveState: Record<string, boolean>;
+
+	setContext<Record<string, boolean>>('mediaActionActiveState', {});
+	const mediaActionActiveState = getContext<Record<string, boolean>>('mediaActionActiveState');
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
 
 	const setMediaActionActiveStates = () => {
-		const activeStates: Record<string, boolean> = {};
-
+		// const activeStates: Record<string, boolean> = {};
 		for (const { tooltip, isActive } of resizableMediaActions) {
-			activeStates[tooltip] = !!isActive?.($$props.node.attrs);
+			// activeStates[tooltip] = !!isActive?.($$props.node.attrs);
+			mediaActionActiveState[tooltip] = !!isActive?.($$props.node.attrs);
 		}
-
-		// mediaActionActiveState.value = activeStates;
-		mediaActionActiveState = activeStates;
-		// setContext<Record<string, boolean>>('mediaActionActiveState', activeStates);
 	};
 	// watch(
 	// 	// () => props.node.attrs,
@@ -95,8 +94,6 @@
 	// 	// do something
 	// 	deep = true;
 	// }
-	// mediaActionActiveState = getContext<Record<string, boolean>>('mediaActionActiveState');
-	// if (hasContext('mediaActionActiveState')) {
 
 	const limitWidthOrHeightToFiftyPixels = ({ width, height }: WidthAndHeight) =>
 		width < 100 || height < 100;
@@ -245,7 +242,10 @@
 		setTimeout(() => setMediaActionActiveStates(), 200);
 	};
 
-	onMount(() => mediaSetupOnLoad());
+	// onMount(() => mediaSetupOnLoad());
+	onMount(() => {
+		mediaSetupOnLoad();
+	});
 
 	$: if ($$props.node.attrs) {
 		setMediaActionActiveStates();
