@@ -21,6 +21,9 @@ declare module '@tiptap/core' {
 				width?: string;
 				height?: string;
 			}) => ReturnType;
+			deleteResizableMedia: () => ReturnType;
+			alignResizableMedia: (align: 'left' | 'center' | 'right') => ReturnType;
+			floatResizableMedia: (float: 'left' | 'right') => ReturnType;
 		};
 	}
 }
@@ -153,6 +156,28 @@ export const ResizableMedia = Node.create<MediaOptions>({
 					return commands.insertContent({
 						type: this.name,
 						attrs: options
+					});
+				},
+			// updateMedia:
+			deleteResizableMedia:
+				() =>
+				({ commands }) => {
+					return commands.deleteCurrentNode();
+				},
+			alignResizableMedia:
+				(align) =>
+				({ commands }) => {
+					return commands.updateAttributes(this.name, {
+						dataAlign: align,
+						dataFloat: null
+					});
+				},
+			floatResizableMedia:
+				(float) =>
+				({ commands }) => {
+					return commands.updateAttributes(this.name, {
+						dataAlign: null,
+						dataFloat: float
 					});
 				}
 		};

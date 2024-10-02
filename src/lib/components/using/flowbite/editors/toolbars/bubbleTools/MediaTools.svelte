@@ -56,7 +56,7 @@
 				class="btn btn-sm btn-ghost image-action-button"
 				on:click={() =>
 					mediaAction.tooltip === 'Delete'
-						? editor.chain().focus().deleteNode('resizableMedia').run()
+						? editor.chain().focus().deleteResizableMedia().run()
 						: editor
 								.chain()
 								.focus()

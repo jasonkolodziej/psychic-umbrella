@@ -26,7 +26,7 @@ interface ResizableMediaAction {
 	action?: (updateAttributes: (o: Record<string, any>) => any) => void;
 	isActive?: (attrs: Record<string, any>) => boolean;
 	delete?: (d: () => void) => void;
-	attrsToUpdate?: Record<string, any>;
+	attrsToUpdate: Record<string, any>;
 }
 
 export const resizableMediaActions: ResizableMediaAction[] = [
