@@ -189,6 +189,13 @@ export const ResizableMedia = Node.create<MediaOptions>({
 		// return ResizableMediaNodeView as NodeViewRenderer;
 	},
 
+	// https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#storage
+	// addStorage() {
+	// 	return {
+	// 		//?
+	// 	};
+	// },
+
 	addInputRules() {
 		return [
 			nodeInputRule({
