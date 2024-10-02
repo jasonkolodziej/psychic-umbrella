@@ -1,21 +1,32 @@
 /* @unocss-include */
+// import {
+// 	IconAlignCenter,
+// 	IconAlignLeft,
+// 	IconAlignRight,
+// 	IconFloatLeft,
+// 	IconFloatRight,
+// 	IconDelete
+// } from '$components/icons';
 import {
-	IconAlignCenter,
-	IconAlignLeft,
-	IconAlignRight,
-	IconFloatLeft,
-	IconFloatRight,
-	IconDelete
-} from '$components/icons';
+	AlignHorizontalCenter,
+	AlignHorizontalLeft,
+	AlignHorizontalRight,
+	AlignBoxMiddleLeft,
+	AlignBoxMiddleRight,
+	TrashCan
+} from 'carbon-icons-svelte';
+import type { SvelteComponent } from 'svelte';
 // import
 
 interface ResizableMediaAction {
 	tooltip: string;
-	icon: string;
+	// icon: string;
+	icon: typeof SvelteComponent;
 
 	action?: (updateAttributes: (o: Record<string, any>) => any) => void;
 	isActive?: (attrs: Record<string, any>) => boolean;
 	delete?: (d: () => void) => void;
+	attrsToUpdate?: Record<string, any>;
 }
 
 export const resizableMediaActions: ResizableMediaAction[] = [
@@ -26,7 +37,12 @@ export const resizableMediaActions: ResizableMediaAction[] = [
 				dataAlign: 'left',
 				dataFloat: null
 			}),
-		icon: IconAlignLeft,
+		attrsToUpdate: {
+			dataAlign: 'left',
+			dataFloat: null
+		},
+		// icon: IconAlignLeft,
+		icon: AlignHorizontalLeft,
 		isActive: (attrs) => attrs.dataAlign === 'left'
 	},
 	{
@@ -36,7 +52,12 @@ export const resizableMediaActions: ResizableMediaAction[] = [
 				dataAlign: 'center',
 				dataFloat: null
 			}),
-		icon: IconAlignCenter,
+		attrsToUpdate: {
+			dataAlign: 'center',
+			dataFloat: null
+		},
+		// icon: IconAlignCenter,
+		icon: AlignHorizontalCenter,
 		isActive: (attrs) => attrs.dataAlign === 'center'
 	},
 	{
@@ -46,7 +67,12 @@ export const resizableMediaActions: ResizableMediaAction[] = [
 				dataAlign: 'right',
 				dataFloat: null
 			}),
-		icon: IconAlignRight,
+		attrsToUpdate: {
+			dataAlign: 'right',
+			dataFloat: null
+		},
+		// icon: IconAlignRight,
+		icon: AlignHorizontalRight,
 		isActive: (attrs) => attrs.dataAlign === 'right'
 	},
 	{
@@ -56,7 +82,12 @@ export const resizableMediaActions: ResizableMediaAction[] = [
 				dataAlign: null,
 				dataFloat: 'left'
 			}),
-		icon: IconFloatLeft,
+		attrsToUpdate: {
+			dataAlign: null,
+			dataFloat: 'left'
+		},
+		// icon: IconFloatLeft,
+		icon: AlignBoxMiddleLeft,
 		isActive: (attrs) => attrs.dataFloat === 'left'
 	},
 	{
@@ -66,12 +97,18 @@ export const resizableMediaActions: ResizableMediaAction[] = [
 				dataAlign: null,
 				dataFloat: 'right'
 			}),
-		icon: IconFloatRight,
+		attrsToUpdate: {
+			dataAlign: null,
+			dataFloat: 'right'
+		},
+		// icon: IconFloatRight,
+		icon: AlignBoxMiddleRight,
 		isActive: (attrs) => attrs.dataFloat === 'right'
 	},
 	{
 		tooltip: 'Delete',
-		icon: IconDelete,
+		// icon: IconDelete,
+		icon: TrashCan,
 		delete: (deleteNode) => deleteNode()
 	}
 ];

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { ButtonGroup, GradientButton, Tooltip } from 'flowbite-svelte';
+	import { resizableMediaActions } from '$components/tiptap/extensions/resizableMedia/resizableMediaUtil';
+	import { ButtonGroup, GradientButton, Button, Tooltip } from 'flowbite-svelte';
 	import {
 		BarsFromLeftOutline,
 		AlignCenterOutline,
@@ -15,7 +16,7 @@
 {#if editor}
 	<!-- * for use with custom extension
  * on:click={() => editor.chain().focus().updateAttributes('image', { align: 'right' }).run()} -->
-	<ButtonGroup>
+	<!-- <ButtonGroup>
 		<GradientButton
 			bind:outline
 			color="pinkToOrange"
@@ -41,5 +42,31 @@
 			<AngleRightOutline size="sm" />
 		</GradientButton>
 		<Tooltip>Align Right</Tooltip>
+	</ButtonGroup> -->
+
+	<ButtonGroup class="image-actions-container">
+		{#each resizableMediaActions as mediaAction, i}
+			<!--                 key={i} v-tippy="{ content: mediaAction.tooltip, placement: 'top' }" -->
+			<!-- 				on:click={() =>
+					mediaAction.tooltip === 'Delete'
+						? mediaAction.delete?.(deleteNode)
+						: mediaAction.action?.(updateAttributes)}
+			> -->
+			<Button
+				class="btn btn-sm btn-ghost image-action-button"
+				on:click={() =>
+					mediaAction.tooltip === 'Delete'
+						? editor.chain().focus().deleteNode('resizableMedia').run()
+						: editor
+								.chain()
+								.focus()
+								.updateAttributes('resizableMedia', mediaAction.attrsToUpdate)
+								.run()}
+			>
+				<svelte:component this={mediaAction.icon} />
+				<!-- <InlineSVG src={mediaAction.icon} /> -->
+			</Button>
+			<Tooltip>{mediaAction.tooltip}</Tooltip>
+		{/each}
 	</ButtonGroup>
 {/if}

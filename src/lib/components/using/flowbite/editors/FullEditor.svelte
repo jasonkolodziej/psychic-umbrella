@@ -92,7 +92,8 @@
 				// force re-render so `editor.isActive` works as expected
 				editor = editor;
 				tableActive = editor.isActive('table');
-				imgActive = editor.isActive('image');
+				// imgActive = editor.isActive('image');
+				imgActive = editor.isActive('resizableMedia');
 				// console.log('tableActive', tableActive);
 			},
 			// triggered on every change https://tiptap.dev/docs/guides/output-json-html

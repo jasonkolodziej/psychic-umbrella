@@ -15,7 +15,7 @@
 	import { Tooltip } from 'flowbite-svelte';
 	import { Node as ProseMirrorNode } from 'prosemirror-model';
 	import { Decoration } from 'prosemirror-view';
-	import InlineSVG from 'svelte-inline-svg';
+
 	// import InlineSvg from 'vue-inline-svg'
 
 	import { resizableMediaActions } from './resizableMediaUtil';
@@ -54,6 +54,7 @@
 	});
 
 	let resizableMedia: HTMLImageElement | HTMLVideoElement;
+	let floatingMenu: HTMLElement;
 
 	let deep: boolean;
 
@@ -305,8 +306,7 @@
 				<source src={node.attrs.src} />
 			</svelte:element>
 		{/if}
-		<!-- 			class:horizontal-resize-active={isHorizontalResizeActive} 			on:mousedown={(e) => startHorizontalResize(e)}
-			on:mouseup={stopHorizontalResize} -->
+
 		<div
 			class={horizontalResizeClass}
 			title="Resize"
@@ -323,21 +323,23 @@
 		/>
 	</div>
 
-	<ButtonGroup class="image-actions-container">
-		{#each resizableMediaActions as mediaAction, i}
-			<!--                 key={i} v-tippy="{ content: mediaAction.tooltip, placement: 'top' }" -->
-			<Button
-				class="btn btn-sm btn-ghost image-action-button"
-				on:click={() =>
-					mediaAction.tooltip === 'Delete'
-						? mediaAction.delete?.(deleteNode)
-						: mediaAction.action?.(updateAttributes)}
-			>
-				<!-- <InlineSVG src={mediaAction.icon} /> -->
-			</Button>
-			<Tooltip>{mediaAction.tooltip}</Tooltip>
-		{/each}
-	</ButtonGroup>
+	<!-- {#if editor && editor.isActive('resizableMedia')}
+		<ButtonGroup class="image-actions-container">
+			{#each resizableMediaActions as mediaAction, i}
+				<Button
+					class="btn btn-sm btn-ghost image-action-button"
+					on:click={() =>
+						mediaAction.tooltip === 'Delete'
+							? mediaAction.delete?.(deleteNode)
+							: mediaAction.action?.(updateAttributes)}
+				>
+					<svelte:component this={mediaAction.icon} />
+				</Button>
+				<Tooltip>{mediaAction.tooltip}</Tooltip>
+			{/each}
+		</ButtonGroup>
+	{/if} -->
+	<!-- </svelte:element> -->
 	<!-- </tippy> -->
 </NodeViewWrapper>
 
