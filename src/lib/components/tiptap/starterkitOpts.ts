@@ -20,9 +20,10 @@ import { TableCell } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { TableRow } from '@tiptap/extension-table-row';
 import { TaskList } from '@tiptap/extension-task-list';
-import { TaskItem as CustomTaskListItem } from './taskItem';
+import { TaskItem as CustomTaskListItem } from '$components/tiptap/extensions/taskItem/taskItem';
 // import { TaskItem } from '@tiptap/extension-task-item';
 import { twMerge } from 'tailwind-merge';
+import { ResizableMedia } from '$components/tiptap/extensions/resizableMedia/resizableMedia';
 // import type { HTMLAttributes } from 'svelte/elements';
 
 //? Reference: https://tiptap.dev/docs/editor/getting-started/style-editor#editor
@@ -176,13 +177,14 @@ export const extensionsWithNoOpts: Extensions = [
 		nested: true,
 		HTMLAttributes: { class: 'flex items-center gap-4' }
 	}),
+	ResizableMedia
 	// * @tiptap/extension-image
-	CustomImage.configure({
-		inline: false
-		// HTMLAttributes: {
-		// 	class: 'max-w-lg rounded-lg'
-		// }
-	})
+	// Image.configure({
+	// 	inline: false
+	// 	// HTMLAttributes: {
+	// 	// 	class: 'max-w-lg rounded-lg'
+	// 	// }
+	// })
 ];
 
 const TextAlign = Extension.create({

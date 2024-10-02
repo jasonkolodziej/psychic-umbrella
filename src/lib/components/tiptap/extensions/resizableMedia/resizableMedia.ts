@@ -5,7 +5,7 @@ import { mergeAttributes, Node, nodeInputRule } from '@tiptap/core';
 import { SvelteNodeViewRenderer } from 'svelte-tiptap';
 // import { NodeViewRenderer } from '@tiptap/core';
 
-import ResizableMediaNodeView from './ResizableMediaNodeView.svelte';
+import ResizableMediaNodeView from '$components/tiptap/extensions/resizableMedia/ResizableMediaNodeView.svelte';
 
 declare module '@tiptap/core' {
 	interface Commands<ReturnType> {

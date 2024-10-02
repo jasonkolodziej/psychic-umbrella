@@ -6,8 +6,8 @@
 	import { FloatingMenu } from '@tiptap/extension-floating-menu';
 	import { BubbleMenu } from '@tiptap/extension-bubble-menu';
 	import { extensionsWithNoOpts } from '$components/tiptap/starterkitOpts';
-	import BubbleToolbar from './toolbars/BubbleToolbar.svelte';
-	import FloatingToolbar from './toolbars/FloatingToolbar.svelte';
+	import BubbleToolbar from '$components/using/flowbite/editors/toolbars/BubbleToolbar.svelte';
+	import FloatingToolbar from '$components/using/flowbite/editors/toolbars/FloatingToolbar.svelte';
 	const dispatch = createEventDispatcher<{
 		loaded: null;
 		// clicked: number,
