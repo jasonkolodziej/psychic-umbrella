@@ -18,7 +18,7 @@ export const POST: RequestHandler = async ({
 	);
 	// console.log(request);
 	const file = await getFileFromFormData(request);
-	console.log(file);
+	// console.log(file);
 	return json({ ...file }, { status: 200 });
 };
 

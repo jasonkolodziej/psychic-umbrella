@@ -1,16 +1,22 @@
 // ? see: https://github.com/JustinyAhin/okupter-repos/blob/5e9403e30a49ce5e314f311cffb057d922d2c737/apps/sveltekit-file-upload/src/routes/%2Bpage.server.ts
 
-// export const revokeObjectUrl = URL.revokeObjectURL;
-export const uploadFile = async (file: File) => {
+/**
+ * uploadFile - Uploads a file to the server
+ * @param file File to upload
+ * @param routeId Optional route to upload file to
+ * @returns Promise<Partial<UploadedFile>> - Promise containing the file and its object URL
+ */
+export const uploadFile = async (file: File, routeId?: string) => {
 	const fd = new FormData();
 	fd.append('file', file);
 	// ? URL.createObjectURL() creates a temporary URL for the image we can use as src for an img tag
+	// ? This is useful for displaying the image before it is uploaded -- only works with Web Workers
 	fd.append('fileObjectUrl', URL.createObjectURL(file));
 	// return fetch('/photos', {
 	// 	method: 'POST',
 	// 	body: fd
 	// });
-	const response = await fetch('/photos', {
+	const response = await fetch(routeId ?? '/photos', {
 		method: 'POST',
 		body: fd
 	});
@@ -32,9 +38,15 @@ export const uploadFile = async (file: File) => {
 	// return response.json();
 };
 
+/**
+ * getFileFromFormData - Extracts file from FormData and is used in POST request handlers
+ * @param request Request from client containing FormData
+ * @returns Promise<Partial<UploadedFile>> - Promise containing the file and its object URL
+ */
 export const getFileFromFormData = async (request: Request): Promise<Partial<UploadedFile>> => {
 	const formData = await request.formData();
 	const file = formData.get('file') as File;
+	//TODO: may not need to revoke object URL
 	const fileObjectUrl = formData.get('fileObjectUrl') as string;
 	return {
 		file,

@@ -71,4 +71,25 @@
   ## Props
   @prop export let items: ImgType[] = [];
   @prop export let imgClass: string = 'h-auto max-w-full rounded-lg';
+  @prop export let galleryType: 'default' | 'masonry' | 'featured' | 'quad' = 'default';
+  ### Gallery Types
+  - `default`: Default grid
+  - `masonry`: Masonry grid
+  - `featured`: Featured image with other images
+  - `quad`: Quad gallery
+
+  @prop export let single: boolean = false;
+  ### Single image
+  Declares a single image to be displayed
+
+  @prop export let singleItem: ImgType = { src: '', alt: '' };
+  ### Single image data
+  Single image data
+
+  @prop export let singleAlignment: 'left' | 'right' | 'center' = 'center';
+  ### Single image alignment
+  Alignment of the single image
+  - `left`: Aligns the image to the left
+  - `right`: Aligns the image to the right
+  - `center`: Aligns the image to the center
   -->

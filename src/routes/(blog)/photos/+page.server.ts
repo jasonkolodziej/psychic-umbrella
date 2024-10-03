@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import type { ImgType } from 'flowbite-svelte';
 
 export const load: PageServerLoad = async ({
 	request,
@@ -14,10 +15,11 @@ export const load: PageServerLoad = async ({
 		`PageServerLoad.${request.method}(${route.id}) dataReq?:${isDataRequest} subreq?:${isSubRequest}`,
 		params
 	);
-	const parentData = await parent();
+	// const parentData = await parent();
 	return {
-		...parentData,
-		title: 'Photos'
+		// ...parentData,
+		title: 'Photos',
+		items: [] as Array<ImgType>
 	};
 };
 

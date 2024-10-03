@@ -19,7 +19,8 @@
 		// { name: 'Lego Reviews', href: '/reviews' },
 		// { name: 'Recommended Sets', href: '/sets' },
 		{ name: 'About Me', href: '/about' },
-		{ name: 'Markdown', href: '/markdown' }
+		{ name: 'Markdown', href: '/markdown' },
+		{ name: 'Photos', href: '/photos' }
 	];
 </script>
 

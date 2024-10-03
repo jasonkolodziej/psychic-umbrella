@@ -26,6 +26,7 @@
 	export let multiple = false;
 	export let dropzone = true;
 	export let label: string = multiple ? 'Upload files' : 'Upload file';
+	export let route: string | undefined = undefined;
 	// export let editor: Editor;
 	let files: FileList; // FileList type
 	let pendingFiles: Array<File | Promise<Partial<UploadedFile>>> = [];
@@ -91,7 +92,7 @@
 			pendingFiles.forEach((file) => {
 				if (file instanceof File) {
 					console.log('handleChangeEvent uploading file', file);
-					return uploadFile(file).then((uploadedFile) => {
+					return uploadFile(file, route).then((uploadedFile) => {
 						if (uploadedFile.fileObjectUrl) {
 							console.log('uploadedFile using fileObjectUrl', uploadedFile);
 							// editor.chain().focus().setImage({ src: uploadedFile.fileObjectUrl }).run();
