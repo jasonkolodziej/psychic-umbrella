@@ -18,7 +18,7 @@
 	import Users from '$lib/data/users.json';
 	import type { RouteType } from '$lib/utils/routeTypes';
 	// titles: ['Lego News', 'Lego Sets', 'Lego Reviews', 'Recommended Sets', 'About Me']
-	const routes: RouteType[] = [
+	const routesStatic: RouteType[] = [
 		{ name: 'Lego News', href: '/news' },
 		{
 			name: 'Legos',
@@ -37,73 +37,81 @@
 	export let companyOrgName = 'Beyond Bricks';
 	export let fluid = true;
 	export let drawerHidden = false;
-	export let list: RouteType[] = [];
+	export let routes: RouteType[] = [];
 
 	// TODO: add dynamic routing
 	// $: list = routes;
 </script>
 
 <Navbar {fluid} class="text-black" color="default" let:NavContainer>
-	<NavContainer class="mb-px mt-px px-1" {fluid}>
-		<NavHamburger
-			onClick={() => (drawerHidden = !drawerHidden)}
-			class="m-0 me-3 md:block lg:hidden"
+	<NavHamburger
+		onClick={() => (drawerHidden = !drawerHidden)}
+		class="m-0 me-3 md:block lg:hidden"
+	/>
+	<NavBrand href="/" class={routes ? 'w-40' : 'lg:w-60'}>
+		<!-- <img
+			src="/images/flowbite-svelte-icon-logo.svg"
+			class="me-2.5 h-6 sm:h-8"
+			alt="Flowbite Logo"
 		/>
-		<NavBrand href="/" class={list ? 'w-40' : 'lg:w-60'}>
-			<img src="/images/noun-lego-brick.svg" class="me-2.5 h-6 sm:h-9" alt="Logos" />
-			<span class="self-center whitespace-nowrap text-xl font-semibold sm:text-xl dark:text-white">
-				{companyOrgName}
-			</span>
-		</NavBrand>
-		<div class="hidden lg:block lg:ps-3">
-			{#if list}
-				<NavUl class="ml-2" activeUrl="/" activeClass="text-primary-600 dark:text-primary-500">
-					{#each list as { name, href, dropdown }, i}
-						{#if dropdown}
-							<NavLi class="cursor-pointer">
-								{name}
-								<!-- class="ms-0 inline" -->
-								<ChevronDownOutline class="text-primary-800 ms-2 inline h-6 w-6 dark:text-white" />
-							</NavLi>
-							<Dropdown class="z-20 w-44">
-								{#each dropdown as drop}
-									<DropdownItem href={href ? href + drop.href : drop.href}>
-										{#if drop.icon}
-											<svelte:component this={drop.icon} class="me-2.5 h-4 w-4" />
-										{/if}
-										{drop.name}
-									</DropdownItem>
-								{/each}
-							</Dropdown>
-						{:else}
-							<NavLi {href}>{name}</NavLi>
-						{/if}
-					{/each}
-					<!-- <NavLi href="/">Home</NavLi>
-					<NavLi href="#top">Messages</NavLi>
-					<NavLi href="#top">Profile</NavLi>
-					<NavLi href="#top">Settings</NavLi>
-					<NavLi class="cursor-pointer">
-						Dropdown
-						<ChevronDownOutline class="ms-0 inline" />
-					</NavLi>
-					<Dropdown class="z-20 w-44">
-						<DropdownItem href="#top">Item 1</DropdownItem>
-						<DropdownItem href="#top">Item 2</DropdownItem>
-						<DropdownItem href="#top">Item 3</DropdownItem>
-					</Dropdown> -->
-				</NavUl>
-			{:else}
-				<form>
-					<Search size="md" class="mt-1 w-96 border focus:outline-none" />
-				</form>
-			{/if}
-		</div>
-		<div class="ms-auto flex items-center text-gray-500 sm:order-2 dark:text-gray-400">
-			<Notifications />
-			<AppsMenu />
-			<DarkMode />
-			<UserMenu {...Users[4]} />
-		</div>
-	</NavContainer>
+		<span
+			class="ml-px self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white"
+		>
+			Flowbite
+		</span> -->
+		<img src="/images/noun-lego-brick.svg" class="me-2.5 h-6 sm:h-9" alt="Logos" />
+		<span class="self-center whitespace-nowrap text-xl font-semibold sm:text-xl dark:text-white">
+			{companyOrgName}
+		</span>
+	</NavBrand>
+	<div class="hidden lg:block lg:ps-3">
+		{#if routes}
+			<NavUl class="ml-2" activeUrl="/" activeClass="text-primary-600 dark:text-primary-500">
+				{#each routes as { name, href, dropdown }, i}
+					{#if dropdown}
+						<NavLi class="cursor-pointer">
+							{name}
+							<!-- class="ms-0 inline" -->
+							<ChevronDownOutline class="ms-2 inline h-6 w-6 text-primary-800 dark:text-white" />
+						</NavLi>
+						<Dropdown class="z-20 w-44">
+							{#each dropdown as drop}
+								<DropdownItem href={href ? href + drop.href : drop.href}>
+									{#if drop.icon}
+										<svelte:component this={drop.icon} class="me-2.5 h-4 w-4" />
+									{/if}
+									{drop.name}
+								</DropdownItem>
+							{/each}
+						</Dropdown>
+					{:else}
+						<NavLi {href}>{name}</NavLi>
+					{/if}
+				{/each}
+				<!-- <NavLi href="/">Home</NavLi>
+				<NavLi href="#top">Messages</NavLi>
+				<NavLi href="#top">Profile</NavLi>
+				<NavLi href="#top">Settings</NavLi>
+				<NavLi class="cursor-pointer">
+					Dropdown
+					<ChevronDownOutline class="ms-0 inline" />
+				</NavLi>
+				<Dropdown class="z-20 w-44">
+					<DropdownItem href="#top">Item 1</DropdownItem>
+					<DropdownItem href="#top">Item 2</DropdownItem>
+					<DropdownItem href="#top">Item 3</DropdownItem>
+				</Dropdown> -->
+			</NavUl>
+		{:else}
+			<form>
+				<Search size="md" class="mt-1 w-96 border focus:outline-none" />
+			</form>
+		{/if}
+	</div>
+	<div class="ms-auto flex items-center text-gray-500 sm:order-2 dark:text-gray-400">
+		<Notifications />
+		<AppsMenu />
+		<DarkMode />
+		<UserMenu {...Users[4]} />
+	</div>
 </Navbar>

@@ -8,9 +8,7 @@ export default {
 		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
 	],
 	safelist: [
-		{
-			pattern: /^datatable-.*$/
-		}
+		// ...[...Array(10).keys()].flatMap((i) => [`top-[${i * 10}%]`, `left-[${i * 10}%]`])
 	],
 	//? https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
 	// darkMode: 'class',
