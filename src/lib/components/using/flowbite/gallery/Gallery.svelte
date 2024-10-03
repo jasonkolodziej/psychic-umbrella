@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { ImgType } from 'flowbite-svelte';
 	import { twMerge } from 'tailwind-merge';
 	import { Gallery, Img } from 'flowbite-svelte';
+	import type { ExtendedImgType } from '$lib/media/fileUtils';
 
-	export let items: ImgType[] = [];
-	export let singleItem: ImgType = { src: '', alt: '' };
+	export let items: ExtendedImgType[] = [];
+	export let singleItem: ExtendedImgType = { src: '', alt: '', onload: () => {} };
 	export let single: boolean = false;
 	export let singleAlignment: 'left' | 'right' | 'center' = 'center';
 	export let imgClass: string = 'h-auto max-w-full rounded-lg';
@@ -36,33 +36,47 @@
 	function init(node: HTMLElement) {
 		if (getComputedStyle(node).gap === 'normal') node.style.gap = 'inherit';
 	}
+	$: console.log(`Gallery items(${items.length}):`, items);
 </script>
 
 {#if single}
-	<Img src={singleItem.src} alt={singleItem.alt} bind:alignment={alignmentForSingle} />
+	<Img
+		src={singleItem.src}
+		alt={singleItem.alt}
+		on:load={() => singleItem.onload && singleItem.onload()}
+		bind:alignment={alignmentForSingle}
+	/>
 {:else}
-	<div {...$$restProps} class={divClass} use:init>
-		{#if galleryType === 'featured'}
-			<div>
-				<img
-					src={items[0].src}
-					alt={items[0].alt}
-					class={twMerge(imgClass, $$props.classImg ?? featuredImageClass)}
-				/>
-			</div>
-			<Gallery items={items.slice(1)} class={featuredOtherImgsClass} />
-		{:else}
-			{#each items as item}
-				<slot {item}>
-					<div>
-						<img src={item.src} alt={item.alt} class={twMerge(imgClass, $$props.classImg)} />
-					</div>
-				</slot>
+	{#key items.length}
+		<div {...$$restProps} class={divClass} use:init>
+			{#if galleryType === 'featured'}
+				<div>
+					<img
+						src={items[0].src}
+						alt={items[0].alt}
+						on:load={() => items[0].onload && items[0].onload()}
+						class={twMerge(imgClass, $$props.classImg ?? featuredImageClass)}
+					/>
+				</div>
+				<Gallery items={items.slice(1)} class={featuredOtherImgsClass} />
 			{:else}
-				<slot item={items[0]} />
-			{/each}
-		{/if}
-	</div>
+				{#each items as item}
+					<slot {item}>
+						<div>
+							<img
+								src={item.src}
+								alt={item.alt}
+								on:load={() => item.onload && item.onload()}
+								class={twMerge(imgClass, $$props.classImg)}
+							/>
+						</div>
+					</slot>
+				{:else}
+					<slot item={items[0]} />
+				{/each}
+			{/if}
+		</div>
+	{/key}
 {/if}
 
 <!--

@@ -1,4 +1,4 @@
-import { json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 // import { MimeTypes } from 'mime-type';
 import { getFileFromFormData } from '$lib/media/fileUtils';
@@ -17,9 +17,14 @@ export const POST: RequestHandler = async ({
 		params
 	);
 	// console.log(request);
-	const file = await getFileFromFormData(request);
+	const partialFile = await getFileFromFormData(request);
+	console.log('partialFile received from uploaded FormData:', partialFile);
+	let id: string | undefined;
+	if (partialFile.fileObjectUrl) {
+		id = partialFile.fileObjectUrl.split('/').pop();
+	}
 	// console.log(file);
-	return json({ ...file }, { status: 200 });
+	return json({ ...partialFile, id: id }, { status: 200 });
 };
 
 //? see: https://github.com/JustinyAhin/okupter-repos/blob/5e9403e30a49ce5e314f311cffb057d922d2c737/apps/sveltekit-file-upload/src/routes/api/upload/%2Bserver.ts

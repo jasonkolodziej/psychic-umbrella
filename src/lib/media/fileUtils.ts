@@ -1,4 +1,22 @@
 // ? see: https://github.com/JustinyAhin/okupter-repos/blob/5e9403e30a49ce5e314f311cffb057d922d2c737/apps/sveltekit-file-upload/src/routes/%2Bpage.server.ts
+import type { ImgType } from 'flowbite-svelte';
+
+/**
+ * ExtendedImgType - Extends ImgType with an onload event to support blob URLs
+ */
+export type ExtendedImgType = ImgType & { onload?: () => void };
+
+// const blobToImage = (blob) => {
+// 	return new Promise(resolve => {
+// 	  const url = URL.createObjectURL(blob)
+// 	  let img = new Image()
+// 	  img.onload = () => {
+// 		URL.revokeObjectURL(url)
+// 		resolve(img)
+// 	  }
+// 	  img.src = url
+// 	})
+//   }
 
 /**
  * uploadFile - Uploads a file to the server
@@ -7,16 +25,25 @@
  * @returns Promise<Partial<UploadedFile>> - Promise containing the file and its object URL
  */
 export const uploadFile = async (file: File, routeId?: string) => {
+	console.log('uploadFile to:', routeId ?? '/photos?/upload');
 	const fd = new FormData();
 	fd.append('file', file);
 	// ? URL.createObjectURL() creates a temporary URL for the image we can use as src for an img tag
 	// ? This is useful for displaying the image before it is uploaded -- only works with Web Workers
-	fd.append('fileObjectUrl', URL.createObjectURL(file));
+	const fileObjectUrl = URL.createObjectURL(file);
+	fd.append('fileObjectUrl', fileObjectUrl);
+	// fd.set()
+	//
+	console.log('fileObjectUrl created:', fileObjectUrl);
+	const blobFromObjectUrl = await getObjectFromUrl(fileObjectUrl);
+	console.log('blobFromObjectUrl gathered:', blobFromObjectUrl);
+	// const blobFromObjectUrl = await getObjectFromUrl(fileObjectUrl);
+	// console.log('blobFromObjectUrl gathered:', blobFromObjectUrl);
 	// return fetch('/photos', {
 	// 	method: 'POST',
 	// 	body: fd
 	// });
-	const response = await fetch(routeId ?? '/photos', {
+	const response = await fetch(routeId ?? '/photos/?upload', {
 		method: 'POST',
 		body: fd
 	});
@@ -37,6 +64,12 @@ export const uploadFile = async (file: File, routeId?: string) => {
 	return returnResponse;
 	// return response.json();
 };
+/**
+ * getObjectFromUrl - Fetches an object from an Object URL
+ * @param url the URL to fetch the object from - e.g. 'blob:http://localhost:3000/1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p'
+ * @returns Promise<Blob> - Promise containing the Blob object
+ */
+export const getObjectFromUrl = async (url: string) => await fetch(url).then((r) => r.blob());
 
 /**
  * getFileFromFormData - Extracts file from FormData and is used in POST request handlers
@@ -44,10 +77,13 @@ export const uploadFile = async (file: File, routeId?: string) => {
  * @returns Promise<Partial<UploadedFile>> - Promise containing the file and its object URL
  */
 export const getFileFromFormData = async (request: Request): Promise<Partial<UploadedFile>> => {
+	console.log('getFileFromFormData');
 	const formData = await request.formData();
 	const file = formData.get('file') as File;
 	//TODO: may not need to revoke object URL
 	const fileObjectUrl = formData.get('fileObjectUrl') as string;
+	console.log('fileObjectUrl received:', fileObjectUrl);
+
 	return {
 		file,
 		fileObjectUrl,
@@ -78,3 +114,12 @@ export interface UploadedFile {
 	readonly errorBody?: string;
 	status: 'edit' | 'uploading' | 'complete' | null;
 }
+
+// ? https://hartenfeller.dev/blog/sveltekit-image-upload-store
+export type AlbumImage = {
+	fileName: string;
+	mimeType: string;
+	lastModified: number;
+	size: number;
+	data: Blob;
+};

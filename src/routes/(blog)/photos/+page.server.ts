@@ -1,6 +1,7 @@
-import { redirect } from '@sveltejs/kit';
+import { error, redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { ImgType } from 'flowbite-svelte';
+import { getFileFromFormData, type ExtendedImgType } from '$lib/media/fileUtils';
 
 export const load: PageServerLoad = async ({
 	request,
@@ -36,7 +37,7 @@ export const load: PageServerLoad = async ({
 	return {
 		// ...parentData,
 		title: 'Photos',
-		items: images as Array<ImgType>
+		items: images as Array<ExtendedImgType>
 	};
 };
 
