@@ -25,7 +25,7 @@ export type ExtendedImgType = ImgType & { onload?: () => void };
  * @returns Promise<Partial<UploadedFile>> - Promise containing the file and its object URL
  */
 export const uploadFile = async (file: File, routeId?: string) => {
-	console.log('uploadFile to:', routeId ?? '/photos?/upload');
+	console.log('uploadFile to:', routeId ?? '/photos');
 	const fd = new FormData();
 	fd.append('file', file);
 	// ? URL.createObjectURL() creates a temporary URL for the image we can use as src for an img tag
@@ -43,7 +43,7 @@ export const uploadFile = async (file: File, routeId?: string) => {
 	// 	method: 'POST',
 	// 	body: fd
 	// });
-	const response = await fetch(routeId ?? '/photos/?upload', {
+	const response = await fetch(routeId ?? '/photos', {
 		method: 'POST',
 		body: fd
 	});
