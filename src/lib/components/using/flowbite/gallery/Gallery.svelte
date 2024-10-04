@@ -78,18 +78,20 @@
 {:else}
 	<div {...$$restProps} class={divClass} use:init>
 		{#if galleryType === 'featured'}
-			<div>
-				<img
-					src={latestItems[0].src}
-					alt={latestItems[0].alt}
-					on:load={() => latestItems[0].onload && latestItems[0].onload()}
-					class={twMerge(imgClass, $$props.classImg ?? featuredImageClass)}
-				/>
-			</div>
-			<Gallery items={latestItems.slice(1)} class={featuredOtherImgsClass} />
+			{#if latestItems.length > 1}
+				<div>
+					<img
+						src={latestItems[0].src}
+						alt={latestItems[0].alt}
+						on:load={() => latestItems[0].onload && latestItems[0].onload()}
+						class={twMerge(imgClass, $$props.classImg ?? featuredImageClass)}
+					/>
+				</div>
+				<Gallery items={latestItems.slice(1)} class={featuredOtherImgsClass} />
+			{/if}
 		{:else}
 			<!-- ? if not a subscriber -->
-			{#each latestItems as item}
+			{#each latestItems as item, i}
 				<slot {item}>
 					<div>
 						<img
