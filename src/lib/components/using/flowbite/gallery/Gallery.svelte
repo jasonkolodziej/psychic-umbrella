@@ -2,6 +2,8 @@
 	import { twMerge } from 'tailwind-merge';
 	import { Gallery, Img } from 'flowbite-svelte';
 	import type { ExtendedImgType } from '$lib/media/fileUtils';
+	import { onMount } from 'svelte';
+	import { myStore, myMediaStore } from './store';
 
 	export let items: ExtendedImgType[] = [];
 	export let singleItem: ExtendedImgType = { src: '', alt: '', onload: () => {} };
@@ -31,11 +33,36 @@
 	let alignmentForSingle =
 		singleAlignment === 'right' ? 'ms-auto' : singleAlignment === 'center' ? 'mx-auto' : '';
 
+	let asSubscriber = items.length === 0 ? true : false;
+
+	$myStore = 0; // short form of `myStore.set(0)`
+	// we can't assign a string to the store
+	// $myStore = 'value'
+
+	// const myOtherValue = $myOtherStore;
+	// $myOtherStore = 'some value';
+
+	// onMount(async () => {
+	// 	await items.fetchData();
+	// 	console.log($myMediaStore);
+	// });
+
+	// we can't set a value on our custom store,
+	// since it doesn't include the `set` function
+	// $myCustomUserStore = undefined
+
+	// onMount(() => {
+	// 	// myMediaStore.push(...items);
+	// 	// console.log('myMediaStore:', myMediaStore);
+	// 	items = asSubscriber ? $myMediaStore : items;
+	// });
+
 	$: divClass = twMerge('grid', $$props.class ?? classChange);
 
 	function init(node: HTMLElement) {
 		if (getComputedStyle(node).gap === 'normal') node.style.gap = 'inherit';
 	}
+	// $: latestItems = asSubscriber ? $myMediaStore : items;
 	$: console.log(`Gallery items(${items.length}):`, items);
 </script>
 
@@ -47,36 +74,35 @@
 		bind:alignment={alignmentForSingle}
 	/>
 {:else}
-	{#key items.length}
-		<div {...$$restProps} class={divClass} use:init>
-			{#if galleryType === 'featured'}
-				<div>
-					<img
-						src={items[0].src}
-						alt={items[0].alt}
-						on:load={() => items[0].onload && items[0].onload()}
-						class={twMerge(imgClass, $$props.classImg ?? featuredImageClass)}
-					/>
-				</div>
-				<Gallery items={items.slice(1)} class={featuredOtherImgsClass} />
+	<div {...$$restProps} class={divClass} use:init>
+		{#if galleryType === 'featured'}
+			<div>
+				<img
+					src={items[0].src}
+					alt={items[0].alt}
+					on:load={() => items[0].onload && items[0].onload()}
+					class={twMerge(imgClass, $$props.classImg ?? featuredImageClass)}
+				/>
+			</div>
+			<Gallery items={items.slice(1)} class={featuredOtherImgsClass} />
+		{:else}
+			<!-- ? if not a subscriber -->
+			{#each items as item}
+				<slot {item}>
+					<div>
+						<img
+							src={item.src}
+							alt={item.alt}
+							on:load={() => item.onload && item.onload()}
+							class={twMerge(imgClass, $$props.classImg)}
+						/>
+					</div>
+				</slot>
 			{:else}
-				{#each items as item}
-					<slot {item}>
-						<div>
-							<img
-								src={item.src}
-								alt={item.alt}
-								on:load={() => item.onload && item.onload()}
-								class={twMerge(imgClass, $$props.classImg)}
-							/>
-						</div>
-					</slot>
-				{:else}
-					<slot item={items[0]} />
-				{/each}
-			{/if}
-		</div>
-	{/key}
+				<slot item={items[0]} />
+			{/each}
+		{/if}
+	</div>
 {/if}
 
 <!--
