@@ -3,8 +3,10 @@
 	import { Gallery, Img } from 'flowbite-svelte';
 	import type { ExtendedImgType } from '$lib/media/fileUtils';
 	import { onMount } from 'svelte';
-	import { myStore, myMediaStore } from './store';
-
+	import { readableGallery } from './store';
+	import { read } from '$app/server';
+	import { readable } from 'svelte/store';
+	const mediaStore = readableGallery();
 	export let items: ExtendedImgType[] = [];
 	export let singleItem: ExtendedImgType = { src: '', alt: '', onload: () => {} };
 	export let single: boolean = false;
@@ -33,9 +35,9 @@
 	let alignmentForSingle =
 		singleAlignment === 'right' ? 'ms-auto' : singleAlignment === 'center' ? 'mx-auto' : '';
 
-	let asSubscriber = items.length === 0 ? true : false;
+	$: latestItems = items.length === 0 ? $mediaStore : items;
 
-	$myStore = 0; // short form of `myStore.set(0)`
+	// $myStore = 0; // short form of `myStore.set(0)`
 	// we can't assign a string to the store
 	// $myStore = 'value'
 
@@ -78,16 +80,16 @@
 		{#if galleryType === 'featured'}
 			<div>
 				<img
-					src={items[0].src}
-					alt={items[0].alt}
-					on:load={() => items[0].onload && items[0].onload()}
+					src={latestItems[0].src}
+					alt={latestItems[0].alt}
+					on:load={() => latestItems[0].onload && latestItems[0].onload()}
 					class={twMerge(imgClass, $$props.classImg ?? featuredImageClass)}
 				/>
 			</div>
-			<Gallery items={items.slice(1)} class={featuredOtherImgsClass} />
+			<Gallery items={latestItems.slice(1)} class={featuredOtherImgsClass} />
 		{:else}
 			<!-- ? if not a subscriber -->
-			{#each items as item}
+			{#each latestItems as item}
 				<slot {item}>
 					<div>
 						<img

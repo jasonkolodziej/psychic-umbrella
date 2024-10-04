@@ -1,5 +1,7 @@
 import type { Moment } from 'moment';
 import moment from 'moment';
+import { getContext, hasContext, setContext } from 'svelte';
+import { readable, writable, type Writable } from 'svelte/store';
 
 //? https://refine.dev/blog/typescript-mapped-types/#typescript-type-mapper-utility-vs-ts-mapped-type-the-difference
 export type Nullable<T> = T | null;
@@ -43,3 +45,26 @@ export function toDateStr(date: Date | Moment | string): DateStr {
 }
 
 // export type MaybePromise<T> = T | Promise<T>;
+
+//? https://dev.to/jdgamble555/the-correct-way-to-use-stores-in-sveltekit-3h6i
+// context for any type of store
+export const useSharedStore = <T, A>(
+	ctxKeyName: string,
+	fn: (value?: A) => T,
+	defaultValue?: A
+) => {
+	if (hasContext(ctxKeyName)) {
+		return getContext<T>(ctxKeyName);
+	}
+	const _value = fn(defaultValue);
+	setContext(ctxKeyName, _value);
+	return _value;
+};
+
+// writable store context
+export const useWritable = <T>(ctxName: string, value: T) =>
+	useSharedStore(ctxName, writable<T>, value);
+
+// readable store context
+export const useReadable = <T>(ctxName: string, value: T) =>
+	useSharedStore(ctxName, readable<T>, value);

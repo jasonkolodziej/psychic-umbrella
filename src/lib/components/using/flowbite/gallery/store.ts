@@ -1,40 +1,6 @@
 import type { ExtendedImgType } from '$lib/media/fileUtils';
-import { writable } from 'svelte/store';
+import { useReadable, useWritable } from '$lib/utils/templates';
 
-// the store will automatically infer the type from the initial value
-export const myStore = writable(12);
+export const writableGallery = () => useWritable<ExtendedImgType[]>('mediaGallery', []);
 
-// if we want the store to hold multiple types of values
-// we need to specify the type as generic
-export const myOtherStore = writable<undefined | string>(undefined);
-
-export const myMediaStore = writable<ExtendedImgType[]>([]);
-
-// we create a custom store with some additional function
-const createMyCustomStore = <T>(fetchFn: () => Promise<T>) => {
-	const { subscribe, set } = writable<T | undefined>(undefined);
-
-	return {
-		subscribe,
-		fetchData: async () => {
-			const result = await fetchFn();
-			set(result);
-		}
-	};
-};
-
-type User = {
-	name: string;
-};
-
-const loadUserData = async (): Promise<User> => {
-	// do data fetching
-	return { name: 'Svelte' };
-};
-
-export const myCustomUserStore = createMyCustomStore(loadUserData);
-
-export const createMediaStore = (initialExtendedSrc: ExtendedImgType[]) =>
-	createMyCustomStore<Array<ExtendedImgType>>(
-		() => new Promise((resolve) => resolve(initialExtendedSrc))
-	);
+export const readableGallery = () => useReadable<ExtendedImgType[]>('mediaGallery', []);

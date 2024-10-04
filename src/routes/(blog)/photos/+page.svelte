@@ -5,22 +5,26 @@
 	import { onMount, type ComponentEvents } from 'svelte';
 	import type { PageData } from './$types';
 	import { getObjectFromUrl, type ExtendedImgType } from '$lib/media/fileUtils';
-	import { createMediaStore, myMediaStore } from '$components/using/flowbite/gallery/store';
+	import { writableGallery } from '$components/using/flowbite/gallery/store';
 	// import { PageData } from '$types';
 	export let data: PageData;
 	// let items: ExtendedImgType[] = data.items;
 	//? Event method handler for uploaded files
+	const mediaStore = writableGallery();
 	type UploadedEventType = ComponentEvents<FileUpload>['uploaded'];
 	const handleUploaded = ({ detail }: UploadedEventType) => {
 		console.log('handleUploaded (alt callback, using events)');
 		// if (detail.fileObjectUrl) {
-		$myMediaStore.push({
-			src: detail.fileObjectUrl!,
-			alt: 'kk',
-			onload: () => {
-				console.log('Image loaded');
-				URL.revokeObjectURL(detail.fileObjectUrl!);
-			}
+		mediaStore.update((value) => {
+			value.push({
+				src: detail.fileObjectUrl!,
+				alt: 'kk',
+				onload: () => {
+					console.log('Image loaded');
+					URL.revokeObjectURL(detail.fileObjectUrl!);
+				}
+			});
+			return value;
 		});
 		// items.push({
 		// 	src: detail.fileObjectUrl!,
@@ -34,7 +38,7 @@
 
 		// }
 	};
-	onMount(() => $myMediaStore.push(...data.items));
+	onMount(() => mediaStore.set(data.items));
 </script>
 
 <main class="p-4">
