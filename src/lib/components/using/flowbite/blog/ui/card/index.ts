@@ -21,4 +21,14 @@ export {
 	Title as CardTitle
 };
 
+export type IPriceCard = {
+	title: string;
+	description: string;
+	price: string;
+	pricePeriod?: 'month' | 'year' | 'week' | 'day';
+	// pricePeriodClass?: string;
+	features: Array<string>;
+	image?: { src: string; alt: string };
+};
+
 export type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

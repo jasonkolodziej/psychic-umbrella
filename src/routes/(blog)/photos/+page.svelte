@@ -1,11 +1,11 @@
 <script lang="ts">
 	import FileUpload from '$components/using/flowbite/fileUpload/FileUpload.svelte';
-	import Gallery from '$components/using/flowbite/gallery/Gallery.svelte';
+	import Gallery from '$components/using/flowbite/media/gallery/Gallery.svelte';
 	import type { ImgType } from 'flowbite-svelte';
 	import { onMount, type ComponentEvents } from 'svelte';
 	import type { PageData } from './$types';
 	import { getObjectFromUrl, type ExtendedImgType } from '$lib/media/fileUtils';
-	import { writableGallery } from '$components/using/flowbite/gallery/store';
+	import { writableGallery } from '$components/using/flowbite/media/gallery/store';
 	// import { PageData } from '$types';
 	export let data: PageData;
 	// let items: ExtendedImgType[] = data.items;
