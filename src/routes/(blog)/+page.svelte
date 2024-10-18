@@ -9,7 +9,7 @@
 	import Inbox from '$lib/utils/crud/Inbox.svelte';
 	import Video from '$components/using/flowbite/media/video/Video.svelte';
 	import SectionFeatured from '$components/using/flowbite/blog/ui/section/section-featured.svelte';
-	import { SectionPricing } from '$components/using/flowbite/blog/ui/section';
+	import { SectionCta, SectionPricing } from '$components/using/flowbite/blog/ui/section';
 	// import WysiwygEditor from '$components/flowbite/WYSIWYGEditor.svelte';
 	// import Editor from '$components/carta-md/Editor.svelte';
 	// import AceEditor from '$components/ace/editor.svelte';
@@ -68,4 +68,5 @@
 	<!-- <Video src="https://www.youtube.com/watch?v=JF0a5aoEGsw" /> -->
 	<SectionFeatured />
 	<SectionPricing />
+	<SectionCta />
 </main>

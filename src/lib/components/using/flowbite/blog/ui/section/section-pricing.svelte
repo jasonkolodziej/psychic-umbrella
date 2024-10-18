@@ -17,7 +17,6 @@
 	type SomePriceCard = IPriceCard & {
 		onClick?: () => void;
 		buttonLabel?: string;
-		buttonColor?: string;
 	};
 	type PriceCards = Array<SomePriceCard>;
 	type $$Props = {
@@ -29,9 +28,21 @@
 		pcTitleClass?: string;
 		pcDescriptionClass?: string;
 		pcBodyPriceClass?: string;
-		priceCardPriceClass?: string;
-		priceCardPricePeriodClass?: string;
-		priceCardFeaturesClass?: string;
+		pcPriceClass?: string;
+		pcPricePeriodClass?: string;
+		pcFeaturesClass?: string;
+		pcButtonColor?:
+			| 'red'
+			| 'yellow'
+			| 'green'
+			| 'purple'
+			| 'blue'
+			| 'light'
+			| 'dark'
+			| 'primary'
+			| 'none'
+			| 'alternative'
+			| undefined;
 	};
 	let className: $$Props['class'] = undefined;
 	export let heading: $$Props['heading'] = 'Designed for business teams like yours';
@@ -62,12 +73,12 @@
 	export let pcDescriptionClass: $$Props['pcDescriptionClass'] = undefined; // 'font-light text-gray-500 sm:text-lg dark:text-gray-400'
 	export let pcBodyPriceClass: $$Props['pcBodyPriceClass'] = undefined; // 'flex justify-center items-baseline my-8'
 	// Price of the price card
-	export let priceCardPriceClass: $$Props['priceCardPriceClass'] = 'mr-2 text-5xl font-extrabold';
-	export let priceCardPricePeriodClass: $$Props['priceCardPricePeriodClass'] =
-		'text-gray-500 dark:text-gray-400';
+	export let pcPriceClass: $$Props['pcPriceClass'] = 'mr-2 text-5xl font-extrabold';
+	export let pcPricePeriodClass: $$Props['pcPricePeriodClass'] = 'text-gray-500 dark:text-gray-400';
 	// Features of the price card
-	export let priceCardFeaturesClass: $$Props['priceCardFeaturesClass'] =
-		'text-green-500 dark:text-green-400';
+	export let pcFeaturesClass: $$Props['pcFeaturesClass'] = 'text-green-500 dark:text-green-400';
+	// Button of the price card
+	export let pcButtonColor: $$Props['pcButtonColor'] = 'primary';
 	export { className as class };
 </script>
 
@@ -94,15 +105,15 @@
 					<svelte:fragment slot="h3">{title}</svelte:fragment>
 					<svelte:fragment slot="paragraph">{description}</svelte:fragment>
 					<svelte:fragment slot="price">
-						<span class={priceCardPriceClass}>{price}</span>
+						<span class={pcPriceClass}>{price}</span>
 						{#if pricePeriod}
-							<span class={priceCardPricePeriodClass}>/{pricePeriod}</span>
+							<span class={pcPricePeriodClass}>/{pricePeriod}</span>
 						{/if}
 					</svelte:fragment>
 				</PricingBodyHead>
 				<PricingItemWrapper>
 					{#each features as feature, i}
-						<PricingItem class={priceCardFeaturesClass}>
+						<PricingItem class={pcFeaturesClass}>
 							<span>{feature}</span>
 						</PricingItem>
 					{/each}
@@ -121,7 +132,7 @@
 					</PricingItem> -->
 
 					<svelte:fragment slot="btn">
-						<Button color="red">{buttonLabel}</Button>
+						<Button bind:color={pcButtonColor}>{buttonLabel}</Button>
 					</svelte:fragment>
 				</PricingItemWrapper>
 			</PricingCard>
