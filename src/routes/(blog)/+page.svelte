@@ -51,11 +51,11 @@
 	// 			src = text;
 	// 		});
 	// });
-	onMount(() => goto('/about'));
+	// onMount(() => goto('/about'));
 </script>
 
 <main class={classRef}>
-	<!-- <Inbox></Inbox> -->
+	<Inbox></Inbox>
 	<!-- {#key src}
 		<Renderer source={src} />
 	{/key} -->
